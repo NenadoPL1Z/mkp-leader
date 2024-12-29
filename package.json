@@ -93,9 +93,7 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "prettier --write",
-      "eslint --fix --ext .ts,.tsx",
       "eslint --max-warnings=0",
-      "ls",
       "tsc --noEmit"
     ]
   }
