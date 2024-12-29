@@ -6,8 +6,15 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "format": "prettier --write src/",
     "start": "react-native start",
-    "test": "jest"
+    "start-reset-cache": "react-native start --reset-cache",
+    "test": "jest",
+    "doctor": "npx @react-native-community/cli doctor",
+    "types": "tsc --noEmit --skipLibCheck",
+    "build-android": "(cd android && ./gradlew assembleRelease)",
+    "build-android-gp": "(cd android && ./gradlew bundleRelease)",
+    "husky-install": "husky install"
   },
   "dependencies": {
     "react": "18.3.1",
