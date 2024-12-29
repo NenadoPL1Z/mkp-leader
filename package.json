@@ -17,8 +17,12 @@
     "husky-install": "husky install"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^5.0.6",
+    "@gorhom/portal": "^1.0.14",
     "react": "18.3.1",
-    "react-native": "0.76.5"
+    "react-native": "0.76.5",
+    "react-native-gesture-handler": "^2.21.2",
+    "react-native-reanimated": "^3.16.6"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
