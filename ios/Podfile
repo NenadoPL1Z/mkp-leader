@@ -14,7 +14,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'MkpLeader' do
+target 'MKPLeader' do
   config = use_native_modules!
 
   use_react_native!(
@@ -23,7 +23,7 @@ target 'MkpLeader' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'MkpLeaderTests' do
+  target 'MKPLeaderTests' do
     inherit! :complete
     # Pods for testing
   end
