@@ -1,0 +1,9 @@
+/.git
+/.git
+/.idea
+/.vscode
+/android
+/ios
+node_modules
+jest-setup.js
+metro.config.js

@@ -14,6 +14,8 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+$RNVideoUseVideoCaching = true
+
 target 'MKPLeader' do
   config = use_native_modules!
 
@@ -22,6 +24,9 @@ target 'MKPLeader' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+
+  pod 'SPTPersistentCache', :modular_headers => true
+  pod 'DVAssetLoaderDelegate', :modular_headers => true
 
   target 'MKPLeaderTests' do
     inherit! :complete
