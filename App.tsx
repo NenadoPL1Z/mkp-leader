@@ -5,7 +5,8 @@
  * @format
  */
 
-import React from "react";
+import { hide } from "react-native-bootsplash";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -61,6 +62,16 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+
+    init().finally(async () => {
+      await hide({ fade: true });
+    });
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
