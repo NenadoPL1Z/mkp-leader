@@ -1,0 +1,12 @@
+pre-commit:
+  commands:
+    lint:
+      run: eslint --max-warnings=0 {staged_files}
+    type-check:
+      run: tsc --noEmit
+pre-push:
+  commands:
+    lint:
+      run: eslint --max-warnings=0 {staged_files}
+    type-check:
+      run: tsc --noEmit

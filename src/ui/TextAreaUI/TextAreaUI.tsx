@@ -14,7 +14,7 @@ const TextAreaUI = forwardRef<TextFieldRef, TextAreaUIProps>(
       <View>
         <TextField
           /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-          /*@ts-expect-error*/
+          // @ts-ignore
           ref={ref}
           numberOfLines={4}
           multiline={true}
