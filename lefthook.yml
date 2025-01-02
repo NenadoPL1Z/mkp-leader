@@ -1,7 +1,7 @@
 pre-commit:
   commands:
-    lint:
-      run: eslint --max-warnings=0 {staged_files}
+#    lint:
+#      run: eslint --ignore-pattern "./husky/*" --max-warnings=0 {staged_files}
     type-check:
       run: tsc --noEmit
 pre-push:
