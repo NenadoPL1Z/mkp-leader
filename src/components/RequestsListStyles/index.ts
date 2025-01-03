@@ -1,9 +1,11 @@
 import { Size } from "@app/lib/constants/size.ts";
 import { StyleSheet } from "react-native";
+import { Colors } from "@app/theme/colors.ts";
 
 export const requestsListStyles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.WHITE,
   },
   top: {
     flex: 1,

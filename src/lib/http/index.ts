@@ -10,8 +10,11 @@ const createInstance = () => {
 
   config.interceptors.request.use(
     async (request) => {
-      const { access_token = "" } = await jwt.getAccessToken();
-      request.headers.Authorization = `Bearer ${access_token}`;
+      const { access_token = "" } = await jwt.getAuthTokens();
+
+      if (!request.headers.Authorization) {
+        request.headers.Authorization = `Bearer ${access_token}`;
+      }
 
       if (IS_DEV) {
         console.log(
