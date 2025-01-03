@@ -3,16 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "lint": "eslint .",
-    "format": "prettier --write src/",
-    "start": "react-native start",
-    "start-reset-cache": "react-native start --reset-cache & watchman watch-del-all",
     "doctor": "npx @react-native-community/cli doctor",
+    "start": "react-native start",
+    "start-reset": "react-native start --reset-cache & watchman watch-del-all",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android",
+    "build-android-develop": "(cd android && ./gradlew assembleRelease)",
+    "build-android-release": "(cd android && ./gradlew bundleRelease)",
+    "lint": "eslint .",
     "types": "tsc --noEmit --skipLibCheck",
-    "build-android": "(cd android && ./gradlew assembleRelease)",
-    "build-android-gp": "(cd android && ./gradlew bundleRelease)"
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.6.1",
