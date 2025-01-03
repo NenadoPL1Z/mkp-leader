@@ -2,7 +2,6 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "strict": true,
-
     "allowUnreachableCode": false,
     "alwaysStrict": true,
     "exactOptionalPropertyTypes": true,
@@ -24,9 +23,7 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-
     "types": ["react-native", "node"],
-
     "baseUrl": ".",
     "paths" : {
       "@app/*": ["./src/*"]
