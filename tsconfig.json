@@ -25,7 +25,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
 
-    "types": ["react-native", "jest", "node"],
+    "types": ["react-native", "node"],
 
     "baseUrl": ".",
     "paths" : {
