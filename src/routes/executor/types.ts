@@ -6,6 +6,6 @@ export enum ExecutorRootSN {
 }
 
 export type ExecutorRootSPL = {
-  [ExecutorRootSN.MAIN]: NavigatorScreenParams<undefined>;
-  [ExecutorRootSN.PROFILE]: NavigatorScreenParams<undefined>;
+  [ExecutorRootSN.MAIN]: NavigatorScreenParams<never>;
+  [ExecutorRootSN.PROFILE]: NavigatorScreenParams<never>;
 };

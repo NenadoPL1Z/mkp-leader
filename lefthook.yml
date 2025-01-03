@@ -1,0 +1,8 @@
+pre-commit:
+  commands:
+    type-check:
+      run: tsc --noEmit
+pre-push:
+  commands:
+    type-check:
+      run: tsc --noEmit

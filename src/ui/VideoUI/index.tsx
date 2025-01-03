@@ -8,6 +8,8 @@ import ButtonUI from "@app/ui/ButtonUI";
 import { useVideoUI } from "./useVideoUI";
 import { styles } from "./styles";
 import { useVideoProgress } from "./useVideoProgress";
+/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+// @ts-ignore
 import type { VideoProperties } from "react-native-video";
 
 const VideoUI = (props: VideoProperties) => {
