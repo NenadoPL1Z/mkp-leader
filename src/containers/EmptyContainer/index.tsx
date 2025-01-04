@@ -1,4 +1,3 @@
-import React from "react";
 import { View, StyleSheet } from "react-native";
 import EmptyServiceIcon from "@app/assets/icons/EmptyServices.svg";
 import Typography from "@app/ui/Typography";

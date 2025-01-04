@@ -7,31 +7,43 @@ import eslintPluginReactNative from "eslint-plugin-react-native";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 
 const files = ["**/*.{js,jsx,ts,tsx}"];
+const ignores = [
+  ".husky",
+  ".git",
+  ".idea",
+  ".vscode",
+  "android",
+  "ios",
+  "node_modules",
+  "babel.config.js",
+  "metro.config.js",
+  "react-native.config.js",
+];
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {
-    languageOptions: {
-      globals: globals.browser,
-    },
-    ignores: [
-      ".husky",
-      ".git",
-      ".idea",
-      ".vscode",
-      "android",
-      "ios",
-      "node_modules",
-      "babel.config.js",
-      "metro.config.js",
-      "react-native.config.js",
-    ],
-  },
+const recommended = [
   javascript.configs.recommended,
   ...typescript.configs.recommended,
   eslintPluginPrettier,
   eslintPluginReact.configs.flat.recommended,
   eslintPluginReact.configs.flat["jsx-runtime"],
+];
+
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  { ignores: ignores },
+  {
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+  {
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
+  ...recommended,
   {
     files,
     rules: {
@@ -50,7 +62,7 @@ export default [
     rules: {
       "no-extra-boolean-cast": "error",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-duplicate-enum-values": "off",
       "@typescript-eslint/consistent-type-imports": [
         "error",
@@ -62,11 +74,6 @@ export default [
   },
   {
     files,
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
     rules: {
       ...eslintPluginReact.configs.flat.recommended.rules,
       ...eslintPluginReact.configs.flat["jsx-runtime"].rules,

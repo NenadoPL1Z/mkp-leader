@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import LogoutIcon from "@app/assets/icons/Logout.svg";
 import PopupUI from "@app/ui/ModalUI/ui/PopupUI";
