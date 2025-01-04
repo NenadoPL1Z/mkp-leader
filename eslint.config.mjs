@@ -6,6 +6,7 @@ import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import eslintPluginReactNative from "eslint-plugin-react-native";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import eslintPluginPromise from "eslint-plugin-promise";
+// import eslintPluginImport from "eslint-plugin-import";
 
 const recommended = [
   javascript.configs.recommended,
@@ -14,10 +15,26 @@ const recommended = [
   eslintPluginReact.configs.flat.recommended,
   eslintPluginReact.configs.flat["jsx-runtime"],
   eslintPluginPromise.configs["flat/recommended"],
+  // eslintPluginImport.flatConfigs.recommended,
 ];
 
-const files = ["**/*.{js,jsx,ts,tsx}"];
+const settings = {
+  react: {
+    version: "detect",
+  },
+};
 
+const languageOptions = {
+  globals: {
+    NodeJS: true,
+    __DEV__: true,
+    JSX: true,
+    ...globals.browser,
+    ...globals.node,
+  },
+};
+
+const files = ["**/*.{js,jsx,ts,tsx}"];
 const ignores = [
   ".husky",
   ".git",
@@ -33,20 +50,10 @@ const ignores = [
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { ignores: ignores },
-  {
-    languageOptions: {
-      globals: globals.browser,
-    },
-  },
-  {
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
-  },
   ...recommended,
+  { ignores },
+  { settings },
+  { languageOptions },
   {
     files,
     rules: {
@@ -135,4 +142,36 @@ export default [
       "promise/no-return-in-finally": "warn",
     },
   },
+  // {
+  //   files,
+  //   rules: {
+  //     "import/no-deprecated": "off",
+  //     "import/namespace": "off",
+  //     "import/no-unresolved": "off",
+  //     "import/no-dynamic-require": "warn",
+  //     "import/no-mutable-exports": "error",
+  //     "import/no-empty-named-blocks": "error",
+  //     "import/no-cycle": "error",
+  //     "import/no-self-import": "error",
+  //     "import/no-duplicates": "error",
+  //     "import/newline-after-import": "error",
+  //     "import/no-useless-path-segments": "error",
+  //     "import/first": "error",
+  //     "import/order": [
+  //       "error",
+  //       {
+  //         groups: [
+  //           "builtin",
+  //           "external",
+  //           "internal",
+  //           "index",
+  //           "sibling",
+  //           "parent",
+  //           "object",
+  //           "type",
+  //         ],
+  //       },
+  //     ],
+  //   },
+  // },
 ];
