@@ -10,7 +10,7 @@
     "android": "react-native run-android",
     "build-android-develop": "(cd android && ./gradlew assembleRelease)",
     "build-android-release": "(cd android && ./gradlew bundleRelease)",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings=0",
     "types": "tsc --noEmit --skipLibCheck",
     "prepare": "lefthook install"
   },
