@@ -6,12 +6,14 @@ import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import eslintPluginReactNative from "eslint-plugin-react-native";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 
-const files = ["**/*.{js,ts,tsx}"];
+const files = ["**/*.{js,jsx,ts,tsx}"];
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { languageOptions: { globals: globals.browser } },
   {
+    languageOptions: {
+      globals: globals.browser,
+    },
     ignores: [
       ".husky",
       ".git",
@@ -28,8 +30,8 @@ export default [
   javascript.configs.recommended,
   ...typescript.configs.recommended,
   eslintPluginPrettier,
-  // eslintPluginReact.configs.flat.recommended,
-  // eslintPluginReact.configs.flat["jsx-runtime"],
+  eslintPluginReact.configs.flat.recommended,
+  eslintPluginReact.configs.flat["jsx-runtime"],
   {
     files,
     rules: {
@@ -41,16 +43,6 @@ export default [
       "max-params": ["warn", 4],
       "no-console": "error",
       "no-empty": "error",
-    },
-  },
-  {
-    plugins: {
-      "react-hooks": eslintPluginReactHooks,
-    },
-    rules: {
-      ...eslintPluginReactHooks.configs.recommended.rules,
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "off",
     },
   },
   {
@@ -66,6 +58,41 @@ export default [
           prefer: "type-imports",
         },
       ],
+    },
+  },
+  {
+    files,
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+    rules: {
+      ...eslintPluginReact.configs.flat.recommended.rules,
+      ...eslintPluginReact.configs.flat["jsx-runtime"].rules,
+      "react/hook-use-state": "error",
+      "react/jsx-boolean-value": ["error", "always"],
+      "react/jsx-curly-brace-presence": [
+        "error",
+        { props: "never", children: "ignore" },
+      ],
+      "react/jsx-no-constructed-context-values": "error",
+      "react/jsx-no-useless-fragment": "error",
+      "react/no-array-index-key": "error",
+      "react/self-closing-comp": ["error", { component: true }],
+      "react/no-danger": "error",
+      "react/no-unstable-nested-components": "off",
+      "react/react-in-jsx-scope": "off",
+    },
+  },
+  {
+    plugins: {
+      "react-hooks": eslintPluginReactHooks,
+    },
+    rules: {
+      ...eslintPluginReactHooks.configs.recommended.rules,
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "off",
     },
   },
   {
