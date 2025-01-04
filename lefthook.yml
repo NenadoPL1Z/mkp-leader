@@ -1,8 +1,12 @@
 pre-commit:
   commands:
+    lint:
+      run: eslint .
     type-check:
       run: tsc --noEmit --skipLibCheck
 pre-push:
   commands:
+    lint:
+      run: eslint .
     type-check:
       run: tsc --noEmit --skipLibCheck

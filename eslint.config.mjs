@@ -6,7 +6,7 @@ import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import eslintPluginReactNative from "eslint-plugin-react-native";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import eslintPluginPromise from "eslint-plugin-promise";
-// import eslintPluginImport from "eslint-plugin-import";
+import eslintPluginImport from "eslint-plugin-import";
 
 const recommended = [
   javascript.configs.recommended,
@@ -15,7 +15,6 @@ const recommended = [
   eslintPluginReact.configs.flat.recommended,
   eslintPluginReact.configs.flat["jsx-runtime"],
   eslintPluginPromise.configs["flat/recommended"],
-  // eslintPluginImport.flatConfigs.recommended,
 ];
 
 const settings = {
@@ -54,6 +53,7 @@ export default [
   { ignores },
   { settings },
   { languageOptions },
+  // core
   {
     files,
     rules: {
@@ -67,6 +67,7 @@ export default [
       "no-empty": "error",
     },
   },
+  // typescript
   {
     files,
     rules: {
@@ -82,6 +83,62 @@ export default [
       ],
     },
   },
+  // promise
+  {
+    files,
+    rules: {
+      ...eslintPluginPromise.configs["flat/recommended"].rules,
+      "promise/always-return": "off",
+      "promise/valid-params": "off",
+      "promise/catch-or-return": "off",
+      "promise/no-callback-in-promise": "off",
+      "promise/no-return-wrap": "error",
+      "promise/param-names": "error",
+      "promise/no-nesting": "error",
+      "promise/no-return-in-finally": "warn",
+    },
+  },
+  // import
+  {
+    plugins: {
+      import: eslintPluginImport,
+    },
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
+    files,
+    rules: {
+      "import/no-unresolved": "off",
+      "import/no-deprecated": "off",
+      "import/namespace": "off",
+      "import/no-dynamic-require": "warn",
+      "import/no-mutable-exports": "error",
+      "import/no-empty-named-blocks": "error",
+      "import/no-cycle": "error",
+      "import/no-self-import": "error",
+      "import/no-duplicates": "error",
+      "import/newline-after-import": "error",
+      "import/no-useless-path-segments": "error",
+      "import/first": "error",
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "index",
+            "sibling",
+            "parent",
+            "object",
+            "type",
+          ],
+        },
+      ],
+    },
+  },
+  // react
   {
     files,
     rules: {
@@ -102,6 +159,7 @@ export default [
       "react/react-in-jsx-scope": "off",
     },
   },
+  // react-hooks
   {
     plugins: {
       "react-hooks": eslintPluginReactHooks,
@@ -113,6 +171,7 @@ export default [
       "react-hooks/exhaustive-deps": "off",
     },
   },
+  // react-native
   {
     plugins: {
       "react-native": eslintPluginReactNative,
@@ -128,50 +187,4 @@ export default [
       "react-native/no-single-element-style-arrays": "error",
     },
   },
-  {
-    files,
-    rules: {
-      ...eslintPluginPromise.configs["flat/recommended"].rules,
-      "promise/always-return": "off",
-      "promise/valid-params": "off",
-      "promise/catch-or-return": "off",
-      "promise/no-callback-in-promise": "off",
-      "promise/no-return-wrap": "error",
-      "promise/param-names": "error",
-      "promise/no-nesting": "error",
-      "promise/no-return-in-finally": "warn",
-    },
-  },
-  // {
-  //   files,
-  //   rules: {
-  //     "import/no-deprecated": "off",
-  //     "import/namespace": "off",
-  //     "import/no-unresolved": "off",
-  //     "import/no-dynamic-require": "warn",
-  //     "import/no-mutable-exports": "error",
-  //     "import/no-empty-named-blocks": "error",
-  //     "import/no-cycle": "error",
-  //     "import/no-self-import": "error",
-  //     "import/no-duplicates": "error",
-  //     "import/newline-after-import": "error",
-  //     "import/no-useless-path-segments": "error",
-  //     "import/first": "error",
-  //     "import/order": [
-  //       "error",
-  //       {
-  //         groups: [
-  //           "builtin",
-  //           "external",
-  //           "internal",
-  //           "index",
-  //           "sibling",
-  //           "parent",
-  //           "object",
-  //           "type",
-  //         ],
-  //       },
-  //     ],
-  //   },
-  // },
 ];
