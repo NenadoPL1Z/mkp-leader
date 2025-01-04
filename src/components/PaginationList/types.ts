@@ -12,8 +12,7 @@ import type { FlatList, FlatListProps } from "react-native";
 import type { AxiosRequestConfig } from "axios";
 import type { ExecutorModel } from "@app/lib/models/ExecutorModel";
 
-// eslint-disable-next-line
-export type PaginationConfigData = { [key in string]: any };
+export type PaginationConfigData = { [key in string]: never };
 
 export type ResetArg = {
   resetData?: PaginationConfigData;
