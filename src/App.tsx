@@ -1,4 +1,3 @@
-import React from "react";
 import { IS_DEV } from "@app/lib/constants";
 import AppAuth from "./AppAuth";
 import AppRootStack from "./AppRootStack";
