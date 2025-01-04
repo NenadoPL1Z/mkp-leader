@@ -5,8 +5,19 @@ import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import eslintPluginReactNative from "eslint-plugin-react-native";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+import eslintPluginPromise from "eslint-plugin-promise";
+
+const recommended = [
+  javascript.configs.recommended,
+  ...typescript.configs.recommended,
+  eslintPluginPrettier,
+  eslintPluginReact.configs.flat.recommended,
+  eslintPluginReact.configs.flat["jsx-runtime"],
+  eslintPluginPromise.configs["flat/recommended"],
+];
 
 const files = ["**/*.{js,jsx,ts,tsx}"];
+
 const ignores = [
   ".husky",
   ".git",
@@ -18,14 +29,6 @@ const ignores = [
   "babel.config.js",
   "metro.config.js",
   "react-native.config.js",
-];
-
-const recommended = [
-  javascript.configs.recommended,
-  ...typescript.configs.recommended,
-  eslintPluginPrettier,
-  eslintPluginReact.configs.flat.recommended,
-  eslintPluginReact.configs.flat["jsx-runtime"],
 ];
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -96,6 +99,7 @@ export default [
     plugins: {
       "react-hooks": eslintPluginReactHooks,
     },
+    files,
     rules: {
       ...eslintPluginReactHooks.configs.recommended.rules,
       "react-hooks/rules-of-hooks": "error",
@@ -106,6 +110,7 @@ export default [
     plugins: {
       "react-native": eslintPluginReactNative,
     },
+    files,
     rules: {
       ...eslintPluginReactNative.configs.all.rules,
       "react-native/no-raw-text": "off",
@@ -114,6 +119,20 @@ export default [
       "react-native/no-inline-styles": "error",
       "react-native/no-color-literals": "warn",
       "react-native/no-single-element-style-arrays": "error",
+    },
+  },
+  {
+    files,
+    rules: {
+      ...eslintPluginPromise.configs["flat/recommended"].rules,
+      "promise/always-return": "off",
+      "promise/valid-params": "off",
+      "promise/catch-or-return": "off",
+      "promise/no-callback-in-promise": "off",
+      "promise/no-return-wrap": "error",
+      "promise/param-names": "error",
+      "promise/no-nesting": "error",
+      "promise/no-return-in-finally": "warn",
     },
   },
 ];
