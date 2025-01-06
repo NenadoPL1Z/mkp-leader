@@ -10,6 +10,8 @@ import { openIndexWebsite } from "@app/lib/functions/openIndexWebsite";
 import ButtonUI from "@app/ui/ButtonUI";
 import ToastUI from "@app/ui/ToastUI";
 import Documentation from "@app/components/Documentation";
+import { IS_DEV } from "@app/lib/constants";
+import { AutoAuth } from "./components/AutoAuth";
 import AuthForm from "./components/AuthForm";
 import { useAuth } from "./useAuth";
 import { styles } from "./index.styles";
@@ -41,6 +43,12 @@ const Auth = () => {
                 onPress={onSubmit}>
                 Войти
               </ButtonUI>
+              {IS_DEV && (
+                <AutoAuth
+                  methods={methods}
+                  onSubmit={onSubmit}
+                />
+              )}
             </View>
           </View>
         </KeyboardContainer>
