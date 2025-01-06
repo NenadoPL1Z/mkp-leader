@@ -17,4 +17,6 @@ export interface CompanyModel {
   closing_time: Nullable<string>;
   only_weekdays: boolean;
   contacts: CompanyContactsModel[];
+  executor_default_id: number;
+  executor_additional_id?: number;
 }

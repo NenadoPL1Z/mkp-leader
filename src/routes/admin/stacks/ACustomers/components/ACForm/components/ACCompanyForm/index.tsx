@@ -7,17 +7,23 @@ import { Colors } from "@app/theme/colors";
 import AfterDate from "@app/assets/icons/AfterDate.svg";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import DatePickerUI from "@app/ui/DatePickerUI";
+import { getExecutorControllerValue } from "./helpers";
 import { useACCompanyForm } from "./useACCompanyForm";
+import { FIRST_EXECUTOR_NAME, SECOND_EXECUTOR_NAME } from "./constants";
 import { styles } from "../../index.styles";
 
 const ACCompanyForm = () => {
   const {
     name,
     address,
+    executorDefault,
+    executorAdditional,
     openingTime,
     closingTime,
     onlyWeekdays,
     handlePressAddress,
+    handlePressDefaultExecutor,
+    handlePressAdditionalExecutor,
   } = useACCompanyForm();
 
   return (
@@ -35,7 +41,9 @@ const ACCompanyForm = () => {
             error={name.fieldState.error}
           />
         </View>
-        <TouchableOpacity onPress={handlePressAddress}>
+        <TouchableOpacity
+          style={styles.field}
+          onPress={handlePressAddress}>
           <TextField
             label="Адрес"
             required={true}
@@ -45,6 +53,29 @@ const ACCompanyForm = () => {
             value={address.field.value || ""}
             error={address.fieldState.error}
             onClear={() => address.field.onChange("")}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.field}
+          onPress={handlePressDefaultExecutor}>
+          <TextField
+            label={FIRST_EXECUTOR_NAME}
+            value={getExecutorControllerValue(executorDefault)}
+            disabled={true}
+            required={true}
+            inputStyle={styles.pointer}
+            error={executorDefault.fieldState.error}
+            isClear={false}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handlePressAdditionalExecutor}>
+          <TextField
+            label={SECOND_EXECUTOR_NAME}
+            value={getExecutorControllerValue(executorAdditional)}
+            disabled={true}
+            inputStyle={styles.pointer}
+            error={executorAdditional.fieldState.error}
+            onClear={() => executorAdditional.field.onChange(null)}
           />
         </TouchableOpacity>
       </View>

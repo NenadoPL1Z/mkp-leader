@@ -69,6 +69,8 @@ export const useACNew = ({
         password: data.password,
         name: data.name,
         address: data.address || "",
+        executor_default_id: data.executor_default.id,
+        executor_additional_id: data.executor_additional?.id ?? null,
         opening_time: getTime(data.opening_time),
         closing_time: getTime(data.closing_time),
         only_weekdays: data.only_weekdays,
@@ -109,6 +111,7 @@ export const useACNew = ({
       errors.password?.type === "required" &&
       errors.name?.type === "required" &&
       errors.address?.type === "required" &&
+      errors.executor_default?.type === "required" &&
       errors.personal_first_phone?.type === "required" &&
       errors.personal_first_name?.type === "required"
     ) {
@@ -129,6 +132,10 @@ export const useACNew = ({
     }
     if (errors.address?.type === "required") {
       onShowToast({ text1: `Заполните адрес компании` });
+      return;
+    }
+    if (errors.executor_default?.type === "required") {
+      onShowToast({ text1: `Выберите дежурного исполнителя` });
       return;
     }
     if (errors.personal_first_phone?.type === "required") {

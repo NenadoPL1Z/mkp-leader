@@ -12,6 +12,8 @@ export type CustomerCreateData = {
   password: string;
   name: string;
   address: string;
+  executor_default_id: number;
+  executor_additional_id: number | null;
   opening_time: string;
   closing_time: string;
   only_weekdays: boolean;
