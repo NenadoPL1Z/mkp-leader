@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import Edit from "@app/assets/icons/dist/Edit";
+import { EditIcon } from "@app/assets/icons/dist";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors.ts";
 import type { HRChildrenProps } from "@app/ui/HeaderUI/types";
@@ -18,7 +18,7 @@ const HREdit = (props: HRChildrenProps) => {
         color={Colors.GRAY_SEVEN}>
         {subtitle}
       </Typography>
-      <Edit {...iconProps} />
+      <EditIcon {...iconProps} />
     </TouchableOpacity>
   );
 };

@@ -3,10 +3,12 @@ import { AdminRootSN } from "@app/routes/admin/types";
 import { CustomerRootSN } from "@app/routes/customer/types";
 import { ExecutorRootSN } from "@app/routes/executor/types";
 import { useRole } from "@app/hooks/useRole";
-import ExecutorsIcon from "@app/assets/icons/dist/ExecutorsIcon";
-import ClientIcon from "@app/assets/icons/dist/ClientIcon";
-import HomeIcon from "@app/assets/icons/dist/HomeIcon";
-import ProfileIcon from "@app/assets/icons/dist/ProfileIcon";
+import {
+  ExecutorsIcon,
+  ClientIcon,
+  HomeIcon,
+  ProfileIcon,
+} from "@app/assets/icons/dist";
 import type { UseRole } from "@app/lib/models/UserModel";
 import type { TabBarItem, TabBarItemCallback } from "./types";
 

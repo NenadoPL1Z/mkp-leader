@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { useToggle } from "@app/hooks/useToggle";
-import ArrowDown from "@app/assets/icons/dist/ArrowDown";
+import { ArrowDownIcon } from "@app/assets/icons/dist";
 import AboutBottomSheet from "@app/components/AboutBottomSheet";
 import AboutCardCustomer from "@app/components/AboutCard/variant/AboutCardCustomer";
 import type { CustomerDetailModel } from "@app/lib/models/CustomerModel";
@@ -20,7 +20,7 @@ const RICompany = (props: CustomerDetailModel) => {
         nativeProps={{ marginBottom: 16 }}
         onPress={handleOpen}>
         <View style={isOpen && styles.open}>
-          <ArrowDown />
+          <ArrowDownIcon />
         </View>
       </AboutCardCustomer>
       <AboutBottomSheet

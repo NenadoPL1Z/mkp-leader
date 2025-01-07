@@ -41,6 +41,8 @@ const ignores = [
   ".vscode",
   "android",
   "ios",
+  "dist",
+  "build",
   "node_modules",
   "babel.config.js",
   "metro.config.js",

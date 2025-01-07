@@ -1,8 +1,10 @@
 import React from "react";
 import { CheckBox } from "@rneui/themed";
-import CheckedCheckBoxIcon from "@app/assets/icons/dist/CheckBoxChecked";
-import CheckBoxDisabledIcon from "@app/assets/icons/dist/CheckBoxDisabled";
-import CheckBoxIcon from "@app/assets/icons/dist/CheckBox";
+import {
+  CheckBoxCheckedIcon,
+  CheckBoxDisabledIcon,
+  CheckBoxIcon,
+} from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import { styles } from "./index.styles";
 import type { CheckBoxProps } from "@rneui/themed";
@@ -24,7 +26,7 @@ const CheckBoxUI = (props: Props) => {
       disabledTitleStyle={[styles.disabledTitleStyle, props.disabledTitleStyle]}
       checkedIcon={
         props.checkedIcon || (
-          <CheckedCheckBoxIcon
+          <CheckBoxCheckedIcon
             color={activeColor}
             width={20}
             height={20}

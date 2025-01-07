@@ -2,9 +2,8 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import TextField from "@app/ui/TextField";
 import FieldTitle from "@app/components/FieldTitle";
-import BeforeDate from "@app/assets/icons/dist/BeforeDate";
+import { BeforeDateIcon, AfterDateIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
-import AfterDate from "@app/assets/icons/dist/AfterDate";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import DatePickerUI from "@app/ui/DatePickerUI";
 import {
@@ -89,7 +88,7 @@ const ACCompanyForm = () => {
               <DatePickerUI
                 value={openingTime.field.value}
                 onChange={openingTime.field.onChange}
-                beforeIcon={BeforeDate}
+                beforeIcon={BeforeDateIcon}
                 iconProps={{ width: 13, height: 20, color: Colors.GRAY_SEVEN }}
                 pickerProps={{ mode: "time" }}
               />
@@ -98,7 +97,7 @@ const ACCompanyForm = () => {
               <DatePickerUI
                 value={closingTime.field.value}
                 onChange={closingTime.field.onChange}
-                beforeIcon={AfterDate}
+                beforeIcon={AfterDateIcon}
                 iconProps={{ width: 23, height: 20, color: Colors.GRAY_SEVEN }}
                 pickerProps={{ mode: "time" }}
               />

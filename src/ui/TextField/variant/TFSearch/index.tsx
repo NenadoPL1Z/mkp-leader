@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import TextField from "@app/ui/TextField";
-import SearchIcon from "@app/assets/icons/dist/Search";
+import { SearchIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import type { TextFieldRef } from "@app/types/general";
 import type { TextFieldProps } from "@app/ui/TextField/types";

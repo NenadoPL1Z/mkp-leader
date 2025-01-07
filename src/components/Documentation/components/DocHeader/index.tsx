@@ -1,8 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
-import PrevIcon from "@app/assets/icons/dist/PrevIcon";
+import { PrevIcon, LogoIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
-import LogoIcon from "@app/assets/icons/dist/Logo";
 import Typography from "@app/ui/Typography";
 import { Font } from "@app/theme/font";
 import { getVersion } from "react-native-device-info";

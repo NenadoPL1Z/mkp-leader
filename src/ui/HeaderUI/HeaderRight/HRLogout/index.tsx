@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import LogoutIcon from "@app/assets/icons/dist/Logout";
+import { LogoutIcon } from "@app/assets/icons/dist";
 import PopupUI from "@app/ui/ModalUI/ui/PopupUI";
 import PopupText from "@app/ui/ModalUI/ui/PopupUI/PopupText/PopupText";
 import { useLogout } from "@app/hooks/useLogout";

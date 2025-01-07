@@ -3,7 +3,7 @@ import { View } from "react-native";
 import ButtonUI from "@app/ui/ButtonUI";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors";
-import Scratch from "@app/assets/icons/dist/Scracth";
+import { ScracthIcon } from "@app/assets/icons/dist";
 import MUItem from "@app/components/MediaUpload/components/MUItem";
 import { styles } from "./styles";
 import { useMediaUpload } from "./useMediaUpload";
@@ -39,7 +39,7 @@ const MediaUpload = (props: MediaUploadProps) => {
           disabled={isDisabled}
           onPress={handleAddNew}
           loading={isLoading}>
-          <Scratch
+          <ScracthIcon
             style={styles.scratch}
             color={isDisabled ? Colors.GRAY_TEN : Colors.WHITE}
           />

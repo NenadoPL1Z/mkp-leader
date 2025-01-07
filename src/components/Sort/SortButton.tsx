@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import ButtonUI from "@app/ui/ButtonUI";
-import SortIcon from "@app/assets/icons/dist/SortIcon";
+import { SortIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import type { SortButtonProps } from "./types";
 

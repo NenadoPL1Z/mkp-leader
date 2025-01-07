@@ -3,7 +3,7 @@ import ModalUI from "@app/ui/ModalUI/ModalUI.tsx";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { Colors } from "@app/theme/colors.ts";
 import TouchableIconUI from "@app/ui/TouchableIconUI/TouchableIconUI.tsx";
-import CloseIcon from "@app/assets/icons/dist/PrevIcon";
+import { PrevIcon } from "@app/assets/icons/dist";
 import { useStatusBar } from "@app/hooks/useStatusBar.ts";
 import type { ModalUIProps } from "@app/ui/ModalUI/ModalUI.tsx";
 
@@ -34,7 +34,7 @@ const ModalFull = ({
           <TouchableIconUI
             size={24}
             padding={10}
-            Icon={CloseIcon}
+            Icon={PrevIcon}
             onPress={onClose}
             touchableProps={{
               style: { width: 48, paddingLeft: 15, marginTop: 10 },

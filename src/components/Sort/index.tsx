@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Size } from "@app/lib/constants/size";
-import FiltersIcon from "@app/assets/icons/dist/FiltersIcon";
+import { FiltersIcon } from "@app/assets/icons/dist";
 import BottomSheetUI from "@app/ui/BottomSheetUI/BottomSheetUI";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import BottomSheetTitle from "@app/ui/BottomSheetUI/BottomSheetTitle";

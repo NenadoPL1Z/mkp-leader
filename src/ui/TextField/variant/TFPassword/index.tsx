@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
-import ShowIcon from "@app/assets/icons/dist/EyeShow";
-import HideIcon from "@app/assets/icons/dist/EyeHide";
+import { EyeHideIcon, EyeShowIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import { useToggle } from "@app/hooks/useToggle";
 import TextField from "../../index";
@@ -16,7 +15,7 @@ const TFPassword = forwardRef<TextFieldRef, TextFieldProps>((props, ref) => {
       secureTextEntry={!isToggle}
       right={{
         onPress: handleToggle,
-        Icon: isToggle ? HideIcon : ShowIcon,
+        Icon: isToggle ? EyeHideIcon : EyeShowIcon,
         iconProps: { color: Colors.WHITE },
       }}
       {...props}

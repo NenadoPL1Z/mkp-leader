@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Typography from "@app/ui/Typography";
-import BasketIcon from "@app/assets/icons/dist/BasketIcon";
+import { BasketIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import { Font } from "@app/theme/font";
 import { useMarginBottom } from "@app/hooks/useMarginBottom";
