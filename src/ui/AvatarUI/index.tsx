@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Avatar } from "@rneui/base";
-import AvatarDefault from "@app/assets/icons/AvatarDefault.svg";
+import AvatarDefault from "@app/assets/icons/dist/AvatarDefault";
 import { useAvatarUI } from "./useAvatarUI";
 import type { AvatarUIProps } from "./types";
 

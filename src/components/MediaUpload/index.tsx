@@ -3,7 +3,7 @@ import { View } from "react-native";
 import ButtonUI from "@app/ui/ButtonUI";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors";
-import Scratch from "@app/assets/icons/Scracth.svg";
+import Scratch from "@app/assets/icons/dist/Scracth";
 import MUItem from "@app/components/MediaUpload/components/MUItem";
 import { styles } from "./styles";
 import { useMediaUpload } from "./useMediaUpload";

@@ -2,9 +2,9 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import TextField from "@app/ui/TextField";
 import FieldTitle from "@app/components/FieldTitle";
-import BeforeDate from "@app/assets/icons/BeforeDate.svg";
+import BeforeDate from "@app/assets/icons/dist/BeforeDate";
 import { Colors } from "@app/theme/colors";
-import AfterDate from "@app/assets/icons/AfterDate.svg";
+import AfterDate from "@app/assets/icons/dist/AfterDate";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import DatePickerUI from "@app/ui/DatePickerUI";
 import {

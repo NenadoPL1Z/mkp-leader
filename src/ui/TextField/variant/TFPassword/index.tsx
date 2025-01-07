@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
-import ShowIcon from "@app/assets/icons/EyeShow.svg";
-import HideIcon from "@app/assets/icons/EyeHide.svg";
+import ShowIcon from "@app/assets/icons/dist/EyeShow";
+import HideIcon from "@app/assets/icons/dist/EyeHide";
 import { Colors } from "@app/theme/colors";
 import { useToggle } from "@app/hooks/useToggle";
 import TextField from "../../index";

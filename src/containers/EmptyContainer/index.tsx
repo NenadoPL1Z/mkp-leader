@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import EmptyServiceIcon from "@app/assets/icons/EmptyServices.svg";
+import EmptyServiceIcon from "@app/assets/icons/dist/EmptyServices";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors";
 import { useMarginBottom } from "@app/hooks/useMarginBottom";

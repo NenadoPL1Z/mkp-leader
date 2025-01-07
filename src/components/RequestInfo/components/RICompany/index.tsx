@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { useToggle } from "@app/hooks/useToggle";
-import ArrowDown from "@app/assets/icons/ArrowDown.svg";
+import ArrowDown from "@app/assets/icons/dist/ArrowDown";
 import AboutBottomSheet from "@app/components/AboutBottomSheet";
 import AboutCardCustomer from "@app/components/AboutCard/variant/AboutCardCustomer";
 import type { CustomerDetailModel } from "@app/lib/models/CustomerModel";

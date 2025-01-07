@@ -3,7 +3,7 @@ import ModalUI from "@app/ui/ModalUI/ModalUI.tsx";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { Colors } from "@app/theme/colors.ts";
 import TouchableIconUI from "@app/ui/TouchableIconUI/TouchableIconUI.tsx";
-import CloseIcon from "@app/assets/icons/PrevIcon.svg";
+import CloseIcon from "@app/assets/icons/dist/PrevIcon";
 import { useStatusBar } from "@app/hooks/useStatusBar.ts";
 import type { ModalUIProps } from "@app/ui/ModalUI/ModalUI.tsx";
 

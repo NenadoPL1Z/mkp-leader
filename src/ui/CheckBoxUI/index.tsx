@@ -1,8 +1,8 @@
 import React from "react";
 import { CheckBox } from "@rneui/themed";
-import CheckedCheckBoxIcon from "@app/assets/icons/CheckBoxChecked.svg";
-import CheckBoxDisabledIcon from "@app/assets/icons/CheckBoxDisabled.svg";
-import CheckBoxIcon from "@app/assets/icons/CheckBox.svg";
+import CheckedCheckBoxIcon from "@app/assets/icons/dist/CheckBoxChecked";
+import CheckBoxDisabledIcon from "@app/assets/icons/dist/CheckBoxDisabled";
+import CheckBoxIcon from "@app/assets/icons/dist/CheckBox";
 import { Colors } from "@app/theme/colors";
 import { styles } from "./index.styles";
 import type { CheckBoxProps } from "@rneui/themed";

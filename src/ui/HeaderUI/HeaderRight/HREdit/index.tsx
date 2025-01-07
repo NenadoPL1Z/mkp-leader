@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import Edit from "@app/assets/icons/Edit.svg";
+import Edit from "@app/assets/icons/dist/Edit";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors.ts";
 import type { HRChildrenProps } from "@app/ui/HeaderUI/types";
