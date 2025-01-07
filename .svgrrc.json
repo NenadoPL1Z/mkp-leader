@@ -6,5 +6,8 @@
   "prettierConfig": ".prettierrc.json",
   "svgo": true,
   "jsxRuntime": "automatic",
-  "filenameCase": "pascal"
+  "filenameCase": "pascal",
+  "replaceAttrValues": {
+    "currentColor": "{props.color || props.fill || 'currentColor'}"
+  }
 }
