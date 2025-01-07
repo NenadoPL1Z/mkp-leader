@@ -5,7 +5,13 @@ import type { CompanyId, CompanyModel } from "@app/lib/models/CompanyModel";
 export type PatchCompanyData = Partial<
   Pick<
     CompanyModel,
-    "name" | "address" | "opening_time" | "closing_time" | "only_weekdays"
+    | "name"
+    | "address"
+    | "executor_default"
+    | "executor_additional"
+    | "opening_time"
+    | "closing_time"
+    | "only_weekdays"
   >
 >;
 

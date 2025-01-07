@@ -19,5 +19,5 @@ export interface CompanyModel {
   only_weekdays: boolean;
   contacts: CompanyContactsModel[];
   executor_default: ExecutorModel;
-  executor_additional?: ExecutorModel;
+  executor_additional: ExecutorModel | null;
 }

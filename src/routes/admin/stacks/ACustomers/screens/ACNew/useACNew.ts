@@ -30,6 +30,7 @@ export const useACNew = ({
       address: "",
       opening_time: "",
       closing_time: "",
+      executor_additional: null,
       only_weekdays: false,
       personal_first_phone: "",
       personal_first_name: "",

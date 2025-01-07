@@ -10,7 +10,7 @@ export type CustomerForm = User &
   Company & {
     address: string;
     executor_default: ExecutorModel;
-    executor_additional?: ExecutorModel;
+    executor_additional: ExecutorModel | null;
     opening_time: string;
     closing_time: string;
     personal_first_phone: string;

@@ -9,6 +9,7 @@ import { patchContacts } from "@app/lib/api/users/patchContacts";
 import { Timing } from "@app/lib/constants/timing";
 import { isAxiosError } from "axios";
 import { postContacts } from "@app/lib/api/users/postContacts";
+import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
 import type { CustomerDetailModel } from "@app/lib/models/CustomerModel";
 import type { PatchContactsData } from "@app/lib/api/users/patchContacts";
 import type { PatchCompanyData } from "@app/lib/api/users/patchCompany";
@@ -41,6 +42,8 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
       password: initialData.password,
       name: initialCompany.name,
       address: initialCompany.address || "",
+      executor_default: initialCompany.executor_default,
+      executor_additional: initialCompany.executor_additional ?? null,
       opening_time: getTimeToDate(initialCompany.opening_time),
       closing_time: getTimeToDate(initialCompany.closing_time),
       only_weekdays: initialCompany.only_weekdays,
@@ -107,6 +110,9 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
       const isCompany =
         data.name !== initialCompany.name ||
         data.address !== initialCompany.address ||
+        data.executor_default?.id !== initialCompany.executor_default?.id ||
+        data.executor_additional?.id !==
+          initialCompany.executor_additional?.id ||
         data.only_weekdays !== initialCompany.only_weekdays ||
         data.opening_time !== initialCompany.opening_time ||
         data.closing_time !== initialCompany.closing_time;
@@ -118,6 +124,15 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
         }
         if (data.address !== initialCompany.address) {
           company.address = data.address;
+        }
+        if (data.executor_default?.id !== initialCompany.executor_default?.id) {
+          company.executor_default = data.executor_default;
+        }
+        if (
+          data.executor_additional?.id !==
+          initialCompany.executor_additional?.id
+        ) {
+          company.executor_additional = data.executor_additional;
         }
         if (data.only_weekdays !== initialCompany.only_weekdays) {
           company.only_weekdays = data.only_weekdays;
@@ -267,6 +282,7 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
       errors.password?.type === "required" &&
       errors.name?.type === "required" &&
       errors.address?.type === "required" &&
+      errors.executor_default?.type === "required" &&
       errors.personal_first_phone?.type === "required" &&
       errors.personal_first_name?.type === "required"
     ) {
@@ -287,6 +303,10 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
     }
     if (errors.address?.type === "required") {
       onShowToast({ text1: `Заполните адрес компании` });
+      return;
+    }
+    if (errors.executor_default?.type === "required") {
+      onShowToast({ text1: `Выберите ${FIRST_EXECUTOR_NAME_SELECT}` });
       return;
     }
     if (errors.personal_first_phone?.type === "required") {
