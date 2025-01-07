@@ -7,7 +7,7 @@ import {
   FIRST_EXECUTOR_NAME_SELECT,
   SECOND_EXECUTOR_NAME,
   SECOND_EXECUTOR_NAME_SELECT,
-} from "./constants";
+} from "@app/lib/constants/executors.ts";
 import type { CustomerForm } from "@app/lib/models/form/CustomerForm";
 import type { NavigationProp } from "@react-navigation/native";
 import type {

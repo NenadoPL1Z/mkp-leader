@@ -1,3 +1,4 @@
+import type { ExecutorModel } from "@app/lib/models/ExecutorModel.ts";
 import type { Nullable } from "@app/types/general";
 
 export type CompanyId = number;
@@ -17,6 +18,6 @@ export interface CompanyModel {
   closing_time: Nullable<string>;
   only_weekdays: boolean;
   contacts: CompanyContactsModel[];
-  executor_default_id: number;
-  executor_additional_id?: number;
+  executor_default: ExecutorModel;
+  executor_additional?: ExecutorModel;
 }

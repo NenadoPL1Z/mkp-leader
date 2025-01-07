@@ -5,7 +5,7 @@ import type { AboutCardProps } from "@app/components/AboutCard/types";
 import type { ExecutorModel } from "@app/lib/models/ExecutorModel";
 
 type Props = ExecutorModel & {
-  onPress: (item: ExecutorModel) => void;
+  onPress?: (item: ExecutorModel) => void;
   nativeProps?: Partial<AboutCardProps>;
 };
 
@@ -22,7 +22,8 @@ const AboutCardExecutor = (props: Props) => {
         phone: phone || "",
         size: 40,
       }}
-      onPress={() => onPress(props)}
+      isTouch={!!onPress}
+      onPress={() => onPress && onPress(props)}
     />
   );
 };

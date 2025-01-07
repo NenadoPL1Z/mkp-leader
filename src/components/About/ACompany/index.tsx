@@ -5,18 +5,51 @@ import { Font } from "@app/theme/font";
 import { Colors } from "@app/theme/colors";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import { getWorkTime } from "@app/lib/functions/getWorkTime";
+import AboutCardExecutor from "@app/components/AboutCard/variant/AboutCardExecutor";
+import {
+  FIRST_EXECUTOR_NAME,
+  SECOND_EXECUTOR_NAME,
+} from "@app/lib/constants/executors.ts";
 import type { CompanyModel } from "@app/lib/models/CompanyModel";
 
 const ACompany = ({
   opening_time,
   closing_time,
   only_weekdays,
+  // TODO
+  executor_default = {
+    id: 1,
+    name: "Иван Иванов",
+    phone: "+77777777777",
+    username: "ivan",
+  },
+  // TODO
+  executor_additional = {
+    id: 2,
+    name: "Василий Васильев",
+    phone: "+79511223281",
+    username: "vasil",
+  },
   contacts,
 }: CompanyModel) => {
   const time = getWorkTime(opening_time, closing_time);
 
   return (
     <View style={styles.root}>
+      <TextBlock
+        text1={FIRST_EXECUTOR_NAME}
+        marginBottom="small"
+      />
+      <AboutCardExecutor {...executor_default} />
+      {executor_additional ? (
+        <View>
+          <TextBlock
+            text1={SECOND_EXECUTOR_NAME}
+            marginBottom="small"
+          />
+          <AboutCardExecutor {...executor_additional} />
+        </View>
+      ) : null}
       <View style={[styles.item, styles.shadow]}>
         <TextBlock
           text1="Время работы"
@@ -49,16 +82,18 @@ const TextBlock = ({
   text1,
   text2,
   isDisplay = true,
+  marginBottom = "large",
 }: {
   text1: string;
-  text2: string;
+  text2?: string;
   isDisplay?: boolean;
+  marginBottom?: "small" | "large";
 }) => {
   if (!isDisplay) {
     return null;
   }
   return (
-    <View style={styles.wrapper}>
+    <View style={{ marginBottom: marginBottom === "large" ? 15 : 5 }}>
       <Typography
         style={styles.title}
         fontFamily={Font.TEXT}
@@ -67,14 +102,16 @@ const TextBlock = ({
         lineHeight={20}>
         {text1}
       </Typography>
-      <Typography
-        style={styles.subtitle}
-        fontFamily={Font.TEXT}
-        fontWeight="400"
-        fontSize={17}
-        lineHeight={20}>
-        {text2}
-      </Typography>
+      {text2 ? (
+        <Typography
+          style={styles.subtitle}
+          fontFamily={Font.TEXT}
+          fontWeight="400"
+          fontSize={17}
+          lineHeight={20}>
+          {text2}
+        </Typography>
+      ) : null}
     </View>
   );
 };
@@ -93,9 +130,6 @@ const styles = StyleSheet.create({
   },
   itemBottom: {
     paddingBottom: 0,
-  },
-  wrapper: {
-    marginBottom: 15,
   },
   shadow: {
     shadowColor: Colors.BLACK,

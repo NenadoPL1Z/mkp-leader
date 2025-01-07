@@ -7,9 +7,12 @@ import { Colors } from "@app/theme/colors";
 import AfterDate from "@app/assets/icons/AfterDate.svg";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import DatePickerUI from "@app/ui/DatePickerUI";
+import {
+  FIRST_EXECUTOR_NAME,
+  SECOND_EXECUTOR_NAME,
+} from "@app/lib/constants/executors.ts";
 import { getExecutorControllerValue } from "./helpers";
 import { useACCompanyForm } from "./useACCompanyForm";
-import { FIRST_EXECUTOR_NAME, SECOND_EXECUTOR_NAME } from "./constants";
 import { styles } from "../../index.styles";
 
 const ACCompanyForm = () => {

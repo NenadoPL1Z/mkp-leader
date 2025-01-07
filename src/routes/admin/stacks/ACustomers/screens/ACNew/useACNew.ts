@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getTime } from "@app/lib/functions/getTime";
 import { postCustomerCreate } from "@app/lib/api/customer/postCustomerCreate";
 import { isAxiosError } from "axios";
+import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
 import type {
   CustomerContactsData,
   CustomerCreateData,
@@ -135,7 +136,7 @@ export const useACNew = ({
       return;
     }
     if (errors.executor_default?.type === "required") {
-      onShowToast({ text1: `Выберите дежурного исполнителя` });
+      onShowToast({ text1: `Выберите ${FIRST_EXECUTOR_NAME_SELECT}` });
       return;
     }
     if (errors.personal_first_phone?.type === "required") {
