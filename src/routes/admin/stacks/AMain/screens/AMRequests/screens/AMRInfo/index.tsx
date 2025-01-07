@@ -64,9 +64,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                   activeOpacity: isEnableEdit ? undefined : 1,
                   onPress: isEnableEdit ? handleChangeEditMode : undefined,
                   iconProps: {
-                    style: {
-                      color: isEditMode ? Colors.MAIN : Colors.GRAY_TEN,
-                    },
+                    color: isEditMode ? Colors.MAIN : Colors.GRAY_TEN,
                   },
                 }}
               />

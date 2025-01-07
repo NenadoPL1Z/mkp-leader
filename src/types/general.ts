@@ -1,4 +1,3 @@
-import type { ViewStyle } from "react-native";
 import type { Input } from "@rneui/base";
 import type { ReactNode, FunctionComponent } from "react";
 import type { SvgProps } from "react-native-svg";
@@ -19,10 +18,7 @@ export interface AuthTokens {
   access_token: string;
 }
 
-export type SvgPropsFixed = Omit<SvgProps, "style"> & {
-  style?: ViewStyle & { color?: string };
-};
-export type SvgFC = FunctionComponent<SvgPropsFixed>;
+export type SvgFC = FunctionComponent<SvgProps>;
 
 export type FetchPaginationResponse<T> = {
   items: T[];

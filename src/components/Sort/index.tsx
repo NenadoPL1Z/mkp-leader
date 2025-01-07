@@ -36,12 +36,11 @@ const Sort = (props: SortProps) => {
           onPress={filtersBS.handleToggleTrue}
           style={styles.touch}>
           <FiltersIcon
-            style={{
-              color:
-                emergency.isToggle || customPosition.isToggle
-                  ? Colors.MAIN
-                  : Colors.GRAY_TEN,
-            }}
+            color={
+              emergency.isToggle || customPosition.isToggle
+                ? Colors.MAIN
+                : Colors.GRAY_TEN
+            }
           />
         </TouchableOpacity>
       </View>

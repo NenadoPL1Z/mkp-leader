@@ -34,7 +34,7 @@ const ACProfile = (props: ACProfileProps) => {
         right={{
           variant: "edit",
           onPress: onPushEdit,
-          iconProps: { style: { color: Colors.GRAY_TEN } },
+          iconProps: { color: Colors.GRAY_TEN },
         }}
       />
       <StatusContainer

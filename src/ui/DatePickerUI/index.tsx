@@ -6,13 +6,14 @@ import { getTime } from "@app/lib/functions/getTime";
 import { getYear } from "@app/lib/functions/getYear";
 import type { TextFieldProps } from "@app/ui/TextField/types";
 import type { DatePickerProps } from "react-native-date-picker";
-import type { SvgFC, SvgPropsFixed } from "@app/types/general";
+import type { SvgProps } from "react-native-svg";
+import type { SvgFC } from "@app/types/general";
 
 type Props = {
   value: string;
   onChange: (value: string) => void;
   beforeIcon?: SvgFC;
-  iconProps?: SvgPropsFixed;
+  iconProps?: SvgProps;
   textFieldProps?: Partial<Omit<TextFieldProps, "ref">>;
   pickerProps?: Partial<DatePickerProps>;
 };

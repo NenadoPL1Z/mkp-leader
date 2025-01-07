@@ -14,7 +14,7 @@ const AvatarUI = (props: AvatarUIProps) => {
       <AvatarDefault
         width={size}
         height={size}
-        style={{ color: backgroundColor }}
+        color={backgroundColor}
       />
     );
   }

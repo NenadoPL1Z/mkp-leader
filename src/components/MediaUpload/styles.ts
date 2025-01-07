@@ -23,4 +23,7 @@ export const styles = StyleSheet.create({
     padding: 0,
     paddingHorizontal: 16,
   },
+  scratch: {
+    marginRight: 10,
+  },
 });

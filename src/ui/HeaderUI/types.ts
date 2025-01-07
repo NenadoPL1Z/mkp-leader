@@ -1,12 +1,12 @@
-import type { SvgPropsFixed } from "@app/types/general.ts";
 import type { Colors } from "@app/theme/colors";
 import type { ReactNode } from "react";
+import type { SvgProps } from "react-native-svg";
 import type { TouchableOpacityProps } from "react-native";
 
 type Touch = Omit<TouchableOpacityProps, "children">;
 
 export type HRChildrenProps = Touch & {
-  iconProps?: SvgPropsFixed;
+  iconProps?: SvgProps;
   subtitle?: string;
   subtitleColor?: Colors;
 };

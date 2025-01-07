@@ -22,6 +22,7 @@ const ErrorContainer = ({
           width={133}
           height={83}
           style={styles.icon}
+          color={Colors.MAIN}
         />
         <Typography
           variant="h2"
@@ -53,7 +54,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginBottom: 5,
-    color: Colors.MAIN,
   },
   wrapperTop: {
     flex: 1,

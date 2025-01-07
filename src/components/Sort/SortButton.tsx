@@ -12,10 +12,8 @@ const SortButton = (props: SortButtonProps) => {
         {...props}
         variant="rounded">
         <SortIcon
-          style={{
-            marginRight: 4,
-            color: props?.disabled ? Colors.GRAY_TEN : Colors.WHITE,
-          }}
+          style={styles.icon}
+          color={props?.disabled ? Colors.GRAY_TEN : Colors.WHITE}
         />
         {props.title}
       </ButtonUI>
@@ -26,6 +24,9 @@ const SortButton = (props: SortButtonProps) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "flex-start",
+  },
+  icon: {
+    marginRight: 4,
   },
 });
 

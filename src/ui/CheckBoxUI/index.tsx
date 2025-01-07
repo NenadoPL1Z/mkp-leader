@@ -25,9 +25,9 @@ const CheckBoxUI = (props: Props) => {
       checkedIcon={
         props.checkedIcon || (
           <CheckedCheckBoxIcon
+            color={activeColor}
             width={20}
             height={20}
-            style={{ color: activeColor }}
           />
         )
       }

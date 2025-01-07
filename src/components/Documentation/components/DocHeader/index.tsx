@@ -22,7 +22,7 @@ const DocHeader = ({ onClose }: Props) => {
           <PrevIcon
             width={24}
             height={24}
-            style={{ color: Colors.GRAY_TEN }}
+            color={Colors.GRAY_TEN}
           />
         </TouchableOpacity>
         <LogoIcon />

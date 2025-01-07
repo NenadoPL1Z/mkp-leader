@@ -20,7 +20,7 @@ const DeleteUserMe = () => {
           style={styles.press}
           onPress={handleOpen}>
           <View style={styles.basket}>
-            <BasketIcon style={{ color: Colors.RED }} />
+            <BasketIcon color="red" />
           </View>
           <Typography
             fontFamily={Font.TEXT}

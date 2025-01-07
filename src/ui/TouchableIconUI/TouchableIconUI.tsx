@@ -21,7 +21,7 @@ const TouchableIconUI = ({
       <Icon
         width={size}
         height={size}
-        style={{ color: Colors.WHITE }}
+        color={Colors.WHITE}
         {...iconProps}
       />
     </TouchableOpacity>

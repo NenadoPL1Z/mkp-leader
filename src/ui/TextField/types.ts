@@ -1,13 +1,14 @@
 import type { FieldError } from "react-hook-form";
+import type { SvgProps } from "react-native-svg";
 import type { TouchableOpacityProps } from "react-native";
-import type { SvgFC, SvgPropsFixed } from "@app/types/general";
+import type { SvgFC } from "@app/types/general";
 import type { InputProps } from "@rneui/base";
 
 export type TextFieldVariant = "outlined" | "contained";
 
 export type TextFieldHorizontal = TouchableOpacityProps & {
   Icon: SvgFC;
-  iconProps?: SvgPropsFixed;
+  iconProps?: SvgProps;
   inputStyle?: Pick<InputProps, "inputStyle">["inputStyle"];
 };
 

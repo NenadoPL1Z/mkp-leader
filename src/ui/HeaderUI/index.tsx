@@ -26,7 +26,7 @@ const HeaderUI = ({
           <TouchableOpacity
             style={styles.leftPress}
             onPress={onBack ? onBack : goBack}>
-            <PrevIcon style={{ color: Colors.GRAY_TEN }} />
+            <PrevIcon color={Colors.GRAY_TEN} />
           </TouchableOpacity>
         )}
       </View>
