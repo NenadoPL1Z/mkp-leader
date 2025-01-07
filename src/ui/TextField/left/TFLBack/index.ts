@@ -11,6 +11,10 @@ export const TFLBack = (onPress: () => void): TextFieldHorizontal => {
     },
     onPress,
     Icon: PrevIcon,
-    iconProps: { color: Colors.GRAY_TEN, width: 24, height: 24 },
+    iconProps: {
+      style: { color: Colors.GRAY_TEN },
+      width: 24,
+      height: 24,
+    },
   };
 };

@@ -34,7 +34,7 @@ const CRInfo = (props: CRInfoScreenProps) => {
         <>
           <HeaderUI
             right={{
-              iconProps: { color: Colors.GRAY_TEN },
+              iconProps: { style: { color: Colors.GRAY_TEN } },
               subtitle: formatDateTime(data.created_at),
               variant: isEdit ? "edit" : "text",
               activeOpacity: isEdit ? undefined : 1,

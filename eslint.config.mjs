@@ -183,7 +183,6 @@ export default [
       "react-native/sort-styles": "off",
       "react-native/no-inline-styles": "off",
       "react-native/no-unused-styles": "error",
-      "react-native/no-color-literals": "warn",
       "react-native/no-single-element-style-arrays": "error",
     },
   },

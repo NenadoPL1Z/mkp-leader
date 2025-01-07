@@ -16,7 +16,7 @@ const MUItem = ({ type, source, onDelete }: MUItemProps) => {
       <TouchableOpacity
         style={styles.delete}
         onPress={() => onDelete(source.id)}>
-        <BasketIcon color={Colors.WHITE} />
+        <BasketIcon style={{ color: Colors.WHITE }} />
       </TouchableOpacity>
       <ImageUI
         resizeMode="cover"

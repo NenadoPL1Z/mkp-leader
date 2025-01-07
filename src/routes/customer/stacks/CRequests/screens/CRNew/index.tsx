@@ -19,7 +19,7 @@ const CRNew = (props: CRNewScreenProps) => {
           subtitle: isDisplayDate
             ? formatDateTime(initialData?.created_at || "")
             : "",
-          iconProps: { color: Colors.MAIN },
+          iconProps: { style: { color: Colors.MAIN } },
           activeOpacity: 1,
         }}
       />

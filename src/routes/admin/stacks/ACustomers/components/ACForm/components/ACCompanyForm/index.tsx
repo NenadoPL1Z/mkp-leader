@@ -90,7 +90,11 @@ const ACCompanyForm = () => {
                 value={openingTime.field.value}
                 onChange={openingTime.field.onChange}
                 beforeIcon={BeforeDate}
-                iconProps={{ width: 13, height: 20, color: Colors.GRAY_SEVEN }}
+                iconProps={{
+                  width: 13,
+                  height: 20,
+                  style: { color: Colors.GRAY_SEVEN },
+                }}
                 pickerProps={{ mode: "time" }}
               />
             </View>
@@ -99,7 +103,11 @@ const ACCompanyForm = () => {
                 value={closingTime.field.value}
                 onChange={closingTime.field.onChange}
                 beforeIcon={AfterDate}
-                iconProps={{ width: 23, height: 20, color: Colors.GRAY_SEVEN }}
+                iconProps={{
+                  width: 23,
+                  height: 20,
+                  style: { color: Colors.GRAY_SEVEN },
+                }}
                 pickerProps={{ mode: "time" }}
               />
             </View>

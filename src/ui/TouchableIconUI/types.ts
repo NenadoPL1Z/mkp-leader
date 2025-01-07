@@ -1,6 +1,5 @@
-import type { SvgFC } from "@app/types/general.ts";
+import type { SvgFC, SvgPropsFixed } from "@app/types/general.ts";
 import type { TouchableOpacityProps } from "react-native";
-import type { SvgProps } from "react-native-svg";
 
 export interface TouchableIconUIProps {
   size: number;
@@ -9,6 +8,6 @@ export interface TouchableIconUIProps {
   onPress: Pick<TouchableOpacityProps, "onPress">["onPress"];
   padding?: number;
 
-  iconProps?: SvgProps;
+  iconProps?: SvgPropsFixed;
   touchableProps?: TouchableOpacityProps;
 }

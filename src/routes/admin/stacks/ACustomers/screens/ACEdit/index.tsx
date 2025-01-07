@@ -27,7 +27,7 @@ const ACEdit = (props: ACEditProps) => {
         right={{
           variant: "edit",
           disabled: true,
-          iconProps: { color: Colors.MAIN },
+          iconProps: { style: { color: Colors.MAIN } },
         }}
       />
       <KeyboardContainer>

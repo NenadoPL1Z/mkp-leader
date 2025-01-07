@@ -20,6 +20,7 @@ export enum Colors {
   GRAY_ELEVEN = "#7A7A7A",
   WHITE = "#FFFFFF",
   WHITE_TWO = "rgba(255,255,255, .6)",
+  RED = "#ff0000",
   ERROR = "#FF7A7A",
   GREEN = "#7FAC1E",
   RGBA_BACKDOOR = "rgba(0, 0, 0, 0.5)",

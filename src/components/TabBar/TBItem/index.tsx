@@ -22,7 +22,9 @@ const TBItem = ({
       style={[styles.container, isFist && styles.first, isLast && styles.last]}
       onPress={() => onPress(routeName)}>
       <View style={styles.icon}>
-        <Icon color={isActive ? Colors.SECONDARY_TWO : Colors.GRAY_FOUR} />
+        <Icon
+          style={{ color: isActive ? Colors.SECONDARY_TWO : Colors.GRAY_FOUR }}
+        />
       </View>
       <Typography
         fontFamily={Font.TEXT}

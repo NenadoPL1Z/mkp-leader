@@ -34,7 +34,7 @@ const DeleteUser = (props: DeleteUserProps) => {
           style={styles.press}
           onPress={handleOpen}>
           <View style={styles.basket}>
-            <BasketIcon color="red" />
+            <BasketIcon style={{ color: Colors.RED }} />
           </View>
           <Typography
             fontFamily={Font.TEXT}

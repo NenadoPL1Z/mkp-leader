@@ -26,7 +26,7 @@ const AEEdit = (props: AEEditProps) => {
         right={{
           variant: "edit",
           disabled: true,
-          iconProps: { color: Colors.MAIN },
+          iconProps: { style: { color: Colors.MAIN } },
         }}
       />
       <KeyboardContainer>

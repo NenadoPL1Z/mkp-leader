@@ -15,7 +15,7 @@ const TFSearch = forwardRef<TextFieldRef, Props>((props, ref) => {
         activeOpacity: 0,
         disabled: true,
         Icon: SearchIcon,
-        iconProps: { color: Colors.GRAY_FIVE },
+        iconProps: { style: { color: Colors.GRAY_FIVE } },
       }}
       {...props}
       ref={ref}

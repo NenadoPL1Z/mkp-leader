@@ -18,6 +18,6 @@ export const TFRClear = (
     onPress,
     inputStyle: { paddingRight: 35 },
     Icon: CloseIcon,
-    iconProps: { color: Colors.GRAY_FIVE, width: 12, height: 12 },
+    iconProps: { style: { color: Colors.GRAY_FIVE }, width: 12, height: 12 },
   };
 };

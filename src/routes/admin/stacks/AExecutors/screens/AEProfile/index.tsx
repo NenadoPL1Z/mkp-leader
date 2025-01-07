@@ -20,7 +20,7 @@ const AEProfile = (props: AEProfileProps) => {
         right={{
           variant: "edit",
           onPress: onPushEdit,
-          iconProps: { color: Colors.GRAY_TEN },
+          iconProps: { style: { color: Colors.GRAY_TEN } },
         }}
       />
       <View style={styles.container}>

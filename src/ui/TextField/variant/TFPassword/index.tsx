@@ -17,7 +17,7 @@ const TFPassword = forwardRef<TextFieldRef, TextFieldProps>((props, ref) => {
       right={{
         onPress: handleToggle,
         Icon: isToggle ? HideIcon : ShowIcon,
-        iconProps: { color: Colors.WHITE },
+        iconProps: { style: { color: Colors.WHITE } },
       }}
       {...props}
       ref={ref}
