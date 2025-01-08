@@ -23,6 +23,7 @@ export const Api = {
       all: "/users/executors/all",
       create: `/users/executors/create`,
       id: (id: UserId) => `/users/executor/${id}`,
+      selectDefault: "/users/executor/default",
     },
     customer: {
       all: "/users/customers/all",

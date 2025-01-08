@@ -59,6 +59,8 @@ export const useAEHome = ({ navigation }: AEHomeProps) => {
     return;
   };
 
+  const callbackEditExecutorDefaultId = () => {};
+
   const handlePushNew = () => {
     navigation.navigate(AExecutorsSN.NEW, {
       callbackAdd,
@@ -70,6 +72,9 @@ export const useAEHome = ({ navigation }: AEHomeProps) => {
       ...model,
       callbackEdit,
       callbackDelete,
+      // TODO:
+      executorDefaultId: 0,
+      callbackEditExecutorDefaultId,
     });
   };
 
