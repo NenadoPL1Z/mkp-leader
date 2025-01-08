@@ -7,8 +7,8 @@ export type PatchCompanyData = Partial<
     CompanyModel,
     | "name"
     | "address"
-    | "executor_default"
-    | "executor_additional"
+    | "executor_default_id"
+    | "executor_additional_id"
     | "opening_time"
     | "closing_time"
     | "only_weekdays"

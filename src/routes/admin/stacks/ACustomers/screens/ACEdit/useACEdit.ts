@@ -126,13 +126,13 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
           company.address = data.address;
         }
         if (data.executor_default?.id !== initialCompany.executor_default?.id) {
-          company.executor_default = data.executor_default;
+          company.executor_default_id = data.executor_default.id;
         }
         if (
           data.executor_additional?.id !==
           initialCompany.executor_additional?.id
         ) {
-          company.executor_additional = data.executor_additional;
+          company.executor_additional_id = data.executor_additional?.id ?? null;
         }
         if (data.only_weekdays !== initialCompany.only_weekdays) {
           company.only_weekdays = data.only_weekdays;
@@ -149,6 +149,8 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
             newCustomer.customer_company = {
               ...newCustomer.customer_company,
               ...company,
+              executor_default: data.executor_default,
+              executor_additional: data.executor_additional,
             };
           })
           .catch((e) => {

@@ -16,20 +16,8 @@ const ACompany = ({
   opening_time,
   closing_time,
   only_weekdays,
-  // TODO
-  executor_default = {
-    id: 1,
-    name: "Иван Иванов",
-    phone: "+77777777777",
-    username: "ivan",
-  },
-  // TODO
-  executor_additional = {
-    id: 2,
-    name: "Василий Васильев",
-    phone: "+79511223281",
-    username: "vasil",
-  },
+  executor_default,
+  executor_additional,
   contacts,
 }: CompanyModel) => {
   const time = getWorkTime(opening_time, closing_time);

@@ -14,10 +14,12 @@ export interface CompanyModel {
   id: CompanyContactsId;
   name: string;
   address: Nullable<string>;
+  executor_default_id: number;
+  executor_additional_id: number | null;
+  executor_default: ExecutorModel;
+  executor_additional: ExecutorModel | null;
   opening_time: Nullable<string>;
   closing_time: Nullable<string>;
   only_weekdays: boolean;
   contacts: CompanyContactsModel[];
-  executor_default: ExecutorModel;
-  executor_additional: ExecutorModel | null;
 }
