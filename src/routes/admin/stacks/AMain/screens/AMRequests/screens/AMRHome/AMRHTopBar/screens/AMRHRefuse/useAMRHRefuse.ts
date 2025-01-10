@@ -1,12 +1,16 @@
 import { AMRequestsSN } from "@app/routes/admin/stacks/AMain/screens/AMRequests/types";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
-import type { AMRHNewProps } from "./types";
+import type { AMRHRefuseProps } from "./types";
 
-export const useAMRHNew = ({ navigation, route, ...props }: AMRHNewProps) => {
+export const useAMRHRefuse = ({
+  navigation,
+  route,
+  ...props
+}: AMRHRefuseProps) => {
   const handlePushProfile = (card: ServiceCardModel) => {
     navigation.navigate(AMRequestsSN.INFO, {
-      tabName: "new",
-      nextTabName: "work",
+      tabName: "refuse",
+      nextTabName: "",
       card,
       ...props,
     });

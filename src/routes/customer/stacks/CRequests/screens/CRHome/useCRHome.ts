@@ -5,12 +5,12 @@ import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { CRHomeScreenProps, CRNewEditCallback } from "../../types";
 
 export const useCRHome = ({ navigation }: CRHomeScreenProps) => {
-  const newRefs = usePaginationRefs<ServiceCardModel>();
+  const workRefs = usePaginationRefs<ServiceCardModel>();
   const { toast, onHideToast, onShowToast } = useToastLocal();
 
   const handleEditCards: CRNewEditCallback = (data, callback) => {
-    if (newRefs.setCardRef.current) {
-      newRefs.setCardRef.current((prev) => [
+    if (workRefs.setCardRef.current) {
+      workRefs.setCardRef.current((prev) => [
         {
           id: data.id,
           title: data.title,
@@ -30,19 +30,19 @@ export const useCRHome = ({ navigation }: CRHomeScreenProps) => {
     onShowToast({ text1: "Заявка успешно создана" });
   };
 
-  const handlePushNew = () => {
+  const handlePushWork = () => {
     navigation.navigate(CRequestsSN.NEW, {
-      tabName: "new",
-      tabRef: newRefs,
+      tabName: "work",
+      tabRef: workRefs,
       initialData: null,
       onEditCards: handleEditCards,
     });
   };
 
   return {
-    newRefs,
+    workRefs,
     toast,
     onHideToast,
-    handlePushNew,
+    handlePushWork,
   };
 };

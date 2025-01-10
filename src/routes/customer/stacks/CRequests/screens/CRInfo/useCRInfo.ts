@@ -12,7 +12,7 @@ export const useCRInfo = ({ route, navigation }: CRInfoScreenProps) => {
   const { tabName, nextTabName, cardIndex } = params;
   const currenTabRef = params[`${tabName}Refs`];
   const nextTabRef = nextTabName ? params[`${nextTabName}Refs`] : null;
-  const isEdit = tabName === "new";
+  const isEdit = tabName === "work" || tabName === "quality";
   const setCurrentCard = currenTabRef.setCardRef.current;
 
   const toast = useToastLocal();

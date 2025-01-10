@@ -7,15 +7,15 @@ import { Api } from "@app/lib/constants/api";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import ACNew from "@app/routes/admin/components/AdminCard/variant/ACNew";
 import Sort from "@app/components/Sort";
-import { useAMRHNew } from "./useAMRHNew";
+import { useAMRHRefuse } from "./useAMRHRefuse.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
-import type { AMRHNewProps } from "./types";
+import type { AMRHRefuseProps } from "./types";
 import type { ListRenderItem } from "react-native";
 
 type RenderItem = ListRenderItem<ServiceCardModel>;
 
-const AMRHNew = (props: AMRHNewProps) => {
-  const { handlePushProfile } = useAMRHNew(props);
+const AMRHRefuse = (props: AMRHRefuseProps) => {
+  const { handlePushProfile } = useAMRHRefuse(props);
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
@@ -42,11 +42,11 @@ const AMRHNew = (props: AMRHNewProps) => {
           config={{
             url: Api.service.getStatusService("new", props.company.value.id),
             query: props.queryData,
-            resetRef: props.newRefs.resetRef,
-            setCardRef: props.newRefs.setCardRef,
-            filterRef: props.newRefs.filterRef,
-            scrollRef: props.newRefs.scrollRef,
-            displayRefreshRef: props.newRefs.displayRefreshRef,
+            resetRef: props.refuseRefs.resetRef,
+            setCardRef: props.refuseRefs.setCardRef,
+            filterRef: props.refuseRefs.filterRef,
+            scrollRef: props.refuseRefs.scrollRef,
+            displayRefreshRef: props.refuseRefs.displayRefreshRef,
             callbackCounter: props.counter.onChange,
             callbackRefresh: props.onResetAllTabs,
           }}
@@ -60,4 +60,4 @@ const AMRHNew = (props: AMRHNewProps) => {
   );
 };
 
-export default React.memo(AMRHNew);
+export default React.memo(AMRHRefuse);

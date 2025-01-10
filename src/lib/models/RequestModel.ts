@@ -8,10 +8,10 @@ export interface RequestBadgeModel {
 }
 
 export interface RequestTabsModel {
-  new: number;
   working: number;
   verifying: number;
   closed: number;
+  refuse: number;
 }
 
 export interface RequestCompanyModel extends Parent {

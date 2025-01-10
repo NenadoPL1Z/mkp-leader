@@ -47,16 +47,16 @@ export type AMRHGeneralProps = AMRequestsHomeProps & {
     onDecrementCounter: () => void;
   };
   queryData: string[];
-  newRefs: Required<PaginationRefs<ServiceCardModel>>;
   workRefs: Required<PaginationRefs<ServiceCardModel>>;
   qualityRefs: Required<PaginationRefs<ServiceCardModel>>;
   closedRefs: Required<PaginationRefs<ServiceCardModel>>;
+  refuseRefs: Required<PaginationRefs<ServiceCardModel>>;
   onResetAllTabs: () => void;
 };
 
 type Info = AMRHGeneralProps & {
-  tabName: "new" | "work" | "quality" | "closed";
-  nextTabName: "new" | "work" | "quality" | "closed" | "";
+  tabName: "work" | "quality" | "closed" | "refuse";
+  nextTabName: "work" | "quality" | "closed" | "refuse" | "";
   card: ServiceCardModel;
 };
 

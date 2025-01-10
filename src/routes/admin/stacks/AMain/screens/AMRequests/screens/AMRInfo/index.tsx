@@ -47,7 +47,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
           const isExecutor = data?.executor?.id;
 
           const isEnableEdit =
-            !!isExecutor && (tabName === "work" || tabName === "new");
+            !!isExecutor && (tabName === "work" || tabName === "quality");
           const isEditMode = isEnableEdit && editMode.isToggle;
 
           const isDisplayForm = !isExecutor || isEditMode;

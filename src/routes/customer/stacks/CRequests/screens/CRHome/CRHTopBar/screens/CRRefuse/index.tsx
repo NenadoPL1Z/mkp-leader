@@ -6,15 +6,15 @@ import { Api } from "@app/lib/constants/api.ts";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import { requestsListStyles } from "@app/components/RequestsListStyles";
-import { useCRNew } from "./useCRNew";
+import { useCRRefuse } from "./useCRRefuse.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel.ts";
-import type { CRNewProps } from "./types";
+import type { CRRefuseProps } from "./types";
 import type { ListRenderItem } from "react-native";
 
 type RenderItem = ListRenderItem<ServiceCardModel>;
 
-const CRNew = (props: CRNewProps) => {
-  const { handlePushProfile } = useCRNew(props);
+const CRRefuse = (props: CRRefuseProps) => {
+  const { handlePushProfile } = useCRRefuse(props);
   const renderItem = useCallback<RenderItem>(({ item, index }) => {
     return (
       <CCNew
@@ -34,11 +34,11 @@ const CRNew = (props: CRNewProps) => {
           showsVerticalScrollIndicator={false}
           config={{
             url: Api.service.getCustomerStatusService("new"),
-            resetRef: props.newRefs.resetRef,
-            setCardRef: props.newRefs.setCardRef,
-            filterRef: props.newRefs.filterRef,
-            scrollRef: props.newRefs.scrollRef,
-            displayRefreshRef: props.newRefs.displayRefreshRef,
+            resetRef: props.refuseRefs.resetRef,
+            setCardRef: props.refuseRefs.setCardRef,
+            filterRef: props.refuseRefs.filterRef,
+            scrollRef: props.refuseRefs.scrollRef,
+            displayRefreshRef: props.refuseRefs.displayRefreshRef,
             callbackCounter: props.counter.onChange,
             callbackRefresh: props.onResetAllTabs,
           }}
@@ -55,4 +55,4 @@ const CRNew = (props: CRNewProps) => {
   );
 };
 
-export default React.memo(CRNew);
+export default React.memo(CRRefuse);

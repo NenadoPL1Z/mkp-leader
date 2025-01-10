@@ -11,7 +11,7 @@ const getSumTabs = (tabs: RequestTabsModel) =>
 export const decrementCompanyCounter = (
   item: RequestCompanyModel,
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
-  main = TopBarNames.NEW,
+  main = TopBarNames.WORK,
 ) => {
   return (tabName: TopBarNames) => {
     if (setCardRef) {
@@ -57,7 +57,7 @@ export const decrementCompanyCounter = (
 export const updateCompanyCounter = (
   item: RequestCompanyModel,
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
-  main = TopBarNames.NEW,
+  main = TopBarNames.WORK,
 ) => {
   return (tabName: TopBarNames, newCounter: number) => {
     if (setCardRef) {
