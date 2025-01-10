@@ -11,12 +11,14 @@ export enum EMRHTopBarNamespace {
   WORK = TopBarNames.WORK,
   QUALITY = TopBarNames.Verifying,
   CLOSED = TopBarNames.CLOSED,
+  REFUSE = TopBarNames.REFUSE,
 }
 
 export type EMRHTopBarStackParamList = {
   [EMRHTopBarNamespace.WORK]: EMRequestsHomeProps;
   [EMRHTopBarNamespace.QUALITY]: EMRequestsHomeProps;
   [EMRHTopBarNamespace.CLOSED]: EMRequestsHomeProps;
+  [EMRHTopBarNamespace.REFUSE]: EMRequestsHomeProps;
 };
 
 type Parent = NativeStackScreenProps<EMRequestsSPL, EMRequestsSN.INFO>;
@@ -28,3 +30,4 @@ type ScreenProps<T extends EMRHTopBarNamespace> = CompositeScreenProps<
 export type EMRHWorkScreenProps = ScreenProps<EMRHTopBarNamespace.WORK>;
 export type EMRHQualityScreenProps = ScreenProps<EMRHTopBarNamespace.QUALITY>;
 export type EMRHClosedScreenProps = ScreenProps<EMRHTopBarNamespace.CLOSED>;
+export type EMRHRefuseScreenProps = ScreenProps<EMRHTopBarNamespace.REFUSE>;

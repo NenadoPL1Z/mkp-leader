@@ -4,6 +4,7 @@ import { useTopBarProps } from "@app/hooks/useTopBarProps";
 import TopBarBadge from "@app/ui/BadgeUI/variant/TopBarBadge";
 import EMRHQuality from "./screens/EMRHQuality";
 import EMRHClosed from "./screens/EMRHClosed";
+import EMRHRefuse from "./screens/EMRHRefuse";
 import EMRHWork from "./screens/EMRHWork";
 import { useEMRHTopBar } from "./useEMRHTopBar";
 import { EMRHTopBarNamespace } from "./types";
@@ -57,6 +58,17 @@ const EMRHTopBar = (props: EMRequestsHomeProps) => {
           />
         )}
       </Tab.Screen>
+      <Tab.Screen
+        name={N_REFUSE}
+        options={setBadge("Отказ", counters[N_REFUSE], true)}
+        initialParams={props}>
+        {(props) => (
+          <EMRHRefuse
+            {...props}
+            {...tabProps(N_REFUSE)}
+          />
+        )}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
@@ -64,6 +76,7 @@ const EMRHTopBar = (props: EMRequestsHomeProps) => {
 const N_WORK = EMRHTopBarNamespace.WORK;
 const N_QUALITY = EMRHTopBarNamespace.QUALITY;
 const N_CLOSED = EMRHTopBarNamespace.CLOSED;
+const N_REFUSE = EMRHTopBarNamespace.REFUSE;
 
 const setBadge = (title: string, counter: number, isLast: boolean = false) => {
   return {
