@@ -7,6 +7,7 @@ import { getTime } from "@app/lib/functions/getTime";
 import { postCustomerCreate } from "@app/lib/api/customer/postCustomerCreate";
 import { isAxiosError } from "axios";
 import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
+import { getExecutorDefault } from "@app/lib/api/executor/getExecutorDefault";
 import type {
   CustomerContactsData,
   CustomerCreateData,
@@ -98,7 +99,7 @@ export const useACNew = ({
       errorRequest();
     } catch (e) {
       if (isAxiosError<DetailString>(e)) {
-        errorRequest(e.response?.data.detail || "");
+        errorRequest(e.response?.data?.detail || Response.UNKNOWN);
         return;
       }
       errorRequest();
@@ -191,6 +192,16 @@ export const useACNew = ({
   };
 
   const onSubmit = methods.handleSubmit(onSuccess, onReject);
+
+  useEffect(() => {
+    getExecutorDefault()
+      .then(({ data }) => methods.setValue("executor_default", data))
+      .catch(() => {
+        onShowToast({
+          text1: `Ошибка при попытке заполнения ${FIRST_EXECUTOR_NAME_SELECT}. Выберите ${FIRST_EXECUTOR_NAME_SELECT} вручную`,
+        });
+      });
+  }, []);
 
   useEffect(() => {
     return () => {
