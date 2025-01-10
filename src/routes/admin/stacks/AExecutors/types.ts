@@ -28,9 +28,10 @@ type Edit = ExecutorModelRequired & {
   callbackChange: ExecutorProfileCallback;
 };
 
+export type ExecutorDefaultIdEditCallback = (id: number) => void;
 export type ExecutorDefaultProfile = {
-  executorDefaultId: number;
-  callbackEditExecutorDefaultId: (id: number) => void;
+  executorDefaultId: number | null;
+  callbackEditExecutorDefaultId: ExecutorDefaultIdEditCallback;
 };
 
 type Profile = ExecutorModel &

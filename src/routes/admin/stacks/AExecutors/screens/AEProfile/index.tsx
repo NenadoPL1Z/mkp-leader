@@ -13,9 +13,8 @@ import { SelectExecutorDefault } from "./components/SelectExecutorDefault";
 import type { AEProfileProps } from "@app/routes/admin/stacks/AExecutors/types";
 
 const AEProfile = (props: AEProfileProps) => {
-  const { executorDefaultId } = props.route.params;
-
   const {
+    executorDefaultId,
     userInfo,
     toast,
     onHideToast,

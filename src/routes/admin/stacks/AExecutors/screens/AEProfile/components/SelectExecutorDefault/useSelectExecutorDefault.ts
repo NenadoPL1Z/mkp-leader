@@ -3,7 +3,7 @@ import { useToastLocal } from "@app/hooks/useToastLocal.ts";
 import { useStatus } from "@app/hooks/useStatus.ts";
 import { Response } from "@app/lib/constants/response.ts";
 import { useEffect } from "react";
-import { postExecutorDefault } from "@app/lib/api/users/postExecutorDefault";
+import { postExecutorDefault } from "@app/lib/api/executor/postExecutorDefault";
 import type { SelectExecutorDefaultProps } from "./types.ts";
 
 export const useSelectExecutorDefault = ({

@@ -19,6 +19,9 @@ export const useAEProfile = ({
 }: AEProfileProps) => {
   const { toast, onShowToast, onHideToast } = useToastLocal();
 
+  const [executorDefaultId, setExecutorDefaultId] = useState<number | null>(
+    params.executorDefaultId,
+  );
   const [userInfo, setUserInfo] = useState<ExecutorModelRequired>(() =>
     initialUser(params),
   );
@@ -31,6 +34,7 @@ export const useAEProfile = ({
     onShowToast({
       text1: "Исполнитель назначен в качестве дежурного",
     });
+    setExecutorDefaultId(userInfo.id);
     params.callbackEditExecutorDefaultId(userInfo.id);
   };
 
@@ -75,6 +79,7 @@ export const useAEProfile = ({
   );
 
   return {
+    executorDefaultId,
     userInfo,
     toast,
     onHideToast,

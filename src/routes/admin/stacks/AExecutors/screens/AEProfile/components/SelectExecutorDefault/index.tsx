@@ -24,8 +24,8 @@ export const SelectExecutorDefault = (props: SelectExecutorDefaultProps) => {
   return (
     <View>
       <TouchableOpacity
-        touchSoundDisabled={isDefaultExecutor}
-        onPress={handleOpen}>
+        activeOpacity={isDefaultExecutor ? 1 : undefined}
+        onPress={isDefaultExecutor ? undefined : handleOpen}>
         <View>
           {isDefaultExecutor ? <StarIcon /> : <StarOutlineFilledIcon />}
         </View>
