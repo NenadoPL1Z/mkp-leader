@@ -20,7 +20,7 @@ const AboutCardExecutor = (props: Props) => {
     executorDefaultId,
     nativeProps = {},
   } = props;
-  const isDefaultExecutor = id === executorDefaultId;
+  const isDefaultExecutor = id && executorDefaultId && id === executorDefaultId;
 
   return (
     <AboutCard
