@@ -5,7 +5,7 @@ import PaginationList from "@app/components/PaginationList/PaginationList";
 import { Api } from "@app/lib/constants/api";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
-import ECClosed from "@app/routes/executor/components/ExecutorCard/variant/ECClosed";
+import ECRefusal from "@app/routes/executor/components/ExecutorCard/variant/ECRefusal";
 import { useEMRHRefusal } from "./useEMRHRefusal.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { EMRHRefusalProps } from "./types";
@@ -18,7 +18,7 @@ const EMRHRefusal = (props: EMRHRefusalProps) => {
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
-      <ECClosed
+      <ECRefusal
         title={item.title}
         isBadge={!item.viewed_executor}
         variant="success"
@@ -34,7 +34,10 @@ const EMRHRefusal = (props: EMRHRefusalProps) => {
       <View style={requestsListStyles.top}>
         <PaginationList
           config={{
-            url: Api.service.getStatusService("closed", props.company.value.id),
+            url: Api.service.getStatusService(
+              "refusal",
+              props.company.value.id,
+            ),
             resetRef: props.closedRefs.resetRef,
             setCardRef: props.closedRefs.setCardRef,
             filterRef: props.closedRefs.filterRef,

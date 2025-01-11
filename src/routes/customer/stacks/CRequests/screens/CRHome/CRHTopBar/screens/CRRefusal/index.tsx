@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import PaginationList from "@app/components/PaginationList/PaginationList.tsx";
-import CCNew from "@app/routes/customer/components/CustomerCard/variant/CCNew";
+import CCRefusal from "@app/routes/customer/components/CustomerCard/variant/CCRefusal";
 import React, { useCallback } from "react";
 import { Api } from "@app/lib/constants/api.ts";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
@@ -17,7 +17,7 @@ const CRRefusal = (props: CRRefusalProps) => {
   const { handlePushProfile } = useCRRefusal(props);
   const renderItem = useCallback<RenderItem>(({ item, index }) => {
     return (
-      <CCNew
+      <CCRefusal
         title={item.title}
         isBadge={!item.viewed_customer}
         variant={item.emergency ? "error" : "default"}
@@ -33,7 +33,7 @@ const CRRefusal = (props: CRRefusalProps) => {
         <PaginationList
           showsVerticalScrollIndicator={false}
           config={{
-            url: Api.service.getCustomerStatusService("new"),
+            url: Api.service.getCustomerStatusService("refusal"),
             resetRef: props.refusalRefs.resetRef,
             setCardRef: props.refusalRefs.setCardRef,
             filterRef: props.refusalRefs.filterRef,
