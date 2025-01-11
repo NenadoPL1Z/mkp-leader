@@ -7,15 +7,15 @@ import { Api } from "@app/lib/constants/api";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import ACRefusal from "@app/routes/admin/components/AdminCard/variant/ACRefusal";
 import Sort from "@app/components/Sort";
-import { useAMRHRefuse } from "./useAMRHRefuse.ts";
+import { useAMRHRefusal } from "./useAMRHRefusal.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
-import type { AMRHRefuseProps } from "./types";
+import type { AMRHRefusalProps } from "./types";
 import type { ListRenderItem } from "react-native";
 
 type RenderItem = ListRenderItem<ServiceCardModel>;
 
-const AMRHRefuse = (props: AMRHRefuseProps) => {
-  const { handlePushProfile } = useAMRHRefuse(props);
+const AMRHRefusal = (props: AMRHRefusalProps) => {
+  const { handlePushProfile } = useAMRHRefusal(props);
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
@@ -45,11 +45,11 @@ const AMRHRefuse = (props: AMRHRefuseProps) => {
               props.company.value.id,
             ),
             query: props.queryData,
-            resetRef: props.refuseRefs.resetRef,
-            setCardRef: props.refuseRefs.setCardRef,
-            filterRef: props.refuseRefs.filterRef,
-            scrollRef: props.refuseRefs.scrollRef,
-            displayRefreshRef: props.refuseRefs.displayRefreshRef,
+            resetRef: props.refusalRefs.resetRef,
+            setCardRef: props.refusalRefs.setCardRef,
+            filterRef: props.refusalRefs.filterRef,
+            scrollRef: props.refusalRefs.scrollRef,
+            displayRefreshRef: props.refusalRefs.displayRefreshRef,
             callbackCounter: props.counter.onChange,
             callbackRefresh: props.onResetAllTabs,
           }}
@@ -63,4 +63,4 @@ const AMRHRefuse = (props: AMRHRefuseProps) => {
   );
 };
 
-export default React.memo(AMRHRefuse);
+export default React.memo(AMRHRefusal);

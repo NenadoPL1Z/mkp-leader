@@ -8,13 +8,13 @@ import type { CRHTopBarProps, CRGeneralProps } from "../../../types";
 export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
   const qualityRefs = usePaginationRefs<ServiceCardModel>();
   const closedRefs = usePaginationRefs<ServiceCardModel>();
-  const refuseRefs = usePaginationRefs<ServiceCardModel>();
+  const refusalRefs = usePaginationRefs<ServiceCardModel>();
 
   const [counters, setCounters] = useState<Record<CRTopBarNamespace, number>>({
     [CRTopBarNamespace.WORK]: 0,
     [CRTopBarNamespace.QUALITY]: 0,
     [CRTopBarNamespace.CLOSED]: 0,
-    [CRTopBarNamespace.REFUSE]: 0,
+    [CRTopBarNamespace.REFUSAL]: 0,
   });
 
   const onUpdateCounters = (tabName: CRTopBarNamespace) => {
@@ -32,8 +32,8 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
         case CRTopBarNamespace.CLOSED:
           closedRefs.displayRefreshRef.current?.(false);
           break;
-        case CRTopBarNamespace.REFUSE:
-          refuseRefs.displayRefreshRef.current?.(false);
+        case CRTopBarNamespace.REFUSAL:
+          refusalRefs.displayRefreshRef.current?.(false);
           break;
       }
     };
@@ -55,12 +55,12 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
     workRefs.displayRefreshRef.current?.(true);
     qualityRefs.displayRefreshRef.current?.(true);
     closedRefs.displayRefreshRef.current?.(true);
-    refuseRefs.displayRefreshRef.current?.(true);
+    refusalRefs.displayRefreshRef.current?.(true);
 
     workRefs.resetRef.current?.(config);
     qualityRefs.resetRef.current?.(config);
     closedRefs.resetRef.current?.(config);
-    refuseRefs.resetRef.current?.(config);
+    refusalRefs.resetRef.current?.(config);
   };
 
   const tabProps = (tab: CRTopBarNamespace): CRGeneralProps => ({
@@ -72,7 +72,7 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
     workRefs,
     qualityRefs,
     closedRefs,
-    refuseRefs,
+    refusalRefs,
     onResetAllTabs,
   });
 

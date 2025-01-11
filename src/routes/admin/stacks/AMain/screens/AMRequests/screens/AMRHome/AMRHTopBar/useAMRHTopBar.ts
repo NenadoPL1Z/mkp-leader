@@ -20,7 +20,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
   const workRefs = usePaginationRefs<ServiceCardModel>();
   const qualityRefs = usePaginationRefs<ServiceCardModel>();
   const closedRefs = usePaginationRefs<ServiceCardModel>();
-  const refuseRefs = usePaginationRefs<ServiceCardModel>();
+  const refusalRefs = usePaginationRefs<ServiceCardModel>();
   const isFirstQuery = useRef(true);
 
   const [sort, setSort] = useState<Sort>(sortDataInitial);
@@ -40,7 +40,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
       [AMRHTopBarNamespace.WORK]: company.value.tabs.working,
       [AMRHTopBarNamespace.QUALITY]: company.value.tabs.verifying,
       [AMRHTopBarNamespace.CLOSED]: company.value.tabs.closed,
-      [AMRHTopBarNamespace.REFUSE]: company.value.tabs.refuse,
+      [AMRHTopBarNamespace.REFUSAL]: company.value.tabs.refusal,
     },
   );
 
@@ -61,8 +61,8 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
         case AMRHTopBarNamespace.CLOSED:
           closedRefs.displayRefreshRef.current?.(false);
           break;
-        case AMRHTopBarNamespace.REFUSE:
-          refuseRefs.displayRefreshRef.current?.(false);
+        case AMRHTopBarNamespace.REFUSAL:
+          refusalRefs.displayRefreshRef.current?.(false);
           break;
       }
 
@@ -91,13 +91,13 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
     workRefs.displayRefreshRef.current?.(true);
     qualityRefs.displayRefreshRef.current?.(true);
     closedRefs.displayRefreshRef.current?.(true);
-    refuseRefs.displayRefreshRef.current?.(true);
+    refusalRefs.displayRefreshRef.current?.(true);
 
     //? RESET CONFIG
     workRefs.resetRef.current?.(config);
     qualityRefs.resetRef.current?.(config);
     closedRefs.resetRef.current?.(config);
-    refuseRefs.displayRefreshRef.current?.(true);
+    refusalRefs.displayRefreshRef.current?.(true);
   };
 
   const onChangeSort: SortChange = (sort) => {
@@ -134,7 +134,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
     workRefs,
     qualityRefs,
     closedRefs,
-    refuseRefs,
+    refusalRefs,
     onResetAllTabs,
   });
 

@@ -6,7 +6,7 @@ import { useCRHTopBar } from "./useCRHTopBar";
 import CRClosed from "./screens/CRClosed";
 import CRWork from "./screens/CRWork";
 import CRQuality from "./screens/CRQuality";
-import CRRefuse from "./screens/CRRefuse";
+import CRRefusal from "./screens/CRRefusal";
 import { CRTopBarNamespace } from "./types";
 import type { CRHTopBarProps } from "@app/routes/customer/stacks/CRequests/types";
 import type { CRTopBarStackParamList } from "./types";
@@ -56,12 +56,12 @@ const CRHTopBar = (props: CRHTopBarProps) => {
         )}
       </Tab.Screen>
       <Tab.Screen
-        name={N_REFUSE}
-        options={setBadge("Отказ", counters[N_REFUSE])}>
+        name={N_REFUSAL}
+        options={setBadge("Отказ", counters[N_REFUSAL])}>
         {(props) => (
-          <CRRefuse
+          <CRRefusal
             {...props}
-            {...tabProps(N_REFUSE)}
+            {...tabProps(N_REFUSAL)}
           />
         )}
       </Tab.Screen>
@@ -72,7 +72,7 @@ const CRHTopBar = (props: CRHTopBarProps) => {
 const N_WORK = CRTopBarNamespace.WORK;
 const N_QUALITY = CRTopBarNamespace.QUALITY;
 const N_CLOSED = CRTopBarNamespace.CLOSED;
-const N_REFUSE = CRTopBarNamespace.REFUSE;
+const N_REFUSAL = CRTopBarNamespace.REFUSAL;
 
 const setBadge = (title: string, counter: number, isLast: boolean = false) => {
   return {

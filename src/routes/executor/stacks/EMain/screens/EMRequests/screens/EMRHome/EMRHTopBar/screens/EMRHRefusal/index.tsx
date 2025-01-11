@@ -6,15 +6,15 @@ import { Api } from "@app/lib/constants/api";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import ECClosed from "@app/routes/executor/components/ExecutorCard/variant/ECClosed";
-import { useEMRHRefuse } from "./useEMRHRefuse.ts";
+import { useEMRHRefusal } from "./useEMRHRefusal.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
-import type { EMRHRefuseProps } from "./types";
+import type { EMRHRefusalProps } from "./types";
 import type { ListRenderItem } from "react-native";
 
 type RenderItem = ListRenderItem<ServiceCardModel>;
 
-const EMRHRefuse = (props: EMRHRefuseProps) => {
-  const { handlePushProfile } = useEMRHRefuse(props);
+const EMRHRefusal = (props: EMRHRefusalProps) => {
+  const { handlePushProfile } = useEMRHRefusal(props);
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
@@ -56,4 +56,4 @@ const EMRHRefuse = (props: EMRHRefuseProps) => {
   );
 };
 
-export default React.memo(EMRHRefuse);
+export default React.memo(EMRHRefusal);

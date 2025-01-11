@@ -9,14 +9,14 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
   const workRefs = usePaginationRefs<ServiceCardModel>();
   const qualityRefs = usePaginationRefs<ServiceCardModel>();
   const closedRefs = usePaginationRefs<ServiceCardModel>();
-  const refuseRefs = usePaginationRefs<ServiceCardModel>();
+  const refusalRefs = usePaginationRefs<ServiceCardModel>();
 
   const [counters, setCounters] = useState<Record<EMRHTopBarNamespace, number>>(
     {
       [EMRHTopBarNamespace.WORK]: company.value.tabs.working,
       [EMRHTopBarNamespace.QUALITY]: company.value.tabs.verifying,
       [EMRHTopBarNamespace.CLOSED]: company.value.tabs.closed,
-      [EMRHTopBarNamespace.REFUSE]: company.value.tabs.refuse,
+      [EMRHTopBarNamespace.REFUSAL]: company.value.tabs.refusal,
     },
   );
 
@@ -35,8 +35,8 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
         case EMRHTopBarNamespace.CLOSED:
           closedRefs.displayRefreshRef.current?.(false);
           break;
-        case EMRHTopBarNamespace.REFUSE:
-          refuseRefs.displayRefreshRef.current?.(false);
+        case EMRHTopBarNamespace.REFUSAL:
+          refusalRefs.displayRefreshRef.current?.(false);
           break;
       }
 
@@ -61,12 +61,12 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
     workRefs.displayRefreshRef.current?.(true);
     qualityRefs.displayRefreshRef.current?.(true);
     closedRefs.displayRefreshRef.current?.(true);
-    refuseRefs.displayRefreshRef.current?.(true);
+    refusalRefs.displayRefreshRef.current?.(true);
 
     workRefs.resetRef.current?.(config);
     qualityRefs.resetRef.current?.(config);
     closedRefs.resetRef.current?.(config);
-    refuseRefs.resetRef.current?.(config);
+    refusalRefs.resetRef.current?.(config);
   };
 
   const tabProps = (tab: EMRHTopBarNamespace): EMRHGeneralProps => ({
@@ -79,7 +79,7 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
     workRefs,
     qualityRefs,
     closedRefs,
-    refuseRefs,
+    refusalRefs,
     onResetAllTabs,
   });
 

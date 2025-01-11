@@ -50,13 +50,13 @@ export type AMRHGeneralProps = AMRequestsHomeProps & {
   workRefs: Required<PaginationRefs<ServiceCardModel>>;
   qualityRefs: Required<PaginationRefs<ServiceCardModel>>;
   closedRefs: Required<PaginationRefs<ServiceCardModel>>;
-  refuseRefs: Required<PaginationRefs<ServiceCardModel>>;
+  refusalRefs: Required<PaginationRefs<ServiceCardModel>>;
   onResetAllTabs: () => void;
 };
 
 type Info = AMRHGeneralProps & {
-  tabName: "work" | "quality" | "closed" | "refuse";
-  nextTabName: "work" | "quality" | "closed" | "refuse" | "";
+  tabName: "work" | "quality" | "closed" | "refusal";
+  nextTabName: "work" | "quality" | "closed" | "refusal" | "";
   card: ServiceCardModel;
 };
 

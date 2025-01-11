@@ -1,6 +1,6 @@
-import type { EMRHRefuseScreenProps } from "../../types";
+import type { EMRHRefusalScreenProps } from "../../types";
 import type { EMRHGeneralProps } from "@app/routes/executor/stacks/EMain/screens/EMRequests/types";
 
-export interface EMRHRefuseProps
+export interface EMRHRefusalProps
   extends EMRHGeneralProps,
-    EMRHRefuseScreenProps {}
+    EMRHRefusalScreenProps {}
