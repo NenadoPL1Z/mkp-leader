@@ -5,7 +5,7 @@ import { requestsListStyles } from "@app/components/RequestsListStyles";
 import PaginationList from "@app/components/PaginationList/PaginationList";
 import { Api } from "@app/lib/constants/api";
 import EmptyContainer from "@app/containers/EmptyContainer";
-import ACNew from "@app/routes/admin/components/AdminCard/variant/ACNew";
+import ACRefusal from "@app/routes/admin/components/AdminCard/variant/ACRefusal";
 import Sort from "@app/components/Sort";
 import { useAMRHRefuse } from "./useAMRHRefuse.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
@@ -19,7 +19,7 @@ const AMRHRefuse = (props: AMRHRefuseProps) => {
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
-      <ACNew
+      <ACRefusal
         title={item.title}
         isBadge={!item.viewed_admin}
         variant={item.emergency ? "error" : "default"}
@@ -40,7 +40,10 @@ const AMRHRefuse = (props: AMRHRefuseProps) => {
         </View>
         <PaginationList
           config={{
-            url: Api.service.getStatusService("new", props.company.value.id),
+            url: Api.service.getStatusService(
+              "refusal",
+              props.company.value.id,
+            ),
             query: props.queryData,
             resetRef: props.refuseRefs.resetRef,
             setCardRef: props.refuseRefs.setCardRef,
