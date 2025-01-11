@@ -53,7 +53,9 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
           const isDisplayForm = !isExecutor || isEditMode;
           const isDisplayExecutor = isExecutor && !isDisplayForm;
           const isDisplayClose =
-            tabName === "quality" && data.status === "Контроль качества";
+            !isEditMode &&
+            tabName === "quality" &&
+            data.status === "Контроль качества";
 
           return (
             <>
