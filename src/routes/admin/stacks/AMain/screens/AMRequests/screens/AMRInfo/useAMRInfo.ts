@@ -1,9 +1,9 @@
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import { useToggle } from "@app/hooks/useToggle";
 import { useRef } from "react";
+import type { ServicesDetailModel } from "@app/lib/models/ServiceModel";
 import type { OnAssignExecutorArg } from "@app/components/RequestInfo/components/RIExecutorForm/types";
 import type { AMRInfoScreenProps } from "../../types";
-import type { ServicesDetailModel } from "@app/lib/models/ServiceModel";
 import type { RInfoChildrenOnUpdate } from "@app/components/RequestInfo/types";
 
 export const useAMRInfo = ({ route }: AMRInfoScreenProps) => {
@@ -44,7 +44,7 @@ export const useAMRInfo = ({ route }: AMRInfoScreenProps) => {
         status: data.status,
         media_files: data.media_files || [],
         created_at: data.created_at,
-        executor: { name: data.executor?.name || "" },
+        executor: { name: data.executor_default?.name || "" },
         custom_position: Boolean(data.custom_position),
         viewed_admin: true,
         viewed_executor: false,

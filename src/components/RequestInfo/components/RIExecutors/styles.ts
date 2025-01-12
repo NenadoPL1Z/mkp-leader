@@ -20,6 +20,12 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 4,
   },
+  title: {
+    marginBottom: 8,
+  },
+  additional_executor: {
+    marginTop: 8,
+  },
   deadline: {
     flexDirection: "row",
     alignItems: "center",

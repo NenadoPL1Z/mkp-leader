@@ -6,16 +6,18 @@ import { useStatus } from "@app/hooks/useStatus";
 import { fetchServicesAssign } from "@app/lib/api/services/assign";
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import { Count } from "@app/lib/constants/count";
+import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
 import type { AMRequestsSPL } from "@app/routes/admin/stacks/AMain/screens/AMRequests/types";
 import type { NavigationProp } from "@react-navigation/native";
 import type { ExecutorModel } from "@app/lib/models/ExecutorModel";
 import type { RequestExecutorForm } from "@app/lib/models/form/RequestExecutorForm";
-import type { RIExecutorFormProps } from "./types";
+import type { RIExecutorFormProps, ExecutorController } from "./types";
 
 export const useRIExecutorForm = (props: RIExecutorFormProps) => {
   const {
     isEditMode,
-    executor,
+    executor_default,
+    executor_additional,
     deadline_at,
     comment,
     custom_position,
@@ -37,7 +39,8 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
 
   const methods = useForm<RequestExecutorForm>({
     defaultValues: {
-      executor: executor,
+      executor_default: executor_default,
+      executor_additional: executor_additional,
       deadline_at: deadline_at ?? "",
       comment: comment ?? "",
       emergency: emergency ?? false,
@@ -46,12 +49,17 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
   });
   const { control, handleSubmit } = methods;
 
-  const executorController = useController({
+  const executorDefaultController = useController({
     control,
-    name: "executor",
+    name: "executor_default",
     rules: {
       required: true,
     },
+  });
+
+  const executorAdditionalController = useController({
+    control,
+    name: "executor_additional",
   });
 
   const deadlineAtController = useController({
@@ -80,18 +88,17 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
     name: "emergency",
   });
 
-  const handleExecutorSelect = (
-    executor: ExecutorModel,
-    callback: () => void,
-  ) => {
-    executorController.field.onChange(executor);
-    callback();
+  const handleExecutorSelect = (executorController: ExecutorController) => {
+    return (executor: ExecutorModel, callback: () => void) => {
+      executorController.field.onChange(executor);
+      callback();
+    };
   };
 
-  const handlePushExecutorScreen = () => {
+  const handlePushExecutorScreen = (executorController: ExecutorController) => {
     navigation.navigate(AMRequestsSN.EXECUTOR, {
       ...props,
-      handleExecutorSelect: handleExecutorSelect,
+      handleExecutorSelect: handleExecutorSelect(executorController),
     });
   };
 
@@ -108,7 +115,8 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
 
       fetchServicesAssign({
         service_id: props.id,
-        executor_id: data?.executor?.id as number,
+        executor_default_id: data?.executor_default?.id as number,
+        executor_additional_id: data?.executor_additional?.id ?? null,
         deadline_at: new Date(data.deadline_at).toISOString(),
         comment: data.comment,
         emergency: data.emergency,
@@ -127,10 +135,18 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
     },
     (errors) => {
       if (
-        errors.executor?.type === "required" ||
+        errors.executor_default?.type === "required" &&
         errors.deadline_at?.type === "required"
       ) {
         onShowToast({ text1: "Заполните все обязательные поля" });
+        return;
+      }
+      if (errors.executor_default?.type === "required") {
+        onShowToast({ text1: `Выберите ${FIRST_EXECUTOR_NAME_SELECT}` });
+        return;
+      }
+      if (errors.deadline_at?.type === "required") {
+        onShowToast({ text1: `Выберите срок исполнения` });
         return;
       }
       if (errors.comment?.type === "maxLength") {
@@ -144,7 +160,8 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
   return {
     isLoading,
     isError,
-    executorController,
+    executorDefaultController,
+    executorAdditionalController,
     deadlineAtController,
     commentController,
     customPositionController,

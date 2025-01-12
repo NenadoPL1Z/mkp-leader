@@ -7,7 +7,7 @@ import RIEmergency from "@app/components/RequestInfo/components/RIEmergency";
 import RIContent from "@app/components/RequestInfo/components/RIContent";
 import RIExecutorForm from "@app/components/RequestInfo/components/RIExecutorForm";
 import KeyboardContainer from "@app/containers/KeyboardContainer";
-import RIExecutor from "@app/components/RequestInfo/components/RIExecutor";
+import RIExecutors from "@app/components/RequestInfo/components/RIExecutors";
 import ToastUI from "@app/ui/ToastUI";
 import { PortalHost, PortalProvider } from "@gorhom/portal";
 import { Portal } from "@app/theme/portal";
@@ -44,13 +44,14 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
         onDecrementCounter={counter.onDecrementCounter}>
         {({ data, onUpdateData }) => {
           //? CONSTANTS
-          const isExecutor = data?.executor?.id;
+          const isExecutor = Boolean(data?.executor_default?.id);
+          const isDeadline = Boolean(data?.deadline_at);
+          const isChangeTab = tabName === "work" || tabName === "quality";
 
-          const isEnableEdit =
-            !!isExecutor && (tabName === "work" || tabName === "quality");
+          const isEnableEdit = isExecutor && isDeadline && isChangeTab;
           const isEditMode = isEnableEdit && editMode.isToggle;
 
-          const isDisplayForm = !isExecutor || isEditMode;
+          const isDisplayForm = !isDeadline || isEditMode;
           const isDisplayExecutor = isExecutor && !isDisplayForm;
           const isDisplayClose =
             !isEditMode &&
@@ -93,7 +94,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                       )}
                     />
                   )}
-                  {isDisplayExecutor && <RIExecutor {...data} />}
+                  {isDisplayExecutor && <RIExecutors {...data} />}
                   {isDisplayClose && (
                     <AMRIClose
                       id={data.id}

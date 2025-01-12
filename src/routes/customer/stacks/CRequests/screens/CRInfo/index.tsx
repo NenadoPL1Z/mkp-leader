@@ -9,7 +9,7 @@ import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import KeyboardContainer from "@app/containers/KeyboardContainer";
 import RIEmergency from "@app/components/RequestInfo/components/RIEmergency";
 import RIContent from "@app/components/RequestInfo/components/RIContent";
-import RIExecutor from "@app/components/RequestInfo/components/RIExecutor";
+import RIExecutors from "@app/components/RequestInfo/components/RIExecutors";
 import ToastUI from "@app/ui/ToastUI";
 import { Colors } from "@app/theme/colors";
 import type { CRInfoScreenProps } from "../../types";
@@ -61,7 +61,7 @@ const CRInfo = (props: CRInfoScreenProps) => {
                   media_files={data.media_files}
                 />
               </View>
-              <RIExecutor {...data} />
+              <RIExecutors {...data} />
             </ScrollView>
             <ToastUI
               params={{

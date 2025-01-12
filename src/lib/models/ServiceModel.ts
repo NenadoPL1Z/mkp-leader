@@ -32,8 +32,10 @@ export interface ServiceModel {
 
 export type ServicesDetailModel = {
   id: ServiceId;
-  customer_id: string;
-  executor_id: Nullable<ExecutorId>;
+  executor_default_id: ExecutorId;
+  executor_additional_id: Nullable<ExecutorId>;
+  executor_default: ExecutorModel;
+  executor_additional: Nullable<ExecutorModel>;
   title: string;
   description: Nullable<string>;
   material_availability: Nullable<boolean>;
@@ -43,8 +45,8 @@ export type ServicesDetailModel = {
   deadline_at: Nullable<string>;
   status: ServiceStatus;
   comment: Nullable<string>;
+  customer_id: string;
   customer: CustomerDetailModel;
-  executor: Nullable<ExecutorModel>;
   media_files: Nullable<MediaFilesArr>;
 };
 

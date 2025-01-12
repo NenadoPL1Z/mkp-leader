@@ -8,7 +8,8 @@ import type {
 
 type Data = {
   service_id: ServiceId;
-  executor_id: ExecutorId;
+  executor_default_id: ExecutorId;
+  executor_additional_id: ExecutorId | null;
   deadline_at: string;
   comment: string;
   emergency: boolean;

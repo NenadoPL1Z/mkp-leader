@@ -7,7 +7,7 @@ import KeyboardContainer from "@app/containers/KeyboardContainer";
 import RICompany from "@app/components/RequestInfo/components/RICompany";
 import RIEmergency from "@app/components/RequestInfo/components/RIEmergency";
 import RIContent from "@app/components/RequestInfo/components/RIContent";
-import RIExecutor from "@app/components/RequestInfo/components/RIExecutor";
+import RIExecutors from "@app/components/RequestInfo/components/RIExecutors";
 import ToastUI from "@app/ui/ToastUI";
 import RequestInfo from "@app/components/RequestInfo";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
@@ -64,16 +64,14 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
                     material_availability={data.material_availability}
                     media_files={data.media_files}
                   />
-                  <RIExecutor
-                    {...data}
-                    isAvatar={false}>
+                  <RIExecutors {...data}>
                     {isDisplayForm && (
                       <EMRIMediaUploadForm
                         id={data.id}
                         onVerify={handleVerify(onUpdateData)}
                       />
                     )}
-                  </RIExecutor>
+                  </RIExecutors>
                 </ScrollView>
                 <ToastUI
                   params={{
