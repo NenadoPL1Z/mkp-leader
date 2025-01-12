@@ -1,7 +1,10 @@
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import { CRequestsSN } from "@app/routes/customer/stacks/CRequests/types";
 import type { RInfoChildrenOnUpdate } from "@app/components/RequestInfo/types";
-import type { ServicesDetailModel } from "@app/lib/models/ServiceModel";
+import type {
+  ServiceCardModel,
+  ServicesDetailModel,
+} from "@app/lib/models/ServiceModel";
 import type {
   CRInfoScreenProps,
   CRNewEditCallback,
@@ -19,7 +22,7 @@ export const useCRInfo = ({ route, navigation }: CRInfoScreenProps) => {
 
   const handleChangeCard = (data: ServicesDetailModel) => {
     if (setCurrentCard) {
-      setCurrentCard((prevState) => [
+      setCurrentCard((prevState): ServiceCardModel[] => [
         ...prevState.slice(0, cardIndex),
         {
           id: data.id,
@@ -27,11 +30,11 @@ export const useCRInfo = ({ route, navigation }: CRInfoScreenProps) => {
           status: data.status,
           emergency: Boolean(data.emergency),
           custom_position: Boolean(data.custom_position),
+          created_at: data.created_at,
+          deadline_at: data.deadline_at,
           viewed_admin: false,
           viewed_customer: true,
           viewed_executor: false,
-          created_at: data.created_at,
-          deadline_at: data.deadline_at,
         },
         ...prevState.slice(cardIndex + 1),
       ]);

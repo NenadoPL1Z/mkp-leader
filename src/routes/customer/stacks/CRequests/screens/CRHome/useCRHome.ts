@@ -10,18 +10,18 @@ export const useCRHome = ({ navigation }: CRHomeScreenProps) => {
 
   const handleEditCards: CRNewEditCallback = (data, callback) => {
     if (workRefs.setCardRef.current) {
-      workRefs.setCardRef.current((prev) => [
+      workRefs.setCardRef.current((prev): ServiceCardModel[] => [
         {
           id: data.id,
           title: data.title,
           status: data.status,
           emergency: Boolean(data.emergency),
           custom_position: Boolean(data.custom_position),
-          viewed_customer: true,
-          viewed_admin: false,
-          viewed_executor: false,
           created_at: data.created_at,
           deadline_at: data.deadline_at,
+          viewed_admin: false,
+          viewed_customer: true,
+          viewed_executor: false,
         },
         ...prev,
       ]);
