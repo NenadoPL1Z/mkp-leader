@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import { useEffect, useState } from "react";
-import { Response } from "@app/lib/constants/response";
 import { getTime, getTimeToDate } from "@app/lib/functions/getTime";
 import { patchCredential } from "@app/lib/api/users/patchCredentials";
 import { patchCompany } from "@app/lib/api/users/patchCompany";
@@ -10,6 +9,7 @@ import { Timing } from "@app/lib/constants/timing";
 import { isAxiosError } from "axios";
 import { postContacts } from "@app/lib/api/users/postContacts";
 import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
+import { getErrorText } from "@app/lib/utils/requestUtils.ts";
 import type { CustomerDetailModel } from "@app/lib/models/CustomerModel";
 import type { PatchContactsData } from "@app/lib/api/users/patchContacts";
 import type { PatchCompanyData } from "@app/lib/api/users/patchCompany";
@@ -57,9 +57,9 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
   const { toast, onShowToast, onHideToast } = useToastLocal();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const errorRequest = (error?: string) => {
+  const errorRequest = (error?: unknown) => {
     setIsLoading(false);
-    onShowToast({ text1: error || Response.UNKNOWN });
+    onShowToast({ text1: getErrorText(error) });
   };
 
   const successCallback = () => {
@@ -273,8 +273,8 @@ export const useACEdit = ({ navigation, route }: ACEditProps) => {
       }
 
       errorRequest();
-    } catch {
-      errorRequest();
+    } catch (error) {
+      errorRequest(error);
     }
   };
 

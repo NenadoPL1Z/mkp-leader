@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { postExecutorCreate } from "@app/lib/api/executor/postExecutorCreate";
 import { isAxiosError } from "axios";
+import { getErrorText } from "@app/lib/utils/requestUtils.ts";
 import type { DetailString } from "@app/types/general";
 import type { ExecutorForm } from "@app/lib/models/form/ExecutorForm";
 import type { FieldErrors, SubmitHandler } from "react-hook-form";
@@ -17,9 +18,9 @@ export const useAENew = ({ route, navigation }: AENewProps) => {
   const { toast, onShowToast, onHideToast } = useToastLocal();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const errorRequest = (error?: string) => {
+  const errorRequest = (error?: unknown) => {
     setIsLoading(false);
-    onShowToast({ text1: error || Response.UNKNOWN });
+    onShowToast({ text1: getErrorText(error) });
   };
 
   const onSuccess: SubmitHandler<ExecutorForm> = async (data) => {
@@ -56,13 +57,13 @@ export const useAENew = ({ route, navigation }: AENewProps) => {
       }
 
       errorRequest();
-    } catch (e) {
-      if (isAxiosError<DetailString>(e)) {
-        errorRequest(e.response?.data.detail || "");
+    } catch (error) {
+      if (isAxiosError<DetailString>(error)) {
+        errorRequest(error.response?.data.detail || "");
         return;
       }
 
-      errorRequest();
+      errorRequest(error);
     }
 
     return data;

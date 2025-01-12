@@ -8,6 +8,7 @@ import { postCustomerCreate } from "@app/lib/api/customer/postCustomerCreate";
 import { isAxiosError } from "axios";
 import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
 import { getExecutorDefault } from "@app/lib/api/executor/getExecutorDefault";
+import { getErrorText } from "@app/lib/utils/requestUtils.ts";
 import type {
   CustomerContactsData,
   CustomerCreateData,
@@ -43,9 +44,9 @@ export const useACNew = ({
   const { toast, onShowToast, onHideToast } = useToastLocal();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const errorRequest = (error?: string) => {
+  const errorRequest = (error?: unknown) => {
     setIsLoading(false);
-    onShowToast({ text1: error || Response.UNKNOWN });
+    onShowToast({ text1: getErrorText(error) });
   };
 
   const onSuccess: SubmitHandler<CustomerForm> = async (data) => {
