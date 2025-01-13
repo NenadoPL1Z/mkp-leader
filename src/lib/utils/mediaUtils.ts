@@ -9,10 +9,12 @@ const serverToForm = (
   mediaFiles: MediaFilesArr | undefined | null,
 ): MediaFileFormModel[] => {
   if (!mediaFiles) return [];
-  return mediaFiles.map((item) => ({
-    type: "server",
-    source: { ...item, mediaType: item.file_type },
-  }));
+  return mediaFiles
+    .filter((media) => media.owner_type === "Заказчик")
+    .map((item) => ({
+      type: "server",
+      source: { ...item, mediaType: item.file_type },
+    }));
 };
 
 const assetToForm = (arr: Asset[]): MediaFileFormModel[] => {
