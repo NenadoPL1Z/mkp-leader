@@ -28,7 +28,6 @@ const RequestForm = (props: RequestFormProps) => {
     emergency,
     description,
     material,
-
     onSubmit,
   } = useRequestForm(props);
 

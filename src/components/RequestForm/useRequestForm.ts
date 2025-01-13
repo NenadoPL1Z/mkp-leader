@@ -5,7 +5,7 @@ import { mediaUtils } from "@app/lib/utils/mediaUtils";
 import { postServiceCreate } from "@app/lib/api/services/postServiceCreate";
 import { patchServiceById } from "@app/lib/api/services/patchServiceById";
 import { useStatus } from "@app/hooks/useStatus";
-import { isAxiosError } from "axios";
+import { getErrorText } from "@app/lib/utils/requestUtils.ts";
 import { SWITCH_OPTIONS } from "./constants";
 import type { ServicesDetailModel } from "@app/lib/models/ServiceModel";
 import type { RequestFormProps } from "./types";
@@ -78,18 +78,15 @@ export const useRequestForm = ({
     callbackEdit(data);
   };
 
-  const rejectApi = (e: unknown) => {
+  const rejectApi = (error: unknown) => {
     handleClearStatus();
-    if (isAxiosError(e)) {
-      handleShowToast(JSON.stringify(e?.response));
-    }
+    handleShowToast(getErrorText(error));
   };
 
   const onSubmit = handleSubmit(
     (data) => {
       handleLoadingStatus();
 
-      //? IS_CREATE
       if (!isEdit) {
         postServiceCreate(data)
           .then((r) => successApi(r.data))
