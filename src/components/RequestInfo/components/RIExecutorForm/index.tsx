@@ -34,7 +34,8 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
     commentController,
     emergencyController,
     customPositionController,
-    handlePushExecutorScreen,
+    handlePushExecutorDefaultScreen,
+    handlePushExecutorAdditionalScreen,
     handlePushCommentScreen,
     handleClearStatus,
     onSubmit,
@@ -47,10 +48,7 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
       <View style={[styles.root, styles.shadow]}>
         <View style={styles.wrapper}>
           <View style={styles.item}>
-            <TouchableOpacity
-              onPress={() =>
-                handlePushExecutorScreen(executorDefaultController)
-              }>
+            <TouchableOpacity onPress={handlePushExecutorDefaultScreen}>
               <TextField
                 label={FIRST_EXECUTOR_NAME}
                 value={
@@ -61,15 +59,12 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
                 required={true}
                 inputStyle={styles.pointer}
                 error={executorDefaultController.fieldState.error}
-                onClear={() => executorDefaultController.field.onChange(null)}
+                isClear={false}
               />
             </TouchableOpacity>
           </View>
           <View style={styles.item}>
-            <TouchableOpacity
-              onPress={() =>
-                handlePushExecutorScreen(executorAdditionalController)
-              }>
+            <TouchableOpacity onPress={handlePushExecutorAdditionalScreen}>
               <TextField
                 label={SECOND_EXECUTOR_NAME}
                 value={
@@ -87,11 +82,10 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
           </View>
           <View style={styles.item}>
             <DatePickerUI
-              value={deadlineAtController.field.value}
+              value={deadlineAtController.field.value ?? ""}
               onChange={deadlineAtController.field.onChange}
               textFieldProps={{
                 label: "Срок исполнения",
-                required: true,
                 error: deadlineAtController.fieldState.error,
               }}
               pickerProps={{ mode: "date", minimumDate: new Date() }}

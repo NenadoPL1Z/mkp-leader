@@ -45,7 +45,8 @@ const RIExecutors = (props: Props) => {
         style={[
           styles.wrapper,
           {
-            paddingBottom: children || comment ? styles.wrapper.padding : 0,
+            paddingBottom:
+              children || comment || deadline_at ? styles.wrapper.padding : 0,
           },
         ]}>
         {isAvatar && (

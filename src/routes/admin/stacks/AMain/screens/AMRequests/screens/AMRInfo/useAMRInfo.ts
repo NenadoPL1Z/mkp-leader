@@ -60,7 +60,7 @@ export const useAMRInfo = ({ route }: AMRInfoScreenProps) => {
   };
 
   const handleUpdateCurrentStatus = (data: ServicesDetailModel) => {
-    toast.onShowToast({ text1: "Информация по заявке изменена" });
+    toast.onShowToast({ text1: "Заявка изменена" });
     editMode.handleToggleFalse();
 
     //? Обновляем nextTab (текущий таб + 1)

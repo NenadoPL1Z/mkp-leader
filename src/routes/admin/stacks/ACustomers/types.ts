@@ -43,7 +43,7 @@ type Address = {
 };
 
 type Executor = {
-  screenTitle: string;
+  executorTitle: string;
   callbackSelectExecutor: (
     executor: ExecutorModel,
     onShowToast: (config: Nullable<ToastShowParams>) => void,

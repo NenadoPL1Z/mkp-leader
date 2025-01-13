@@ -9,6 +9,8 @@ import { useSearch } from "@app/hooks/useSearch";
 import { Size } from "@app/lib/constants/size";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { TFLBack } from "@app/ui/TextField/left/TFLBack";
+import { useToastLocal } from "@app/hooks/useToastLocal.ts";
+import ToastUI from "@app/ui/ToastUI";
 import type { AMRExecutorScreenProps } from "@app/routes/admin/stacks/AMain/screens/AMRequests/types";
 import type { ExecutorModel } from "@app/lib/models/ExecutorModel";
 import type { ListRenderItem } from "react-native";
@@ -19,16 +21,20 @@ const AMRExecutor = ({
   route: { params },
   navigation,
 }: AMRExecutorScreenProps) => {
-  const { handleExecutorSelect } = params;
-  const { resetRef, query, handleChangeSearch } = useSearch();
+  const { executorTitle, callbackSelectExecutor } = params;
+
   const { top, bottom } = useSafeAreaInsets();
+  const { toast, onShowToast, onHideToast } = useToastLocal();
+  const { resetRef, query, handleChangeSearch } = useSearch();
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
       <AboutCardExecutor
         key={item.id}
         {...item}
-        onPress={(item) => handleExecutorSelect(item, navigation.goBack)}
+        onPress={(executor) =>
+          callbackSelectExecutor(executor, onShowToast, navigation.goBack)
+        }
       />
     );
   }, []);
@@ -40,7 +46,7 @@ const AMRExecutor = ({
       <View style={styles.root}>
         <View style={styles.header}>
           <PaginationSearch
-            placeholder="Исполнитель"
+            placeholder={executorTitle}
             left={TFLBack(navigation.goBack)}
             handleChangeSearch={handleChangeSearch}
           />
@@ -60,6 +66,14 @@ const AMRExecutor = ({
           />
         </View>
       </View>
+      <ToastUI
+        params={{
+          isVisible: !!toast,
+          ...toast,
+          bottomOffset: bottom,
+          onHide: onHideToast,
+        }}
+      />
     </ScreenContainer>
   );
 };

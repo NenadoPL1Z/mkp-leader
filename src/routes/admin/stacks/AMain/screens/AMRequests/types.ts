@@ -16,6 +16,8 @@ import type {
 } from "@app/lib/models/ServiceModel";
 import type { RequestCompanyModel } from "@app/lib/models/RequestModel";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { Nullable } from "@app/types/general.ts";
+import type { ToastShowParams } from "react-native-toast-message";
 
 export enum AMRequestsSN {
   HOME = "Home",
@@ -61,7 +63,12 @@ type Info = AMRHGeneralProps & {
 };
 
 type Executor = ServicesDetailModel & {
-  handleExecutorSelect: (executor: ExecutorModel, callback: () => void) => void;
+  executorTitle: string;
+  callbackSelectExecutor: (
+    executor: ExecutorModel,
+    onShowToast: (config: Nullable<ToastShowParams>) => void,
+    goBack: () => void,
+  ) => void;
 };
 
 type Comments = {

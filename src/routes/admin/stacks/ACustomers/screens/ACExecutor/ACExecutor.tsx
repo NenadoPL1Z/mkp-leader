@@ -20,7 +20,7 @@ export const ACExecutor = (props: ACExecutorProps) => {
   const {
     navigation,
     route: {
-      params: { screenTitle, callbackSelectExecutor },
+      params: { executorTitle, callbackSelectExecutor },
     },
   } = props;
 
@@ -47,7 +47,7 @@ export const ACExecutor = (props: ACExecutorProps) => {
       <View style={styles.root}>
         <View style={styles.header}>
           <PaginationSearch
-            placeholder={screenTitle}
+            placeholder={executorTitle}
             left={TFLBack(navigation.goBack)}
             handleChangeSearch={handleChangeSearch}
           />

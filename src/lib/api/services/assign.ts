@@ -10,7 +10,7 @@ type Data = {
   service_id: ServiceId;
   executor_default_id: ExecutorId;
   executor_additional_id: ExecutorId | null;
-  deadline_at: string;
+  deadline_at: string | null;
   comment: string;
   emergency: boolean;
   custom_position: boolean;

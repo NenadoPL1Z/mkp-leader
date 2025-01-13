@@ -86,7 +86,7 @@ export const useACCompanyForm = () => {
 
   const handlePressDefaultExecutor = () => {
     navigation.navigate(ACustomersSN.EXECUTOR, {
-      screenTitle: FIRST_EXECUTOR_NAME,
+      executorTitle: FIRST_EXECUTOR_NAME,
       callbackSelectExecutor: (executor, onShowToast, goBack) => {
         if (executor.id === executorAdditional.field.value?.id) {
           onShowToast({
@@ -102,7 +102,7 @@ export const useACCompanyForm = () => {
 
   const handlePressAdditionalExecutor = () => {
     navigation.navigate(ACustomersSN.EXECUTOR, {
-      screenTitle: SECOND_EXECUTOR_NAME,
+      executorTitle: SECOND_EXECUTOR_NAME,
       callbackSelectExecutor: (executor, onShowToast, goBack) => {
         if (executor.id === executorDefault.field.value?.id) {
           onShowToast({

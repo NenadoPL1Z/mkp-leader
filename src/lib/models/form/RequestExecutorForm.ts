@@ -4,7 +4,7 @@ import type { ExecutorModel } from "@app/lib/models/ExecutorModel";
 export type RequestExecutorForm = {
   executor_default: Nullable<ExecutorModel>;
   executor_additional: Nullable<ExecutorModel>;
-  deadline_at: string;
+  deadline_at: string | null;
   comment: string;
   emergency: boolean;
   custom_position: boolean;

@@ -6,12 +6,16 @@ import { useStatus } from "@app/hooks/useStatus";
 import { fetchServicesAssign } from "@app/lib/api/services/assign";
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import { Count } from "@app/lib/constants/count";
-import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
+import {
+  FIRST_EXECUTOR_NAME,
+  FIRST_EXECUTOR_NAME_SELECT,
+  SECOND_EXECUTOR_NAME,
+  SECOND_EXECUTOR_NAME_SELECT,
+} from "@app/lib/constants/executors.ts";
 import type { AMRequestsSPL } from "@app/routes/admin/stacks/AMain/screens/AMRequests/types";
 import type { NavigationProp } from "@react-navigation/native";
-import type { ExecutorModel } from "@app/lib/models/ExecutorModel";
 import type { RequestExecutorForm } from "@app/lib/models/form/RequestExecutorForm";
-import type { RIExecutorFormProps, ExecutorController } from "./types";
+import type { RIExecutorFormProps } from "./types";
 
 export const useRIExecutorForm = (props: RIExecutorFormProps) => {
   const {
@@ -65,9 +69,6 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
   const deadlineAtController = useController({
     control,
     name: "deadline_at",
-    rules: {
-      required: true,
-    },
   });
 
   const commentController = useController({
@@ -88,17 +89,37 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
     name: "emergency",
   });
 
-  const handleExecutorSelect = (executorController: ExecutorController) => {
-    return (executor: ExecutorModel, callback: () => void) => {
-      executorController.field.onChange(executor);
-      callback();
-    };
-  };
-
-  const handlePushExecutorScreen = (executorController: ExecutorController) => {
+  const handlePushExecutorDefaultScreen = () => {
     navigation.navigate(AMRequestsSN.EXECUTOR, {
       ...props,
-      handleExecutorSelect: handleExecutorSelect(executorController),
+      executorTitle: FIRST_EXECUTOR_NAME,
+      callbackSelectExecutor: (executor, onShowToast, goBack) => {
+        if (executor.id === executorAdditionalController.field.value?.id) {
+          onShowToast({
+            text1: `Исполнитель "${executor.name}" уже выбран в качестве ${SECOND_EXECUTOR_NAME_SELECT}`,
+          });
+        } else {
+          executorDefaultController.field.onChange(executor);
+          goBack();
+        }
+      },
+    });
+  };
+
+  const handlePushExecutorAdditionalScreen = () => {
+    navigation.navigate(AMRequestsSN.EXECUTOR, {
+      ...props,
+      executorTitle: SECOND_EXECUTOR_NAME,
+      callbackSelectExecutor: (executor, onShowToast, goBack) => {
+        if (executor.id === executorDefaultController.field.value?.id) {
+          onShowToast({
+            text1: `Исполнитель "${executor.name}" уже выбран в качестве ${FIRST_EXECUTOR_NAME_SELECT}`,
+          });
+        } else {
+          executorAdditionalController.field.onChange(executor);
+          goBack();
+        }
+      },
     });
   };
 
@@ -117,7 +138,9 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
         service_id: props.id,
         executor_default_id: data?.executor_default?.id as number,
         executor_additional_id: data?.executor_additional?.id ?? null,
-        deadline_at: new Date(data.deadline_at).toISOString(),
+        deadline_at: data.deadline_at
+          ? new Date(data.deadline_at).toISOString()
+          : null,
         comment: data.comment,
         emergency: data.emergency,
         custom_position: data.custom_position,
@@ -134,19 +157,12 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
         });
     },
     (errors) => {
-      if (
-        errors.executor_default?.type === "required" &&
-        errors.deadline_at?.type === "required"
-      ) {
+      if (errors.executor_default?.type === "required") {
         onShowToast({ text1: "Заполните все обязательные поля" });
         return;
       }
       if (errors.executor_default?.type === "required") {
         onShowToast({ text1: `Выберите ${FIRST_EXECUTOR_NAME_SELECT}` });
-        return;
-      }
-      if (errors.deadline_at?.type === "required") {
-        onShowToast({ text1: `Выберите срок исполнения` });
         return;
       }
       if (errors.comment?.type === "maxLength") {
@@ -166,7 +182,8 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
     commentController,
     customPositionController,
     emergencyController,
-    handlePushExecutorScreen,
+    handlePushExecutorDefaultScreen,
+    handlePushExecutorAdditionalScreen,
     handlePushCommentScreen,
     handleClearStatus,
     onSubmit,
