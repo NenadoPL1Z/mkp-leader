@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
     marginTop: 8,
   },
   deadline: {
+    marginTop: 6,
     flexDirection: "row",
     alignItems: "center",
   },

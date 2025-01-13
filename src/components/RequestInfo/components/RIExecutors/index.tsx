@@ -44,7 +44,9 @@ const RIExecutors = (props: Props) => {
       <View
         style={[
           styles.wrapper,
-          { paddingBottom: children ? styles.wrapper.padding : 0 },
+          {
+            paddingBottom: children || comment ? styles.wrapper.padding : 0,
+          },
         ]}>
         {isAvatar && (
           <View>

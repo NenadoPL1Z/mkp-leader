@@ -44,15 +44,13 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
         onDecrementCounter={counter.onDecrementCounter}>
         {({ data, onUpdateData }) => {
           //? CONSTANTS
-          const isExecutor = Boolean(data?.executor_default?.id);
-          const isDeadline = Boolean(data?.deadline_at);
           const isChangeTab = tabName === "work" || tabName === "quality";
 
-          const isEnableEdit = isExecutor && isDeadline && isChangeTab;
+          const isEnableEdit = isChangeTab;
           const isEditMode = isEnableEdit && editMode.isToggle;
 
-          const isDisplayForm = !isDeadline || isEditMode;
-          const isDisplayExecutor = isExecutor && !isDisplayForm;
+          const isDisplayForm = isEditMode;
+          const isDisplayExecutor = !isDisplayForm;
           const isDisplayClose =
             !isEditMode &&
             tabName === "quality" &&

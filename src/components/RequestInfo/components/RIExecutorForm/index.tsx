@@ -22,7 +22,6 @@ import { styles } from "./styles";
 import type { RIExecutorFormProps } from "./types";
 
 const RIExecutorForm = (props: RIExecutorFormProps) => {
-  const { isEditMode } = props;
   const { bottom } = useSafeAreaInsets();
   const paddingBottom = bottom || styles.bottom.paddingVertical;
 
@@ -151,8 +150,7 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
           <ButtonUI
             loading={isLoading}
             onPress={onSubmit}>
-            {/* TODO: */}
-            {isEditMode ? "Сохранить" : "В работу"}
+            Изменить
           </ButtonUI>
         </View>
       </Portal>
