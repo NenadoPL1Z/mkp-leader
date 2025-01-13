@@ -41,14 +41,7 @@ const RIExecutors = (props: Props) => {
 
   return (
     <View style={[styles.root, styles.shadow]}>
-      <View
-        style={[
-          styles.wrapper,
-          {
-            paddingBottom:
-              children || comment || deadline_at ? styles.wrapper.padding : 0,
-          },
-        ]}>
+      <View style={styles.wrapper}>
         {isAvatar && (
           <View>
             <Typography
@@ -65,6 +58,7 @@ const RIExecutors = (props: Props) => {
               phone={executor_default.phone}
               username={executor_default.username}
               nativeProps={{
+                containerStyle: styles.marginBottom,
                 isShadow: false,
                 isPadding: false,
               }}
@@ -85,6 +79,7 @@ const RIExecutors = (props: Props) => {
                   phone={executor_additional.phone}
                   username={executor_additional.username}
                   nativeProps={{
+                    containerStyle: styles.marginBottom,
                     isShadow: false,
                     isPadding: false,
                   }}

@@ -102,7 +102,7 @@ const RequestForm = (props: RequestFormProps) => {
         <ButtonUI
           onPress={onSubmit}
           loading={isLoading}>
-          {props.initialData ? "Сохранить" : "Создать"}
+          {props.initialData ? "Изменить" : "Создать"}
         </ButtonUI>
       </View>
     </View>

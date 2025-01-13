@@ -6,7 +6,7 @@ export const useCRNew = ({ route, navigation }: CRNewScreenProps) => {
   const { tabName, initialData, tabRef, onEditCards } = params;
 
   const isEdit =
-    Boolean(initialData) && tabName !== "closed" && tabName !== "quality";
+    Boolean(initialData) && tabName !== "closed" && tabName !== "refusal";
   const isDisplayDate = isEdit || (Boolean(initialData) && !isEdit);
   const isCreate = !initialData;
 
