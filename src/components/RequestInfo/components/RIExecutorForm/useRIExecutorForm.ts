@@ -19,6 +19,7 @@ import type { RIExecutorFormProps } from "./types";
 
 export const useRIExecutorForm = (props: RIExecutorFormProps) => {
   const {
+    tabName,
     isEditMode,
     executor_default,
     executor_additional,
@@ -144,6 +145,7 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
         comment: data.comment,
         emergency: data.emergency,
         custom_position: data.custom_position,
+        is_edit: tabName === "quality",
       })
         .then(({ data }) => {
           onAssignExecutor({

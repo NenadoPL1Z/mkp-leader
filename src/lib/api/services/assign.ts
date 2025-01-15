@@ -13,6 +13,7 @@ type Data = {
   deadline_at: string | null;
   comment: string;
   emergency: boolean;
+  is_edit: boolean;
   custom_position: boolean;
 };
 export const fetchServicesAssign = (data: Data) => {

@@ -86,6 +86,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                   {isDisplayForm && (
                     <RIExecutorForm
                       {...data}
+                      tabName={tabName}
                       isEditMode={isEditMode}
                       onAssignExecutor={handleChangePrevScreenInfo(
                         onUpdateData,
