@@ -12,7 +12,7 @@ import { useDeleteUser } from "./useDeleteUser";
 import type { DeleteUserProps } from "./types";
 
 const DeleteUser = (props: DeleteUserProps) => {
-  const { title } = props;
+  const { disabled, title } = props;
   const { bottom, offset } = useMarginBottom();
 
   const {
@@ -31,17 +31,18 @@ const DeleteUser = (props: DeleteUserProps) => {
     <>
       <View style={[styles.root, { marginBottom: offset }]}>
         <TouchableOpacity
+          disabled={disabled}
           style={styles.press}
           onPress={handleOpen}>
           <View style={styles.basket}>
-            <BasketIcon color="red" />
+            <BasketIcon color={disabled ? Colors.GRAY : Colors.ERROR} />
           </View>
           <Typography
             fontFamily={Font.TEXT}
             fontSize={13}
             lineHeight={15}
             fontWeight="400"
-            color={Colors.ERROR}>
+            color={disabled ? Colors.GRAY : Colors.ERROR}>
             Удалить {title}
           </Typography>
         </TouchableOpacity>

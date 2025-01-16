@@ -23,6 +23,7 @@ const AEProfile = (props: AEProfileProps) => {
     handleSelectExecutorDefault,
   } = useAEProfile(props);
 
+  const isDefaultExecutor = userInfo.id === executorDefaultId;
   return (
     <ScreenContainer>
       <HeaderUI>
@@ -57,6 +58,7 @@ const AEProfile = (props: AEProfileProps) => {
             title="исполнителя"
             user={userInfo}
             callback={handleDeleteUser}
+            disabled={isDefaultExecutor}
           />
         </View>
       </View>
