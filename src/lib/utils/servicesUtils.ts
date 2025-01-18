@@ -1,2 +1,2 @@
 export const getServiceDeadline = (deadline_at?: string) =>
-  deadline_at ? deadline_at : "не назначен";
+  deadline_at ? deadline_at : "-";
