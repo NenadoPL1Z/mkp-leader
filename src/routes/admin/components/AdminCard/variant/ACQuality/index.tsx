@@ -5,6 +5,7 @@ import BadgeUI from "@app/ui/BadgeUI";
 import { Colors } from "@app/theme/colors.ts";
 import Typography from "@app/ui/Typography";
 import Card from "@app/components/Card";
+import { getServiceDeadline } from "@app/lib/utils/servicesUtils.ts";
 import type { AdminCardProps } from "@app/routes/admin/components/AdminCard/types.ts";
 
 const ACQuality = ({
@@ -49,7 +50,7 @@ const ACQuality = ({
         variant="h4"
         numberOfLines={1}
         color={Colors.GRAY_ELEVEN}>
-        Срок исполнения: {deadline_at}
+        Срок исполнения: {getServiceDeadline(deadline_at)}
       </Typography>
     </Card>
   );

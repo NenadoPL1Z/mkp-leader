@@ -1,5 +1,7 @@
+import type { UseControllerReturn } from "react-hook-form";
 import type { Callback } from "@app/types/general";
 import type { ServicesDetailModel } from "@app/lib/models/ServiceModel";
+import type { RequestExecutorForm } from "@app/lib/models/form/RequestExecutorForm.ts";
 
 export type OnAssignExecutorArg = {
   data: ServicesDetailModel;
@@ -8,6 +10,11 @@ export type OnAssignExecutorArg = {
 };
 
 export type RIExecutorFormProps = ServicesDetailModel & {
+  tabName: "quality" | "work";
   isEditMode?: boolean;
   onAssignExecutor: (data: OnAssignExecutorArg) => void;
 };
+
+export type ExecutorController =
+  | UseControllerReturn<RequestExecutorForm, "executor_default">
+  | UseControllerReturn<RequestExecutorForm, "executor_additional">;

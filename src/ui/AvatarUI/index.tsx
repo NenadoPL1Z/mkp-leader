@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Avatar } from "@rneui/base";
-import AvatarDefault from "@app/assets/icons/AvatarDefault.svg";
+import { AvatarDefaultIcon } from "@app/assets/icons/dist";
 import { useAvatarUI } from "./useAvatarUI";
 import type { AvatarUIProps } from "./types";
 
@@ -11,7 +11,7 @@ const AvatarUI = (props: AvatarUIProps) => {
 
   if (isDefault) {
     return (
-      <AvatarDefault
+      <AvatarDefaultIcon
         width={size}
         height={size}
         color={backgroundColor}

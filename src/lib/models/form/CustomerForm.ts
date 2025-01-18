@@ -1,3 +1,4 @@
+import type { ExecutorModel } from "@app/lib/models/ExecutorModel.ts";
 import type { CompanyModel } from "@app/lib/models/CompanyModel";
 import type { CustomerDetailModel } from "@app/lib/models/CustomerModel";
 
@@ -8,6 +9,8 @@ type Company = Pick<CompanyModel, "name" | "only_weekdays">;
 export type CustomerForm = User &
   Company & {
     address: string;
+    executor_default: ExecutorModel;
+    executor_additional: ExecutorModel | null;
     opening_time: string;
     closing_time: string;
     personal_first_phone: string;

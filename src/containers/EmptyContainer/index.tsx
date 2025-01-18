@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import EmptyServiceIcon from "@app/assets/icons/EmptyServices.svg";
+import { EmptyServicesIcon } from "@app/assets/icons/dist";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors";
 import { useMarginBottom } from "@app/hooks/useMarginBottom";
@@ -12,7 +12,7 @@ const EmptyContainer = ({ title = "Пока нет заявок" }: Props) => {
   const { bottom } = useMarginBottom();
   return (
     <View style={[styles.container, { marginBottom: bottom }]}>
-      <EmptyServiceIcon style={styles.icon} />
+      <EmptyServicesIcon style={styles.icon} />
       <Typography
         fontSize={15}
         color={Colors.GRAY_ELEVEN}

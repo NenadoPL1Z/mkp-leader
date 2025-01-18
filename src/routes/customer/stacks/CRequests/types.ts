@@ -17,18 +17,18 @@ export type CRGeneralProps = {
     onChange: (counter: number) => void;
     onDecrementCounter: () => void;
   };
-  newRefs: Required<PaginationRefs<ServiceCardModel>>;
   workRefs: Required<PaginationRefs<ServiceCardModel>>;
   qualityRefs: Required<PaginationRefs<ServiceCardModel>>;
   closedRefs: Required<PaginationRefs<ServiceCardModel>>;
+  refusalRefs: Required<PaginationRefs<ServiceCardModel>>;
   onResetAllTabs: () => void;
 };
 
-export type CRHTopBarProps = Pick<CRGeneralProps, "newRefs">;
+export type CRHTopBarProps = Pick<CRGeneralProps, "workRefs">;
 
 type Info = CRGeneralProps & {
-  tabName: "new" | "work" | "quality" | "closed";
-  nextTabName: "new" | "work" | "quality" | "closed" | "";
+  tabName: "work" | "quality" | "closed" | "refusal";
+  nextTabName: "work" | "quality" | "closed" | "refusal" | "";
   card: ServiceCardModel;
   cardIndex: number;
 };
@@ -39,7 +39,7 @@ export type CRNewEditCallback = (
 ) => void;
 
 type New = {
-  tabName: "new" | "work" | "quality" | "closed";
+  tabName: "refusal" | "work" | "quality" | "closed";
   tabRef: Required<PaginationRefs<ServiceCardModel>>;
   initialData: ServicesDetailModel | null;
   onEditCards: CRNewEditCallback;

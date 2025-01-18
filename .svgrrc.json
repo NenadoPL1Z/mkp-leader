@@ -1,0 +1,13 @@
+{
+  "outDir": "./src/assets/icons/dist",
+  "native": true,
+  "typescript": true,
+  "prettier": true,
+  "prettierConfig": ".prettierrc.json",
+  "svgo": true,
+  "jsxRuntime": "automatic",
+  "filenameCase": "pascal",
+  "replaceAttrValues": {
+    "currentColor": "{props.color || props.fill || 'currentColor'}"
+  }
+}

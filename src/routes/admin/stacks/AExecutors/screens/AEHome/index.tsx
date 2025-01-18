@@ -21,6 +21,7 @@ type RenderItem = ListRenderItem<ExecutorModel>;
 
 const AEHome = (props: AEHomeProps) => {
   const {
+    executorDefaultId,
     setCardRef,
     filterRef,
     resetRef,
@@ -35,15 +36,19 @@ const AEHome = (props: AEHomeProps) => {
     handlePushNew,
   } = useAEHome(props);
 
-  const renderItem = useCallback<RenderItem>(({ item }) => {
-    return (
-      <AboutCardExecutor
-        key={item.id}
-        {...item}
-        onPress={handlePushProfile}
-      />
-    );
-  }, []);
+  const renderItem = useCallback<RenderItem>(
+    ({ item }) => {
+      return (
+        <AboutCardExecutor
+          key={item.id}
+          {...item}
+          executorDefaultId={executorDefaultId}
+          onPress={handlePushProfile}
+        />
+      );
+    },
+    [executorDefaultId],
+  );
 
   return (
     <TabBar activeRouteName={AdminRootSN.EXECUTORS}>

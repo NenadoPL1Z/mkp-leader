@@ -26,11 +26,11 @@ export const useEMRInfo = ({ route }: EMRInfoScreenProps) => {
           status: data.status,
           emergency: Boolean(data.emergency),
           custom_position: Boolean(data.custom_position),
+          created_at: data.created_at,
+          deadline_at: data.deadline_at,
           viewed_admin: false,
           viewed_customer: false,
           viewed_executor: true,
-          created_at: data.created_at,
-          deadline_at: data.deadline_at,
         },
         ...prevState,
       ]);

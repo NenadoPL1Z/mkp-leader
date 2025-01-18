@@ -16,6 +16,8 @@ import type {
 } from "@app/lib/models/ServiceModel";
 import type { RequestCompanyModel } from "@app/lib/models/RequestModel";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { Nullable } from "@app/types/general.ts";
+import type { ToastShowParams } from "react-native-toast-message";
 
 export enum AMRequestsSN {
   HOME = "Home",
@@ -47,21 +49,26 @@ export type AMRHGeneralProps = AMRequestsHomeProps & {
     onDecrementCounter: () => void;
   };
   queryData: string[];
-  newRefs: Required<PaginationRefs<ServiceCardModel>>;
   workRefs: Required<PaginationRefs<ServiceCardModel>>;
   qualityRefs: Required<PaginationRefs<ServiceCardModel>>;
   closedRefs: Required<PaginationRefs<ServiceCardModel>>;
+  refusalRefs: Required<PaginationRefs<ServiceCardModel>>;
   onResetAllTabs: () => void;
 };
 
 type Info = AMRHGeneralProps & {
-  tabName: "new" | "work" | "quality" | "closed";
-  nextTabName: "new" | "work" | "quality" | "closed" | "";
+  tabName: "work" | "quality" | "closed" | "refusal";
+  nextTabName: "work" | "quality" | "closed" | "refusal" | "";
   card: ServiceCardModel;
 };
 
 type Executor = ServicesDetailModel & {
-  handleExecutorSelect: (executor: ExecutorModel, callback: () => void) => void;
+  executorTitle: string;
+  callbackSelectExecutor: (
+    executor: ExecutorModel,
+    onShowToast: (config: Nullable<ToastShowParams>) => void,
+    goBack: () => void,
+  ) => void;
 };
 
 type Comments = {

@@ -5,7 +5,7 @@ import type {
 } from "@app/lib/models/CompanyModel";
 import type { UserId } from "@app/lib/models/UserModel";
 
-type StateService = "new" | "working" | "verifying" | "closed";
+type StateService = "new" | "working" | "verifying" | "closed" | "refusal";
 
 export const Api = {
   auth: {
@@ -23,6 +23,8 @@ export const Api = {
       all: "/users/executors/all",
       create: `/users/executors/create`,
       id: (id: UserId) => `/users/executor/${id}`,
+      executorDefault: "/users/executor_default",
+      selectExecutorDefault: "/users/executor/default",
     },
     customer: {
       all: "/users/customers/all",

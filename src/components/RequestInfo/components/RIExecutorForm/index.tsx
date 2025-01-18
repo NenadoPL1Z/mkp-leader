@@ -13,24 +13,29 @@ import { Portal } from "@gorhom/portal";
 import { Portal as PortalNamespace } from "@app/theme/portal";
 import { Size } from "@app/lib/constants/size";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  FIRST_EXECUTOR_NAME,
+  SECOND_EXECUTOR_NAME,
+} from "@app/lib/constants/executors.ts";
 import { useRIExecutorForm } from "./useRIExecutorForm";
 import { styles } from "./styles";
 import type { RIExecutorFormProps } from "./types";
 
 const RIExecutorForm = (props: RIExecutorFormProps) => {
-  const { isEditMode } = props;
   const { bottom } = useSafeAreaInsets();
   const paddingBottom = bottom || styles.bottom.paddingVertical;
 
   const {
     isLoading,
     isError,
-    executorController,
+    executorDefaultController,
+    executorAdditionalController,
     deadlineAtController,
     commentController,
     emergencyController,
     customPositionController,
-    handlePushExecutorScreen,
+    handlePushExecutorDefaultScreen,
+    handlePushExecutorAdditionalScreen,
     handlePushCommentScreen,
     handleClearStatus,
     onSubmit,
@@ -43,28 +48,44 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
       <View style={[styles.root, styles.shadow]}>
         <View style={styles.wrapper}>
           <View style={styles.item}>
-            <TouchableOpacity onPress={handlePushExecutorScreen}>
+            <TouchableOpacity onPress={handlePushExecutorDefaultScreen}>
               <TextField
-                label="Исполнитель"
+                label={FIRST_EXECUTOR_NAME}
                 value={
-                  executorController.field.value?.name ||
-                  executorController.field.value?.phone
+                  executorDefaultController.field.value?.name ||
+                  executorDefaultController.field.value?.phone
                 }
                 disabled={true}
                 required={true}
                 inputStyle={styles.pointer}
-                error={executorController.fieldState.error}
-                onClear={() => executorController.field.onChange(null)}
+                error={executorDefaultController.fieldState.error}
+                isClear={false}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.item}>
+            <TouchableOpacity onPress={handlePushExecutorAdditionalScreen}>
+              <TextField
+                label={SECOND_EXECUTOR_NAME}
+                value={
+                  executorAdditionalController.field.value?.name ||
+                  executorAdditionalController.field.value?.phone
+                }
+                disabled={true}
+                inputStyle={styles.pointer}
+                error={executorAdditionalController.fieldState.error}
+                onClear={() =>
+                  executorAdditionalController.field.onChange(null)
+                }
               />
             </TouchableOpacity>
           </View>
           <View style={styles.item}>
             <DatePickerUI
-              value={deadlineAtController.field.value}
+              value={deadlineAtController.field.value ?? ""}
               onChange={deadlineAtController.field.onChange}
               textFieldProps={{
                 label: "Срок исполнения",
-                required: true,
                 error: deadlineAtController.fieldState.error,
               }}
               pickerProps={{ mode: "date", minimumDate: new Date() }}
@@ -123,7 +144,7 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
           <ButtonUI
             loading={isLoading}
             onPress={onSubmit}>
-            {isEditMode ? "Сохранить" : "В работу"}
+            Изменить
           </ButtonUI>
         </View>
       </Portal>

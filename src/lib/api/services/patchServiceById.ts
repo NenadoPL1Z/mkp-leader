@@ -12,8 +12,13 @@ export const patchServiceById = (
   const formData = new FormData();
 
   //? INITIAL_VALUE
-  if (initialValue.executor_id) {
-    formData.append("executor_id", +initialValue.executor_id);
+  formData.append("executor_default_id", +initialValue.executor_default_id);
+
+  if (initialValue.executor_additional_id) {
+    formData.append(
+      "executor_additional_id",
+      +initialValue.executor_additional_id,
+    );
   }
   if (initialValue.deadline_at) {
     formData.append("deadline_at", initialValue.deadline_at);

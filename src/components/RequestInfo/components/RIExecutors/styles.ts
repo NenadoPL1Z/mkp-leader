@@ -2,6 +2,12 @@ import { StyleSheet } from "react-native";
 import { Colors } from "@app/theme/colors";
 
 export const styles = StyleSheet.create({
+  marginBottom: {
+    marginBottom: 0,
+  },
+  marginTop: {
+    marginTop: 15,
+  },
   root: {
     borderRadius: 12,
     marginBottom: 24,
@@ -20,7 +26,14 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 4,
   },
+  title: {
+    marginBottom: 8,
+  },
+  additional_executor: {
+    marginTop: 20,
+  },
   deadline: {
+    marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
   },

@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
-import BasketIcon from "@app/assets/icons/BasketIcon.svg";
+import { BasketIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import Typography from "@app/ui/Typography";
 import ImageUI from "@app/ui/ImageUI/ImageUI";

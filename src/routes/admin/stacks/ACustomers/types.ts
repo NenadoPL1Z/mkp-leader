@@ -1,8 +1,11 @@
+import type { ExecutorModel } from "@app/lib/models/ExecutorModel.ts";
 import type {
   CustomerDetailModel,
   CustomerModel,
 } from "@app/lib/models/CustomerModel";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { Nullable } from "@app/types/general.ts";
+import type { ToastShowParams } from "react-native-toast-message";
 
 type Callback<T = CustomerDetailModel> = {
   user: T;
@@ -39,12 +42,22 @@ type Address = {
   callbackAddress: AdminCustomerAddressCallback;
 };
 
+type Executor = {
+  executorTitle: string;
+  callbackSelectExecutor: (
+    executor: ExecutorModel,
+    onShowToast: (config: Nullable<ToastShowParams>) => void,
+    goBack: () => void,
+  ) => void;
+};
+
 export enum ACustomersSN {
   HOME = "Home",
   NEW = "New",
   PROFILE = "Profile",
   EDIT = "Edit",
   ADDRESS = "Address",
+  EXECUTOR = "Executor",
 }
 
 export type ACustomersSPL = {
@@ -53,6 +66,7 @@ export type ACustomersSPL = {
   [ACustomersSN.NEW]: New;
   [ACustomersSN.EDIT]: Edit;
   [ACustomersSN.ADDRESS]: Address;
+  [ACustomersSN.EXECUTOR]: Executor;
 };
 
 export type ACHomeProps = NativeStackScreenProps<
@@ -78,4 +92,9 @@ export type ACNewProps = NativeStackScreenProps<
 export type ACAddressProps = NativeStackScreenProps<
   ACustomersSPL,
   ACustomersSN.ADDRESS
+>;
+
+export type ACExecutorProps = NativeStackScreenProps<
+  ACustomersSPL,
+  ACustomersSN.EXECUTOR
 >;

@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { getTime } from "@app/lib/functions/getTime";
 import { postCustomerCreate } from "@app/lib/api/customer/postCustomerCreate";
 import { isAxiosError } from "axios";
+import { FIRST_EXECUTOR_NAME_SELECT } from "@app/lib/constants/executors.ts";
+import { getExecutorDefault } from "@app/lib/api/executor/getExecutorDefault";
+import { getErrorText } from "@app/lib/utils/requestUtils.ts";
 import type {
   CustomerContactsData,
   CustomerCreateData,
@@ -29,6 +32,7 @@ export const useACNew = ({
       address: "",
       opening_time: "",
       closing_time: "",
+      executor_additional: null,
       only_weekdays: false,
       personal_first_phone: "",
       personal_first_name: "",
@@ -40,9 +44,9 @@ export const useACNew = ({
   const { toast, onShowToast, onHideToast } = useToastLocal();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const errorRequest = (error?: string) => {
+  const errorRequest = (error?: unknown) => {
     setIsLoading(false);
-    onShowToast({ text1: error || Response.UNKNOWN });
+    onShowToast({ text1: getErrorText(error) });
   };
 
   const onSuccess: SubmitHandler<CustomerForm> = async (data) => {
@@ -69,6 +73,8 @@ export const useACNew = ({
         password: data.password,
         name: data.name,
         address: data.address || "",
+        executor_default_id: data.executor_default.id,
+        executor_additional_id: data.executor_additional?.id ?? null,
         opening_time: getTime(data.opening_time),
         closing_time: getTime(data.closing_time),
         only_weekdays: data.only_weekdays,
@@ -94,7 +100,7 @@ export const useACNew = ({
       errorRequest();
     } catch (e) {
       if (isAxiosError<DetailString>(e)) {
-        errorRequest(e.response?.data.detail || "");
+        errorRequest(e.response?.data?.detail || Response.UNKNOWN);
         return;
       }
       errorRequest();
@@ -109,6 +115,7 @@ export const useACNew = ({
       errors.password?.type === "required" &&
       errors.name?.type === "required" &&
       errors.address?.type === "required" &&
+      errors.executor_default?.type === "required" &&
       errors.personal_first_phone?.type === "required" &&
       errors.personal_first_name?.type === "required"
     ) {
@@ -129,6 +136,10 @@ export const useACNew = ({
     }
     if (errors.address?.type === "required") {
       onShowToast({ text1: `Заполните адрес компании` });
+      return;
+    }
+    if (errors.executor_default?.type === "required") {
+      onShowToast({ text1: `Выберите ${FIRST_EXECUTOR_NAME_SELECT}` });
       return;
     }
     if (errors.personal_first_phone?.type === "required") {
@@ -182,6 +193,16 @@ export const useACNew = ({
   };
 
   const onSubmit = methods.handleSubmit(onSuccess, onReject);
+
+  useEffect(() => {
+    getExecutorDefault()
+      .then(({ data }) => methods.setValue("executor_default", data))
+      .catch(() => {
+        onShowToast({
+          text1: `Ошибка при попытке заполнения ${FIRST_EXECUTOR_NAME_SELECT}. Выберите ${FIRST_EXECUTOR_NAME_SELECT} вручную`,
+        });
+      });
+  }, []);
 
   useEffect(() => {
     return () => {

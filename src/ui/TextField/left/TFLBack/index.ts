@@ -1,4 +1,4 @@
-import PrevIcon from "@app/assets/icons/PrevIcon.svg";
+import { PrevIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import type { TextFieldHorizontal } from "@app/ui/TextField/types";
 

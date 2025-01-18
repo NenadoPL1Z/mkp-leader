@@ -5,7 +5,7 @@ import AppProvider from "./AppProvider";
 
 if (IS_DEV) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  require("../ReactotronConfig.js");
+  require("../reactotron.config.js");
 }
 
 const App = () => {

@@ -1,4 +1,4 @@
-import CloseIcon from "@app/assets/icons/CloseIcon.svg";
+import { CloseIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import type { TextFieldHorizontal } from "@app/ui/TextField/types";
 //? FIX_COMMIT

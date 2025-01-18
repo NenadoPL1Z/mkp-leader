@@ -1,23 +1,23 @@
 import { View } from "react-native";
 import PaginationList from "@app/components/PaginationList/PaginationList.tsx";
-import CCNew from "@app/routes/customer/components/CustomerCard/variant/CCNew";
+import CCRefusal from "@app/routes/customer/components/CustomerCard/variant/CCRefusal";
 import React, { useCallback } from "react";
 import { Api } from "@app/lib/constants/api.ts";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import { requestsListStyles } from "@app/components/RequestsListStyles";
-import { useCRNew } from "./useCRNew";
+import { useCRRefusal } from "./useCRRefusal.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel.ts";
-import type { CRNewProps } from "./types";
+import type { CRRefusalProps } from "./types";
 import type { ListRenderItem } from "react-native";
 
 type RenderItem = ListRenderItem<ServiceCardModel>;
 
-const CRNew = (props: CRNewProps) => {
-  const { handlePushProfile } = useCRNew(props);
+const CRRefusal = (props: CRRefusalProps) => {
+  const { handlePushProfile } = useCRRefusal(props);
   const renderItem = useCallback<RenderItem>(({ item, index }) => {
     return (
-      <CCNew
+      <CCRefusal
         title={item.title}
         isBadge={!item.viewed_customer}
         variant={item.emergency ? "error" : "default"}
@@ -33,12 +33,12 @@ const CRNew = (props: CRNewProps) => {
         <PaginationList
           showsVerticalScrollIndicator={false}
           config={{
-            url: Api.service.getCustomerStatusService("new"),
-            resetRef: props.newRefs.resetRef,
-            setCardRef: props.newRefs.setCardRef,
-            filterRef: props.newRefs.filterRef,
-            scrollRef: props.newRefs.scrollRef,
-            displayRefreshRef: props.newRefs.displayRefreshRef,
+            url: Api.service.getCustomerStatusService("refusal"),
+            resetRef: props.refusalRefs.resetRef,
+            setCardRef: props.refusalRefs.setCardRef,
+            filterRef: props.refusalRefs.filterRef,
+            scrollRef: props.refusalRefs.scrollRef,
+            displayRefreshRef: props.refusalRefs.displayRefreshRef,
             callbackCounter: props.counter.onChange,
             callbackRefresh: props.onResetAllTabs,
           }}
@@ -55,4 +55,4 @@ const CRNew = (props: CRNewProps) => {
   );
 };
 
-export default React.memo(CRNew);
+export default React.memo(CRRefusal);

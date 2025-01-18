@@ -26,12 +26,13 @@ export type EMRHGeneralProps = EMRequestsHomeProps & {
   workRefs: Required<PaginationRefs<ServiceCardModel>>;
   qualityRefs: Required<PaginationRefs<ServiceCardModel>>;
   closedRefs: Required<PaginationRefs<ServiceCardModel>>;
+  refusalRefs: Required<PaginationRefs<ServiceCardModel>>;
   onResetAllTabs: () => void;
 };
 
 type Info = EMRHGeneralProps & {
-  tabName: "work" | "quality" | "closed";
-  nextTabName: "work" | "quality" | "closed" | "";
+  tabName: "work" | "quality" | "closed" | "refusal";
+  nextTabName: "work" | "quality" | "closed" | "refusal" | "";
   card: ServiceCardModel;
 };
 

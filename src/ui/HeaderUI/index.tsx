@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
-import PrevIcon from "@app/assets/icons/PrevIcon.svg";
+import { PrevIcon } from "@app/assets/icons/dist";
 import { useNavigation } from "@react-navigation/native";
 import Typography from "@app/ui/Typography";
 import HeaderRight from "@app/ui/HeaderUI/HeaderRight";

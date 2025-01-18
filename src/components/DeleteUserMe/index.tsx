@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Typography from "@app/ui/Typography";
-import BasketIcon from "@app/assets/icons/BasketIcon.svg";
+import { BasketIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import { Font } from "@app/theme/font";
 import PopupUI from "@app/ui/ModalUI/ui/PopupUI";

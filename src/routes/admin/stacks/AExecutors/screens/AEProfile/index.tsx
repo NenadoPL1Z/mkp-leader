@@ -8,21 +8,37 @@ import DeleteUser from "@app/components/DeleteUser";
 import { useAEProfile } from "@app/routes/admin/stacks/AExecutors/screens/AEProfile/useAEProfile";
 import ToastUI from "@app/ui/ToastUI";
 import { DEVICE_HEIGHT_IS_SMAL, Size } from "@app/lib/constants/size";
+import HREdit from "@app/ui/HeaderUI/HeaderRight/HREdit";
+import { SelectExecutorDefault } from "./components/SelectExecutorDefault";
 import type { AEProfileProps } from "@app/routes/admin/stacks/AExecutors/types";
 
 const AEProfile = (props: AEProfileProps) => {
-  const { userInfo, toast, onHideToast, onPushEdit, handleDeleteUser } =
-    useAEProfile(props);
+  const {
+    executorDefaultId,
+    userInfo,
+    toast,
+    onHideToast,
+    onPushEdit,
+    handleDeleteUser,
+    handleSelectExecutorDefault,
+  } = useAEProfile(props);
 
+  const isDefaultExecutor = userInfo.id === executorDefaultId;
   return (
     <ScreenContainer>
-      <HeaderUI
-        right={{
-          variant: "edit",
-          onPress: onPushEdit,
-          iconProps: { color: Colors.GRAY_TEN },
-        }}
-      />
+      <HeaderUI>
+        <View style={styles.header}>
+          <SelectExecutorDefault
+            executor={userInfo}
+            isDefaultExecutor={userInfo.id === executorDefaultId}
+            handleSelectExecutorDefault={handleSelectExecutorDefault}
+          />
+          <HREdit
+            onPress={onPushEdit}
+            iconProps={{ color: Colors.GRAY_TEN }}
+          />
+        </View>
+      </HeaderUI>
       <View style={styles.container}>
         <View style={styles.top}>
           <About
@@ -42,6 +58,7 @@ const AEProfile = (props: AEProfileProps) => {
             title="исполнителя"
             user={userInfo}
             callback={handleDeleteUser}
+            disabled={isDefaultExecutor}
           />
         </View>
       </View>
@@ -49,7 +66,7 @@ const AEProfile = (props: AEProfileProps) => {
         params={{
           isVisible: !!toast,
           ...toast,
-          bottomOffset: Size.BUTTON + 20,
+          bottomOffset: Size.BUTTON + 50,
           onHide: onHideToast,
         }}
       />
@@ -58,6 +75,12 @@ const AEProfile = (props: AEProfileProps) => {
 };
 
 const styles = StyleSheet.create({
+  header: {
+    paddingRight: Size.SCREEN_PADDING,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
   container: {
     flex: 1,
   },

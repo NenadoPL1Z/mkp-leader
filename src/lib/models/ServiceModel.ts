@@ -5,6 +5,7 @@ import type { Nullable } from "@app/types/general";
 
 export type ServiceId = string;
 
+// deprecated: статус "Новая" устарел
 export type ServiceStatus =
   | "Новая"
   | "В работе"
@@ -12,28 +13,25 @@ export type ServiceStatus =
   | "Закрыта"
   | "Заказная позиция";
 
-export interface ServiceModel {
-  readonly id: ServiceId;
-  readonly title: string;
-  readonly description: Nullable<string>;
-  readonly material_availability: boolean;
-  readonly emergency: boolean;
-  readonly deadline_at: Nullable<string>;
-  readonly comment: Nullable<string>;
-  readonly status: ServiceStatus;
-  readonly media_files: MediaFilesArr;
-  readonly created_at: string;
-  readonly executor: { name: string };
+export interface ServiceCardModel {
+  id: ServiceId;
+  title: string;
+  status: ServiceStatus;
+  emergency: boolean;
+  custom_position: boolean;
+  created_at: string;
+  deadline_at: Nullable<string>;
   viewed_admin: boolean;
   viewed_customer: boolean;
   viewed_executor: boolean;
-  readonly custom_position: boolean;
 }
 
 export type ServicesDetailModel = {
   id: ServiceId;
-  customer_id: string;
-  executor_id: Nullable<ExecutorId>;
+  executor_default_id: ExecutorId;
+  executor_additional_id: Nullable<ExecutorId>;
+  executor_default: ExecutorModel;
+  executor_additional: Nullable<ExecutorModel>;
   title: string;
   description: Nullable<string>;
   material_availability: Nullable<boolean>;
@@ -43,21 +41,7 @@ export type ServicesDetailModel = {
   deadline_at: Nullable<string>;
   status: ServiceStatus;
   comment: Nullable<string>;
+  customer_id: string;
   customer: CustomerDetailModel;
-  executor: Nullable<ExecutorModel>;
   media_files: Nullable<MediaFilesArr>;
 };
-
-export type ServiceCardModel = Pick<
-  ServiceModel,
-  | "id"
-  | "title"
-  | "status"
-  | "emergency"
-  | "custom_position"
-  | "viewed_admin"
-  | "viewed_customer"
-  | "viewed_executor"
-  | "created_at"
-  | "deadline_at"
->;

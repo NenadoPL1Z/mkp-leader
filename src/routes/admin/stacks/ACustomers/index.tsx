@@ -7,6 +7,7 @@ import ACHome from "./screens/ACHome";
 import { ACustomersSN } from "./types";
 import ACProfile from "./screens/ACProfile";
 import ACAddress from "./screens/ACAddress";
+import ACExecutor from "./screens/ACExecutor";
 import type { ACustomersSPL } from "./types";
 
 const NativeStack = createNativeStackNavigator<ACustomersSPL>();
@@ -35,6 +36,10 @@ const ACustomers = () => {
       <NativeStack.Screen
         name={ACustomersSN.ADDRESS}
         component={ACAddress}
+      />
+      <NativeStack.Screen
+        name={ACustomersSN.EXECUTOR}
+        component={ACExecutor}
       />
     </NativeStack.Navigator>
   );

@@ -18,12 +18,24 @@ export const useAEProfile = ({
   route: { params },
 }: AEProfileProps) => {
   const { toast, onShowToast, onHideToast } = useToastLocal();
+
+  const [executorDefaultId, setExecutorDefaultId] = useState<number | null>(
+    params.executorDefaultId,
+  );
   const [userInfo, setUserInfo] = useState<ExecutorModelRequired>(() =>
     initialUser(params),
   );
 
   const handleChangeUser = (data: ExecutorModelRequired) => {
     setUserInfo(data);
+  };
+
+  const handleSelectExecutorDefault = () => {
+    onShowToast({
+      text1: "Исполнитель назначен в качестве дежурного",
+    });
+    setExecutorDefaultId(userInfo.id);
+    params.callbackEditExecutorDefaultId(userInfo.id);
   };
 
   const handleDeleteUser = () => {
@@ -67,11 +79,13 @@ export const useAEProfile = ({
   );
 
   return {
+    executorDefaultId,
     userInfo,
     toast,
     onHideToast,
     onPushEdit,
     handleDeleteUser,
+    handleSelectExecutorDefault,
   };
 };
 

@@ -3,7 +3,7 @@ import { useStatus } from "@app/hooks/useStatus";
 import { deleteUsersBlock } from "@app/lib/api/users/deleteUsersBlock";
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import { useEffect } from "react";
-import { Response } from "@app/lib/constants/response";
+import { getErrorText } from "@app/lib/utils/requestUtils.ts";
 import type { DeleteUserProps } from "@app/components/DeleteUser/types";
 
 export const useDeleteUser = ({ user, callback }: DeleteUserProps) => {
@@ -30,8 +30,8 @@ export const useDeleteUser = ({ user, callback }: DeleteUserProps) => {
         handleClose();
         callback();
       })
-      .catch(() => {
-        onShowToast({ text1: Response.UNKNOWN });
+      .catch((error) => {
+        onShowToast({ text1: getErrorText(error) });
         handleClearStatus();
       });
   };

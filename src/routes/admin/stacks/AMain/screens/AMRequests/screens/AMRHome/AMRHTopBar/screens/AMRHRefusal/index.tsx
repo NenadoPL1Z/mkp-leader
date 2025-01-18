@@ -5,21 +5,21 @@ import { requestsListStyles } from "@app/components/RequestsListStyles";
 import PaginationList from "@app/components/PaginationList/PaginationList";
 import { Api } from "@app/lib/constants/api";
 import EmptyContainer from "@app/containers/EmptyContainer";
-import ACNew from "@app/routes/admin/components/AdminCard/variant/ACNew";
+import ACRefusal from "@app/routes/admin/components/AdminCard/variant/ACRefusal";
 import Sort from "@app/components/Sort";
-import { useAMRHNew } from "./useAMRHNew";
+import { useAMRHRefusal } from "./useAMRHRefusal.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
-import type { AMRHNewProps } from "./types";
+import type { AMRHRefusalProps } from "./types";
 import type { ListRenderItem } from "react-native";
 
 type RenderItem = ListRenderItem<ServiceCardModel>;
 
-const AMRHNew = (props: AMRHNewProps) => {
-  const { handlePushProfile } = useAMRHNew(props);
+const AMRHRefusal = (props: AMRHRefusalProps) => {
+  const { handlePushProfile } = useAMRHRefusal(props);
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
-      <ACNew
+      <ACRefusal
         title={item.title}
         isBadge={!item.viewed_admin}
         variant={item.emergency ? "error" : "default"}
@@ -40,13 +40,16 @@ const AMRHNew = (props: AMRHNewProps) => {
         </View>
         <PaginationList
           config={{
-            url: Api.service.getStatusService("new", props.company.value.id),
+            url: Api.service.getStatusService(
+              "refusal",
+              props.company.value.id,
+            ),
             query: props.queryData,
-            resetRef: props.newRefs.resetRef,
-            setCardRef: props.newRefs.setCardRef,
-            filterRef: props.newRefs.filterRef,
-            scrollRef: props.newRefs.scrollRef,
-            displayRefreshRef: props.newRefs.displayRefreshRef,
+            resetRef: props.refusalRefs.resetRef,
+            setCardRef: props.refusalRefs.setCardRef,
+            filterRef: props.refusalRefs.filterRef,
+            scrollRef: props.refusalRefs.scrollRef,
+            displayRefreshRef: props.refusalRefs.displayRefreshRef,
             callbackCounter: props.counter.onChange,
             callbackRefresh: props.onResetAllTabs,
           }}
@@ -60,4 +63,4 @@ const AMRHNew = (props: AMRHNewProps) => {
   );
 };
 
-export default React.memo(AMRHNew);
+export default React.memo(AMRHRefusal);

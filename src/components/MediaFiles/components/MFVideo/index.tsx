@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import ImageUI from "@app/ui/ImageUI/ImageUI";
 import { getVideoById } from "@app/lib/api/media/getVideoById";
-import PlayIcon from "@app/assets/icons/Play.svg";
+import { PlayIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors";
 import type { MediaFileModel } from "@app/lib/models/MediaFileModel";
 

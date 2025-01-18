@@ -8,7 +8,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const DocFooter = () => {
   const { bottom } = useSafeAreaInsets();
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
     <View style={[styles.footer, { paddingBottom: bottom ? 0 : 10 }]}>
       <Typography
         variant="h4"

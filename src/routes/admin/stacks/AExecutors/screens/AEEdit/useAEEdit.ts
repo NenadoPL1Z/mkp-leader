@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import { patchCredential } from "@app/lib/api/users/patchCredentials";
 import { patchPersonalData } from "@app/lib/api/users/patchPersonaData";
-import { Response } from "@app/lib/constants/response";
 import { useEffect, useState } from "react";
 import { isAxiosError } from "axios";
 import { Timing } from "@app/lib/constants/timing";
+import { getErrorText } from "@app/lib/utils/requestUtils.ts";
 import type { DetailString } from "@app/types/general";
 import type { UserModel } from "@app/lib/models/UserModel";
 import type {
@@ -44,10 +44,10 @@ export const useAEEdit = ({ route, navigation }: AEEditProps) => {
     });
   };
 
-  const errorRequest = (error?: string) => {
+  const errorRequest = (error: unknown) => {
     setIsLoading(false);
     onShowToast({
-      text1: error || Response.UNKNOWN,
+      text1: getErrorText(error),
       visibilityTime: Timing.TOAST_ANIMATION * 2,
     });
   };
@@ -218,8 +218,8 @@ export const useAEEdit = ({ route, navigation }: AEEditProps) => {
       }
 
       successRequest(resultUser, displayToast(toastText));
-    } catch {
-      errorRequest();
+    } catch (error) {
+      errorRequest(error);
     }
 
     return data;

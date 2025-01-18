@@ -8,6 +8,7 @@ import { styles } from "./styles";
 import type { AboutCardProps } from "./types";
 
 const AboutCard = ({
+  containerStyle,
   title,
   subtitle,
   avatar,
@@ -29,6 +30,7 @@ const AboutCard = ({
         isShadow && styles.shadow,
         !isPadding && styles.resetPadding,
         { marginBottom: marginBottom ?? styles.root.marginBottom },
+        containerStyle,
       ]}
       activeOpacity={isTouch ? undefined : 1}>
       <View style={styles.left}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import ErrorIcon from "@app/assets/icons/404.svg";
+import { ErrorIcon } from "@app/assets/icons/dist";
 
 import Typography from "@app/ui/Typography";
 import ButtonUI from "@app/ui/ButtonUI";

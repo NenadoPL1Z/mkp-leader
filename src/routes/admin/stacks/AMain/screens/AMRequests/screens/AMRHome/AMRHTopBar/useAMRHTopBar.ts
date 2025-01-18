@@ -17,10 +17,10 @@ import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { AMRequestsHomeProps, AMRHGeneralProps } from "../../../types";
 
 export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
-  const newRefs = usePaginationRefs<ServiceCardModel>();
   const workRefs = usePaginationRefs<ServiceCardModel>();
   const qualityRefs = usePaginationRefs<ServiceCardModel>();
   const closedRefs = usePaginationRefs<ServiceCardModel>();
+  const refusalRefs = usePaginationRefs<ServiceCardModel>();
   const isFirstQuery = useRef(true);
 
   const [sort, setSort] = useState<Sort>(sortDataInitial);
@@ -37,10 +37,10 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
 
   const [counters, setCounters] = useState<Record<AMRHTopBarNamespace, number>>(
     {
-      [AMRHTopBarNamespace.NEW]: company.value.tabs.new,
       [AMRHTopBarNamespace.WORK]: company.value.tabs.working,
       [AMRHTopBarNamespace.QUALITY]: company.value.tabs.verifying,
       [AMRHTopBarNamespace.CLOSED]: company.value.tabs.closed,
+      [AMRHTopBarNamespace.REFUSAL]: company.value.tabs.refusal,
     },
   );
 
@@ -52,9 +52,6 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
 
       //? HIDE REFRESH IN PAGINATION LIST
       switch (tabName) {
-        case AMRHTopBarNamespace.NEW:
-          newRefs.displayRefreshRef.current?.(false);
-          break;
         case AMRHTopBarNamespace.WORK:
           workRefs.displayRefreshRef.current?.(false);
           break;
@@ -63,6 +60,9 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
           break;
         case AMRHTopBarNamespace.CLOSED:
           closedRefs.displayRefreshRef.current?.(false);
+          break;
+        case AMRHTopBarNamespace.REFUSAL:
+          refusalRefs.displayRefreshRef.current?.(false);
           break;
       }
 
@@ -88,16 +88,16 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
     const config: ResetArg = { isResetDefault: false, resetQuery: query };
 
     //? DISPLAY REFRESH
-    newRefs.displayRefreshRef.current?.(true);
     workRefs.displayRefreshRef.current?.(true);
     qualityRefs.displayRefreshRef.current?.(true);
     closedRefs.displayRefreshRef.current?.(true);
+    refusalRefs.displayRefreshRef.current?.(true);
 
     //? RESET CONFIG
-    newRefs.resetRef.current?.(config);
     workRefs.resetRef.current?.(config);
     qualityRefs.resetRef.current?.(config);
     closedRefs.resetRef.current?.(config);
+    refusalRefs.displayRefreshRef.current?.(true);
   };
 
   const onChangeSort: SortChange = (sort) => {
@@ -131,10 +131,10 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
       onDecrementCounter: onDecrementCounter(tab),
     },
     queryData,
-    newRefs,
     workRefs,
     qualityRefs,
     closedRefs,
+    refusalRefs,
     onResetAllTabs,
   });
 
