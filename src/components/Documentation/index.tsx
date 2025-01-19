@@ -4,6 +4,7 @@ import { Colors } from "@app/theme/colors";
 import { Modal, StyleSheet } from "react-native";
 import ScreenContainer from "@app/containers/ScreenContainer";
 import { BASE_URL } from "@app/lib/constants";
+import { Api } from "@app/lib/constants/api.ts";
 import DocHeader from "./components/DocHeader";
 import DocFooter from "./components/DocFooter";
 import DocMain from "./components/DocMain";
@@ -32,11 +33,11 @@ const Documentation = () => {
           <DocMain>
             <DocItem
               title="Пользовательское соглашение"
-              uri={BASE_URL + "/policy"}
+              uri={BASE_URL + Api.docs.policy}
             />
             <DocItem
               title="Политика конфиденциальности"
-              uri={BASE_URL + "/user-accept"}
+              uri={BASE_URL + Api.docs.userAccept}
             />
           </DocMain>
           <DocFooter />

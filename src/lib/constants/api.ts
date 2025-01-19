@@ -49,4 +49,8 @@ export const Api = {
     getImage: (id: string) => `/media/image/${id}`,
     getVideo: (id: string) => `/media/video/${id}`,
   },
+  docs: {
+    policy: "/policy",
+    userAccept: "/user_accept",
+  },
 };
