@@ -4,6 +4,7 @@ import AvatarUI from "@app/ui/AvatarUI";
 import Typography from "@app/ui/Typography";
 import { Font } from "@app/theme/font";
 import BadgeUI from "@app/ui/BadgeUI";
+import { Colors } from "@app/theme/colors.ts";
 import { styles } from "./styles";
 import type { AboutCardProps } from "./types";
 
@@ -20,8 +21,6 @@ const AboutCard = ({
   isTouch = true,
   isPadding = true,
 }: AboutCardProps) => {
-  const isDisplayCount = !!badge?.counter;
-
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -38,7 +37,7 @@ const AboutCard = ({
       </View>
       <View style={styles.right}>
         <View style={styles.rightTop}>
-          {badge?.mark && (
+          {!!badge?.counter && (
             <View style={styles.rightTopLeft}>
               <BadgeUI size={12} />
             </View>
@@ -53,10 +52,22 @@ const AboutCard = ({
               {title}
             </Typography>
           </View>
-          {isDisplayCount && (
-            <View style={styles.rightTopRight}>
-              <BadgeUI count={badge.counter} />
-            </View>
+          {!!badge && (
+            <>
+              <View style={styles.rightTopRight}>
+                <BadgeUI
+                  count={badge.counter_working}
+                  isZero={true}
+                />
+              </View>
+              <View style={styles.rightTopRight}>
+                <BadgeUI
+                  count={badge.counter_verifying}
+                  isZero={true}
+                  backgroundColor={Colors.GRAY_TWO}
+                />
+              </View>
+            </>
           )}
         </View>
         <Typography

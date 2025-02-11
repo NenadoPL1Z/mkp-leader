@@ -3,8 +3,9 @@ import type { CompanyModel } from "@app/lib/models/CompanyModel";
 type Parent = Pick<CompanyModel, "id" | "name" | "address">;
 
 export interface RequestBadgeModel {
-  mark: boolean;
   counter: number;
+  counter_working: number;
+  counter_verifying: number;
 }
 
 export interface RequestTabsModel {

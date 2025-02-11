@@ -1,12 +1,6 @@
 import { TopBarNames } from "@app/types/enums/TopBarNames";
-import type {
-  RequestTabsModel,
-  RequestCompanyModel,
-} from "@app/lib/models/RequestModel";
+import type { RequestCompanyModel } from "@app/lib/models/RequestModel";
 import type { PaginationSetCardRef } from "@app/components/PaginationList/types";
-
-const getSumTabs = (tabs: RequestTabsModel) =>
-  Object.values(tabs || {})?.reduce((prev, current) => prev + current, 0);
 
 export const decrementCompanyCounter = (
   item: RequestCompanyModel,
@@ -29,7 +23,6 @@ export const decrementCompanyCounter = (
 
           //? MAIN LOGIC
           let counter = current.badge.counter;
-          let mark = current.badge.mark;
           const tabs = { ...current.tabs };
 
           //? ONLY NEW
@@ -41,11 +34,11 @@ export const decrementCompanyCounter = (
             tabs[tabName] -= 1;
           }
 
-          if (getSumTabs(tabs) === 0 && mark) {
-            mark = false;
-          }
-
-          results.push({ ...current, badge: { counter, mark }, tabs });
+          results.push({
+            ...current,
+            badge: { ...current.badge, counter },
+            tabs,
+          });
         }
 
         return results;
@@ -75,7 +68,6 @@ export const updateCompanyCounter = (
 
           //? MAIN LOGIC
           let counter = current.badge.counter;
-          let mark = current.badge.mark;
           const tabs = { ...current.tabs };
 
           //? ONLY NEW
@@ -87,11 +79,11 @@ export const updateCompanyCounter = (
             tabs[tabName] = newCounter;
           }
 
-          if (getSumTabs(tabs) === 0 && mark) {
-            mark = false;
-          }
-
-          results.push({ ...current, badge: { counter, mark }, tabs });
+          results.push({
+            ...current,
+            badge: { ...current.badge, counter },
+            tabs,
+          });
         }
 
         return results;

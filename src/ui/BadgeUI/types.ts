@@ -6,4 +6,5 @@ export interface BadgeUIProps {
   backgroundColor?: string;
   isDisplay?: boolean;
   style?: StyleProp<ViewStyle> | undefined;
+  isZero?: boolean;
 }
