@@ -5,7 +5,7 @@ import type {
 } from "@app/lib/models/CompanyModel";
 import type { UserId } from "@app/lib/models/UserModel";
 
-type StateService = "new" | "working" | "verifying" | "closed" | "refusal";
+type StateService = "new" | "working" | "verifying" | "closed" | "refused";
 
 export const Api = {
   auth: {

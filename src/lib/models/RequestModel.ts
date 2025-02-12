@@ -12,7 +12,7 @@ export interface RequestTabsModel {
   working: number;
   verifying: number;
   closed: number;
-  refusal: number;
+  refused: number;
 }
 
 export interface RequestCompanyModel extends Parent {

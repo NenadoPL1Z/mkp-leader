@@ -1,21 +1,21 @@
 import Card from "@app/components/Card";
 import { View } from "react-native";
-import { styles } from "@app/routes/admin/components/AdminCard/variant/index.styles.ts";
 import BadgeUI from "@app/ui/BadgeUI";
 import { Colors } from "@app/theme/colors.ts";
 import Typography from "@app/ui/Typography";
 import React from "react";
 import { getServiceDeadline } from "@app/lib/utils/servicesUtils.ts";
-import type { AdminCardProps } from "@app/routes/admin/components/AdminCard/types.ts";
+import { styles } from "../index.styles.ts";
+import type { ExecutorCardProps } from "../../types.ts";
 
-const ACRefusal = ({
+const ECRefused = ({
   variant,
   title,
   creationTime,
   deadline_at,
   isBadge,
   onPress,
-}: AdminCardProps) => {
+}: ExecutorCardProps) => {
   return (
     <Card
       variant={variant}
@@ -56,4 +56,4 @@ const ACRefusal = ({
   );
 };
 
-export default React.memo(ACRefusal);
+export default React.memo(ECRefused);

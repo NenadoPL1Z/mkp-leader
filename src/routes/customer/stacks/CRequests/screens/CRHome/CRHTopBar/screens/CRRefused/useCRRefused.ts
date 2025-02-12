@@ -1,15 +1,15 @@
 import { CRequestsSN } from "../../../../../types";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel.ts";
-import type { CRRefusalProps } from "./types";
+import type { CRRefusedProps } from "./types";
 
-export const useCRRefusal = ({
+export const useCRRefused = ({
   navigation,
   route,
   ...props
-}: CRRefusalProps) => {
+}: CRRefusedProps) => {
   const handlePushProfile = (card: ServiceCardModel, cardIndex: number) => {
     navigation.push(CRequestsSN.INFO, {
-      tabName: "refusal",
+      tabName: "refused",
       nextTabName: "",
       card,
       cardIndex,

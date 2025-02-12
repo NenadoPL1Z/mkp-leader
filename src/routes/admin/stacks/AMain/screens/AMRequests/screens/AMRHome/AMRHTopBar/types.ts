@@ -11,14 +11,14 @@ export enum AMRHTopBarNamespace {
   WORK = TopBarNames.WORK,
   QUALITY = TopBarNames.Verifying,
   CLOSED = TopBarNames.CLOSED,
-  REFUSAL = TopBarNames.REFUSAL,
+  REFUSED = TopBarNames.REFUSED,
 }
 
 export type AMRHTopBarStackParamList = {
   [AMRHTopBarNamespace.WORK]: AMRequestsHomeProps;
   [AMRHTopBarNamespace.QUALITY]: AMRequestsHomeProps;
   [AMRHTopBarNamespace.CLOSED]: AMRequestsHomeProps;
-  [AMRHTopBarNamespace.REFUSAL]: AMRequestsHomeProps;
+  [AMRHTopBarNamespace.REFUSED]: AMRequestsHomeProps;
 };
 
 type Parent = NativeStackScreenProps<AMRequestsSPL, AMRequestsSN.INFO>;
@@ -30,4 +30,4 @@ type ScreenProps<T extends AMRHTopBarNamespace> = CompositeScreenProps<
 export type AMRHWorkScreenProps = ScreenProps<AMRHTopBarNamespace.WORK>;
 export type AMRHQualityScreenProps = ScreenProps<AMRHTopBarNamespace.QUALITY>;
 export type AMRHClosedScreenProps = ScreenProps<AMRHTopBarNamespace.CLOSED>;
-export type AMRHRefusalScreenProps = ScreenProps<AMRHTopBarNamespace.REFUSAL>;
+export type AMRHRefusedScreenProps = ScreenProps<AMRHTopBarNamespace.REFUSED>;

@@ -8,7 +8,7 @@ import { getServiceDeadline } from "@app/lib/utils/servicesUtils.ts";
 import { styles } from "../index.styles.ts";
 import type { CustomerCardProps } from "../../types.ts";
 
-const CCRefusal = ({
+const CCRefused = ({
   variant,
   title,
   creationTime,
@@ -56,4 +56,4 @@ const CCRefusal = ({
   );
 };
 
-export default React.memo(CCRefusal);
+export default React.memo(CCRefused);

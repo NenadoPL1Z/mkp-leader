@@ -1,15 +1,15 @@
-import { AMRequestsSN } from "@app/routes/admin/stacks/AMain/screens/AMRequests/types";
+import { EMRequestsSN } from "@app/routes/executor/stacks/EMain/screens/EMRequests/types";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
-import type { AMRHRefusalProps } from "./types";
+import type { EMRHRefusedProps } from "./types";
 
-export const useAMRHRefusal = ({
+export const useEMRHRefused = ({
   navigation,
   route,
   ...props
-}: AMRHRefusalProps) => {
+}: EMRHRefusedProps) => {
   const handlePushProfile = (card: ServiceCardModel) => {
-    navigation.navigate(AMRequestsSN.INFO, {
-      tabName: "refusal",
+    navigation.navigate(EMRequestsSN.INFO, {
+      tabName: "refused",
       nextTabName: "",
       card,
       ...props,

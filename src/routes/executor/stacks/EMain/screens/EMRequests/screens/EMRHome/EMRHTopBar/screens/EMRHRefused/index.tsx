@@ -1,30 +1,30 @@
 import React, { useCallback } from "react";
 import { View } from "react-native";
-import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { requestsListStyles } from "@app/components/RequestsListStyles";
 import PaginationList from "@app/components/PaginationList/PaginationList";
 import { Api } from "@app/lib/constants/api";
 import EmptyContainer from "@app/containers/EmptyContainer";
-import ACRefusal from "@app/routes/admin/components/AdminCard/variant/ACRefusal";
-import Sort from "@app/components/Sort";
-import { useAMRHRefusal } from "./useAMRHRefusal.ts";
+import { formatDateTime } from "@app/lib/functions/formatDateTime";
+import ECRefused from "@app/routes/executor/components/ExecutorCard/variant/ECRefused";
+import { useEMRHRefused } from "./useEMRHRefused.ts";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
-import type { AMRHRefusalProps } from "./types";
+import type { EMRHRefusedProps } from "./types";
 import type { ListRenderItem } from "react-native";
 
 type RenderItem = ListRenderItem<ServiceCardModel>;
 
-const AMRHRefusal = (props: AMRHRefusalProps) => {
-  const { handlePushProfile } = useAMRHRefusal(props);
+const EMRHRefused = (props: EMRHRefusedProps) => {
+  const { handlePushProfile } = useEMRHRefused(props);
 
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
-      <ACRefusal
+      <ECRefused
         title={item.title}
-        isBadge={!item.viewed_admin}
-        variant={item.emergency ? "error" : "default"}
+        isBadge={!item.viewed_executor}
+        variant="success"
         onPress={() => handlePushProfile(item)}
         creationTime={formatDateTime(item.created_at || "")}
+        deadline_at={formatDateTime(item.deadline_at || "")}
       />
     );
   }, []);
@@ -32,30 +32,26 @@ const AMRHRefusal = (props: AMRHRefusalProps) => {
   return (
     <View style={requestsListStyles.container}>
       <View style={requestsListStyles.top}>
-        <View style={requestsListStyles.sort}>
-          <Sort
-            sort={props.sort}
-            filters={props.filters}
-          />
-        </View>
         <PaginationList
           config={{
             url: Api.service.getStatusService(
-              "refusal",
+              "refused",
               props.company.value.id,
             ),
-            query: props.queryData,
-            resetRef: props.refusalRefs.resetRef,
-            setCardRef: props.refusalRefs.setCardRef,
-            filterRef: props.refusalRefs.filterRef,
-            scrollRef: props.refusalRefs.scrollRef,
-            displayRefreshRef: props.refusalRefs.displayRefreshRef,
+            resetRef: props.closedRefs.resetRef,
+            setCardRef: props.closedRefs.setCardRef,
+            filterRef: props.closedRefs.filterRef,
+            scrollRef: props.closedRefs.scrollRef,
+            displayRefreshRef: props.closedRefs.displayRefreshRef,
             callbackCounter: props.counter.onChange,
             callbackRefresh: props.onResetAllTabs,
           }}
           renderItem={renderItem}
           showsVerticalScrollIndicator={true}
-          contentContainerStyle={[requestsListStyles.contentContainerStyle]}
+          contentContainerStyle={[
+            requestsListStyles.contentContainerStyle,
+            requestsListStyles.contentMoreTop,
+          ]}
           empty={{ Component: EmptyContainer }}
         />
       </View>
@@ -63,4 +59,4 @@ const AMRHRefusal = (props: AMRHRefusalProps) => {
   );
 };
 
-export default React.memo(AMRHRefusal);
+export default React.memo(EMRHRefused);
