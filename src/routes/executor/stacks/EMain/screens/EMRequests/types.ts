@@ -12,8 +12,11 @@ export enum EMRequestsSN {
 export type EMRequestsHomeProps = {
   company: {
     value: RequestCompanyModel;
-    handleCounterDecrement: (topBarNames: TopBarNames) => void;
-    handleCounterUpdate: (topBarNames: TopBarNames, newCounter: number) => void;
+    handleUnreadCountDecrement: (topBarNames: TopBarNames) => void;
+    handleUnreadCountUpdate: (
+      topBarNames: TopBarNames,
+      newCounter: number,
+    ) => void;
   };
 };
 

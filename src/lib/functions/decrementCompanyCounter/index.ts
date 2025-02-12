@@ -5,7 +5,6 @@ import type { PaginationSetCardRef } from "@app/components/PaginationList/types"
 export const decrementCompanyCounter = (
   item: RequestCompanyModel,
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
-  main = TopBarNames.WORK,
 ) => {
   return (tabName: TopBarNames) => {
     if (setCardRef) {
@@ -26,7 +25,7 @@ export const decrementCompanyCounter = (
           const tabs = { ...current.tabs };
 
           //? ONLY NEW
-          if (tabName === main && counter > 0) {
+          if (tabName === TopBarNames.WORK && counter > 0) {
             counter -= 1;
           }
 
@@ -50,7 +49,6 @@ export const decrementCompanyCounter = (
 export const updateCompanyCounter = (
   item: RequestCompanyModel,
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
-  main = TopBarNames.WORK,
 ) => {
   return (tabName: TopBarNames, newCounter: number) => {
     if (setCardRef) {
@@ -71,7 +69,7 @@ export const updateCompanyCounter = (
           const tabs = { ...current.tabs };
 
           //? ONLY NEW
-          if (tabName === main) {
+          if (tabName === TopBarNames.WORK) {
             counter = newCounter;
           }
 

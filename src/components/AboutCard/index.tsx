@@ -20,6 +20,7 @@ const AboutCard = ({
   isShadow = true,
   isTouch = true,
   isPadding = true,
+  isDisplayMark = false,
 }: AboutCardProps) => {
   return (
     <TouchableOpacity
@@ -37,7 +38,7 @@ const AboutCard = ({
       </View>
       <View style={styles.right}>
         <View style={styles.rightTop}>
-          {!!badge?.counter && (
+          {isDisplayMark && (
             <View style={styles.rightTopLeft}>
               <BadgeUI size={12} />
             </View>

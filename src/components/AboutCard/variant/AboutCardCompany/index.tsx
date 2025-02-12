@@ -7,13 +7,17 @@ type Props = RequestCompanyModel & {
 };
 
 const AboutCardCompany = (props: Props) => {
-  const { id, name, address, badge, onPress } = props;
+  const { id, name, address, badge, onPress, tabs } = props;
 
+  const isDisplayMark = Boolean(
+    tabs.working || tabs.verifying || tabs.closed || tabs.refused,
+  );
   return (
     <AboutCard
       title={name}
       subtitle={address || ""}
       badge={badge}
+      isDisplayMark={isDisplayMark}
       avatar={{
         name: name,
         phone: `${id}`,

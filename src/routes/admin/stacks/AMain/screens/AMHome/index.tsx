@@ -18,6 +18,7 @@ type RenderItem = ListRenderItem<RequestCompanyModel>;
 
 const AMHome = (props: AMHomeScreenProps) => {
   const { setCardRef, onPress } = useAMHome(props);
+
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
       <AboutCardCompany

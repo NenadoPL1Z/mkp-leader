@@ -15,4 +15,5 @@ export type AboutCardProps = {
   isShadow?: boolean;
   isTouch?: boolean;
   isPadding?: boolean;
+  isDisplayMark?: boolean;
 };

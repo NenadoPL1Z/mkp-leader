@@ -3,7 +3,6 @@ import {
   decrementCompanyCounter,
   updateCompanyCounter,
 } from "@app/lib/functions/decrementCompanyCounter";
-import { TopBarNames } from "@app/types/enums/TopBarNames";
 import { EMainSN } from "../../types";
 import { EMRequestsSN } from "../EMRequests/types";
 import type { PaginationSetCardRef } from "@app/components/PaginationList/types";
@@ -13,11 +12,11 @@ import type { EMHomeScreenProps } from "../../types";
 export const useEMHome = ({ navigation }: EMHomeScreenProps) => {
   const setCardRef = useRef<PaginationSetCardRef<RequestCompanyModel>>(null);
 
-  const handleCounterDecrement = (item: RequestCompanyModel) =>
-    decrementCompanyCounter(item, setCardRef.current, TopBarNames.WORK);
+  const handleUnreadCountDecrement = (item: RequestCompanyModel) =>
+    decrementCompanyCounter(item, setCardRef.current);
 
-  const handleCounterUpdate = (item: RequestCompanyModel) =>
-    updateCompanyCounter(item, setCardRef.current, TopBarNames.WORK);
+  const handleUnreadCountUpdate = (item: RequestCompanyModel) =>
+    updateCompanyCounter(item, setCardRef.current);
 
   const onPress = (item: RequestCompanyModel) => {
     navigation.navigate(EMainSN.REQUESTS, {
@@ -25,8 +24,8 @@ export const useEMHome = ({ navigation }: EMHomeScreenProps) => {
       params: {
         company: {
           value: item,
-          handleCounterUpdate: handleCounterUpdate(item),
-          handleCounterDecrement: handleCounterDecrement(item),
+          handleUnreadCountUpdate: handleUnreadCountUpdate(item),
+          handleUnreadCountDecrement: handleUnreadCountDecrement(item),
         },
       },
     });

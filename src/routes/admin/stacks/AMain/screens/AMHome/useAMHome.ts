@@ -12,10 +12,10 @@ import type { PaginationSetCardRef } from "@app/components/PaginationList/types"
 export const useAMHome = ({ navigation }: AMHomeScreenProps) => {
   const setCardRef = useRef<PaginationSetCardRef<RequestCompanyModel>>(null);
 
-  const handleCounterDecrement = (item: RequestCompanyModel) =>
+  const handleUnreadCountDecrement = (item: RequestCompanyModel) =>
     decrementCompanyCounter(item, setCardRef.current);
 
-  const handleCounterUpdate = (item: RequestCompanyModel) =>
+  const handleUnreadCountUpdate = (item: RequestCompanyModel) =>
     updateCompanyCounter(item, setCardRef.current);
 
   const onPress = (item: RequestCompanyModel) => {
@@ -24,8 +24,8 @@ export const useAMHome = ({ navigation }: AMHomeScreenProps) => {
       params: {
         company: {
           value: item,
-          handleCounterDecrement: handleCounterDecrement(item),
-          handleCounterUpdate: handleCounterUpdate(item),
+          handleUnreadCountDecrement: handleUnreadCountDecrement(item),
+          handleUnreadCountUpdate: handleUnreadCountUpdate(item),
         },
       },
     });
