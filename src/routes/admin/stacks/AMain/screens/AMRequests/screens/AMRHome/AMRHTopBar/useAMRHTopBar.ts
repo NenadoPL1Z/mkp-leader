@@ -69,7 +69,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
       //? СВЯЗАН С СОРТИРОВКОЙ И ФИЛЬТРАМИ
       //? UPDATE COMPANY COUNTER IF NOT SELECT FILTERS
       if (queryData.length === 1) {
-        company.handleUnreadCountUpdate(tabName as never, count);
+        company.handleSetUnreadCount(tabName as never, count);
       }
     };
   };
@@ -80,7 +80,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
         ...prevState,
         [tabName]: prevState[tabName] - 1,
       }));
-      company.handleUnreadCountDecrement(tabName as never);
+      company.handleDecrementUnreadCount(tabName as never);
     };
   };
 

@@ -40,7 +40,7 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
           break;
       }
 
-      company.handleUnreadCountUpdate(tabName as never, count);
+      company.handleSetUnreadCount(tabName as never, count);
     };
   };
 
@@ -50,7 +50,7 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
         ...prevState,
         [tabName]: prevState[tabName] - 1,
       }));
-      company.handleUnreadCountDecrement(tabName as never);
+      company.handleDecrementUnreadCount(tabName as never);
     };
   };
 
