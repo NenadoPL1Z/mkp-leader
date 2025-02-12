@@ -2,6 +2,8 @@ import { useRef } from "react";
 import {
   decrementUnreadCounter,
   setUnreadCounter,
+  updateStatusCounter,
+  setStatusCounter,
 } from "@app/lib/functions/companyCounters";
 import { EMainSN } from "../../types";
 import { EMRequestsSN } from "../EMRequests/types";
@@ -18,6 +20,12 @@ export const useEMHome = ({ navigation }: EMHomeScreenProps) => {
   const handleSetUnreadCount = (item: RequestCompanyModel) =>
     setUnreadCounter(item, setCardRef.current);
 
+  const handleUpdateStatusCounter = (item: RequestCompanyModel) =>
+    updateStatusCounter(item, setCardRef.current);
+
+  const handleSetStatusCounter = (item: RequestCompanyModel) =>
+    setStatusCounter(item, setCardRef.current);
+
   const onPress = (item: RequestCompanyModel) => {
     navigation.navigate(EMainSN.REQUESTS, {
       screen: EMRequestsSN.HOME,
@@ -26,6 +34,8 @@ export const useEMHome = ({ navigation }: EMHomeScreenProps) => {
           value: item,
           handleSetUnreadCount: handleSetUnreadCount(item),
           handleDecrementUnreadCount: handleDecrementUnreadCount(item),
+          handleUpdateStatusCounter: handleUpdateStatusCounter(item),
+          handleSetStatusCounter: handleSetStatusCounter(item),
         },
       },
     });

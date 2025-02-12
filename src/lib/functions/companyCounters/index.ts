@@ -1,5 +1,6 @@
 import type {
   RequestBadgeModel,
+  RequestBadgeModelKey,
   RequestCompanyModel,
 } from "@app/lib/models/RequestModel";
 import type { TopBarNames } from "@app/types/enums/TopBarNames";
@@ -52,8 +53,8 @@ export const updateStatusCounter = (
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
 ) => {
   return (
-    currentTabName: keyof RequestBadgeModel,
-    nextTabName: keyof RequestBadgeModel,
+    currentTabName: RequestBadgeModelKey,
+    nextTabName: RequestBadgeModelKey,
   ) => {
     setCardRef?.((companies) => {
       return companies.reduce<RequestCompanyModel[]>((acc, company) => {

@@ -7,6 +7,8 @@ export interface RequestBadgeModel {
   verifying: number;
 }
 
+export type RequestBadgeModelKey = keyof RequestBadgeModel;
+
 export interface RequestTabsModel {
   working: number;
   verifying: number;

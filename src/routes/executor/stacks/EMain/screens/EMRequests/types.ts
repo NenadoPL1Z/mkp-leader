@@ -1,6 +1,10 @@
+import type {
+  RequestBadgeModel,
+  RequestBadgeModelKey,
+  RequestCompanyModel,
+} from "@app/lib/models/RequestModel";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { TopBarNames } from "@app/types/enums/TopBarNames";
-import type { RequestCompanyModel } from "@app/lib/models/RequestModel";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { PaginationRefs } from "@app/components/PaginationList/types";
 
@@ -16,6 +20,13 @@ export type EMRequestsHomeProps = {
     handleSetUnreadCount: (
       topBarNames: TopBarNames,
       newCounter: number,
+    ) => void;
+    handleUpdateStatusCounter: (
+      currentTabName: RequestBadgeModelKey,
+      nextTabName: RequestBadgeModelKey,
+    ) => void;
+    handleSetStatusCounter: (
+      updatedBadge: Record<keyof RequestBadgeModel, number>,
     ) => void;
   };
 };

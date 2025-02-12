@@ -14,7 +14,11 @@ import type {
   ServiceCardModel,
   ServicesDetailModel,
 } from "@app/lib/models/ServiceModel";
-import type { RequestCompanyModel } from "@app/lib/models/RequestModel";
+import type {
+  RequestBadgeModel,
+  RequestBadgeModelKey,
+  RequestCompanyModel,
+} from "@app/lib/models/RequestModel";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { Nullable } from "@app/types/general.ts";
 import type { ToastShowParams } from "react-native-toast-message";
@@ -33,6 +37,13 @@ export type AMRequestsHomeProps = {
     handleSetUnreadCount: (
       topBarNames: TopBarNames,
       newCounter: number,
+    ) => void;
+    handleUpdateStatusCounter: (
+      currentTabName: RequestBadgeModelKey,
+      nextTabName: RequestBadgeModelKey,
+    ) => void;
+    handleSetStatusCounter: (
+      updatedBadge: Record<keyof RequestBadgeModel, number>,
     ) => void;
   };
 };
