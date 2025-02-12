@@ -57,13 +57,13 @@ const AboutCard = ({
             <>
               <View style={styles.rightTopRight}>
                 <BadgeUI
-                  count={badge.counter_working}
+                  count={badge.working}
                   isZero={true}
                 />
               </View>
               <View style={styles.rightTopRight}>
                 <BadgeUI
-                  count={badge.counter_verifying}
+                  count={badge.verifying}
                   isZero={true}
                   backgroundColor={Colors.GRAY_TWO}
                 />
