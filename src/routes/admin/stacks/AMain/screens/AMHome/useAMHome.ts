@@ -4,7 +4,7 @@ import { AMRequestsSN } from "@app/routes/admin/stacks/AMain/screens/AMRequests/
 import {
   decrementUnreadCounter,
   setUnreadCounter,
-} from "@app/lib/functions/decrementCompanyCounter";
+} from "@app/lib/functions/companyCounters";
 import type { RequestCompanyModel } from "@app/lib/models/RequestModel";
 import type { AMHomeScreenProps } from "@app/routes/admin/stacks/AMain/types";
 import type { PaginationSetCardRef } from "@app/components/PaginationList/types";

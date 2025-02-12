@@ -2,7 +2,7 @@ import { useRef } from "react";
 import {
   decrementUnreadCounter,
   setUnreadCounter,
-} from "@app/lib/functions/decrementCompanyCounter";
+} from "@app/lib/functions/companyCounters";
 import { EMainSN } from "../../types";
 import { EMRequestsSN } from "../EMRequests/types";
 import type { PaginationSetCardRef } from "@app/components/PaginationList/types";
