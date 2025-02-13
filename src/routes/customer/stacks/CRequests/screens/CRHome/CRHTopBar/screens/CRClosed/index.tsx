@@ -39,7 +39,7 @@ const CRClosed = (props: CRClosedProps) => {
             filterRef: props.closedRefs.filterRef,
             scrollRef: props.closedRefs.scrollRef,
             displayRefreshRef: props.closedRefs.displayRefreshRef,
-            callbackCounter: props.counter.onChange,
+            callbackCounter: props.counter.onSetUnreadCounters,
             callbackRefresh: props.onResetAllTabs,
           }}
           renderItem={renderItem}

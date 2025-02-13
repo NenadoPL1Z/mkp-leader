@@ -17,7 +17,7 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
     [CRTopBarNamespace.REFUSED]: 0,
   });
 
-  const onUpdateCounters = (tabName: CRTopBarNamespace) => {
+  const onSetUnreadCounters = (tabName: CRTopBarNamespace) => {
     return (count: number) => {
       setCounters((prevState) => ({ ...prevState, [tabName]: count }));
 
@@ -39,7 +39,7 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
     };
   };
 
-  const onDecrementCounter = (tabName: CRTopBarNamespace) => {
+  const onDecrementUnreadCounter = (tabName: CRTopBarNamespace) => {
     return () => {
       setCounters((prevState) => ({
         ...prevState,
@@ -66,8 +66,8 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
   const tabProps = (tab: CRTopBarNamespace): CRGeneralProps => ({
     counter: {
       value: counters[tab],
-      onChange: onUpdateCounters(tab),
-      onDecrementCounter: onDecrementCounter(tab),
+      onSetUnreadCounters: onSetUnreadCounters(tab),
+      onDecrementUnreadCounter: onDecrementUnreadCounter(tab),
     },
     workRefs,
     qualityRefs,

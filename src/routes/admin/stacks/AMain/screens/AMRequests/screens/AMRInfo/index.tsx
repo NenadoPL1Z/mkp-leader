@@ -41,7 +41,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
         role="admin"
         card={card}
         setCardRef={currenTabRef?.setCardRef?.current}
-        onDecrementCounter={counter.onDecrementCounter}>
+        onDecrementUnreadCounter={counter.onDecrementUnreadCounter}>
         {({ data, onUpdateData }) => {
           //? CONSTANTS
           const isChangeTab = tabName === "work" || tabName === "quality";

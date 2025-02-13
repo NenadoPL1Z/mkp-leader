@@ -18,7 +18,7 @@ export const useRequestInfo = ({
   role,
   card,
   setCardRef,
-  onDecrementCounter,
+  onDecrementUnreadCounter,
 }: RequestInfoProps) => {
   const viewedRole: ViewedRole = `viewed_${role}`;
   const isNew = !card[viewedRole];
@@ -44,7 +44,7 @@ export const useRequestInfo = ({
 
           if (card.id === item.id) {
             item[viewedRole] = true;
-            onDecrementCounter();
+            onDecrementUnreadCounter();
           }
           result.push(item);
         }

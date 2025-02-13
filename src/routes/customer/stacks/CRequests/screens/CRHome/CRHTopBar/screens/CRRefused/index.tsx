@@ -39,7 +39,7 @@ const CRRefused = (props: CRRefusedProps) => {
             filterRef: props.refusedRefs.filterRef,
             scrollRef: props.refusedRefs.scrollRef,
             displayRefreshRef: props.refusedRefs.displayRefreshRef,
-            callbackCounter: props.counter.onChange,
+            callbackCounter: props.counter.onSetUnreadCounters,
             callbackRefresh: props.onResetAllTabs,
           }}
           renderItem={renderItem}

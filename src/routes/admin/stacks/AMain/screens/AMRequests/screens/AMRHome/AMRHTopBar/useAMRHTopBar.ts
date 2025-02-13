@@ -44,7 +44,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
     },
   );
 
-  const onUpdateCounters = (
+  const onSetUnreadCounters = (
     tabName: AMRHTopBarNamespace,
   ): PaginationCallbackCounter => {
     return (count, queryData = []) => {
@@ -74,7 +74,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
     };
   };
 
-  const onDecrementCounter = (tabName: AMRHTopBarNamespace) => {
+  const onDecrementUnreadCounter = (tabName: AMRHTopBarNamespace) => {
     return () => {
       setCounters((prevState) => ({
         ...prevState,
@@ -127,8 +127,8 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
     },
     counter: {
       value: counters[tab],
-      onChange: onUpdateCounters(tab),
-      onDecrementCounter: onDecrementCounter(tab),
+      onSetUnreadCounters: onSetUnreadCounters(tab),
+      onDecrementUnreadCounter: onDecrementUnreadCounter(tab),
     },
     queryData,
     workRefs,

@@ -14,8 +14,8 @@ export enum CRequestsSN {
 export type CRGeneralProps = {
   counter: {
     value: number;
-    onChange: (counter: number) => void;
-    onDecrementCounter: () => void;
+    onSetUnreadCounters: (counter: number) => void;
+    onDecrementUnreadCounter: () => void;
   };
   workRefs: Required<PaginationRefs<ServiceCardModel>>;
   qualityRefs: Required<PaginationRefs<ServiceCardModel>>;

@@ -34,8 +34,8 @@ export type EMRequestsHomeProps = {
 export type EMRHGeneralProps = EMRequestsHomeProps & {
   counter: {
     value: number;
-    onChange: (counter: number) => void;
-    onDecrementCounter: () => void;
+    onSetUnreadCounters: (counter: number) => void;
+    onDecrementUnreadCounter: () => void;
   };
   workRefs: Required<PaginationRefs<ServiceCardModel>>;
   qualityRefs: Required<PaginationRefs<ServiceCardModel>>;

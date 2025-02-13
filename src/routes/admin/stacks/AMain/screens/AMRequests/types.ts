@@ -59,8 +59,8 @@ export type AMRHGeneralProps = AMRequestsHomeProps & {
   };
   counter: {
     value: number;
-    onChange: PaginationCallbackCounter;
-    onDecrementCounter: () => void;
+    onSetUnreadCounters: PaginationCallbackCounter;
+    onDecrementUnreadCounter: () => void;
   };
   queryData: string[];
   workRefs: Required<PaginationRefs<ServiceCardModel>>;

@@ -33,7 +33,7 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
         role="executor"
         card={card}
         setCardRef={currenTabRef?.setCardRef?.current}
-        onDecrementCounter={counter.onDecrementCounter}>
+        onDecrementUnreadCounter={counter.onDecrementUnreadCounter}>
         {({ data, onUpdateData }) => {
           const isDisplayForm =
             tabName === "work" &&

@@ -19,6 +19,6 @@ export type RequestInfoProps = {
   role: UseRole;
   card: ServiceCardModel;
   setCardRef: PaginationSetCardRef<ServiceCardModel>;
-  onDecrementCounter: () => void;
+  onDecrementUnreadCounter: () => void;
   children: (props: RInfoChildrenProps) => ReactNode;
 };

@@ -29,7 +29,7 @@ const CRInfo = (props: CRInfoScreenProps) => {
       role="customer"
       card={card}
       setCardRef={currenTabRef?.setCardRef?.current}
-      onDecrementCounter={counter.onDecrementCounter}>
+      onDecrementUnreadCounter={counter.onDecrementUnreadCounter}>
       {({ data, onUpdateData }) => (
         <>
           <HeaderUI

@@ -42,7 +42,7 @@ const EMRHQuality = (props: EMRHQualityProps) => {
             filterRef: props.qualityRefs.filterRef,
             scrollRef: props.qualityRefs.scrollRef,
             displayRefreshRef: props.qualityRefs.displayRefreshRef,
-            callbackCounter: props.counter.onChange,
+            callbackCounter: props.counter.onSetUnreadCounters,
             callbackRefresh: props.onResetAllTabs,
           }}
           renderItem={renderItem}

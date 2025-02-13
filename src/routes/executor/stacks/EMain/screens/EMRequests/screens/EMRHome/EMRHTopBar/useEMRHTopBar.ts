@@ -20,7 +20,7 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
     },
   );
 
-  const onUpdateCounters = (tabName: EMRHTopBarNamespace) => {
+  const onSetUnreadCounters = (tabName: EMRHTopBarNamespace) => {
     return (count: number) => {
       setCounters((prevState) => ({ ...prevState, [tabName]: count }));
 
@@ -44,7 +44,7 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
     };
   };
 
-  const onDecrementCounter = (tabName: EMRHTopBarNamespace) => {
+  const onDecrementUnreadCounter = (tabName: EMRHTopBarNamespace) => {
     return () => {
       setCounters((prevState) => ({
         ...prevState,
@@ -73,8 +73,8 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
     company,
     counter: {
       value: counters[tab],
-      onChange: onUpdateCounters(tab),
-      onDecrementCounter: onDecrementCounter(tab),
+      onSetUnreadCounters: onSetUnreadCounters(tab),
+      onDecrementUnreadCounter: onDecrementUnreadCounter(tab),
     },
     workRefs,
     qualityRefs,
