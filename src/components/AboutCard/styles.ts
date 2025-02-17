@@ -47,11 +47,17 @@ export const styles = StyleSheet.create({
   },
   rightTopRight: {
     flex: 0,
-    marginLeft: 8,
-    marginBottom: 3,
+    gap: 5,
+    flexDirection: "row",
+    alignItems: "center",
   },
   children: {
     flex: 0,
     marginLeft: 8,
+  },
+  badgeContainer: {
+    marginLeft: 8,
+    flexDirection: "column",
+    alignItems: "flex-end",
   },
 });

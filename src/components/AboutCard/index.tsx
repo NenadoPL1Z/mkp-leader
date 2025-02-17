@@ -53,23 +53,6 @@ const AboutCard = ({
               {title}
             </Typography>
           </View>
-          {!!badge && (
-            <>
-              <View style={styles.rightTopRight}>
-                <BadgeUI
-                  count={badge.working}
-                  isZero={true}
-                />
-              </View>
-              <View style={styles.rightTopRight}>
-                <BadgeUI
-                  count={badge.verifying}
-                  isZero={true}
-                  backgroundColor={Colors.GRAY_TWO}
-                />
-              </View>
-            </>
-          )}
         </View>
         <Typography
           numberOfLines={1}
@@ -77,6 +60,49 @@ const AboutCard = ({
           {subtitle}
         </Typography>
       </View>
+      {!!badge && (
+        <View style={styles.badgeContainer}>
+          <View style={styles.rightTopRight}>
+            <Typography
+              variant="h4"
+              fontSize={12}
+              lineHeight={14}
+              color={Colors.GRAY_SIX}>
+              В работе -
+            </Typography>
+            <BadgeUI
+              count={badge.working}
+              isZero={true}
+              style={{
+                borderRadius: 0,
+                borderTopLeftRadius: 5,
+                borderTopRightRadius: 5,
+              }}
+              typographyStyles={{ fontSize: 15 }}
+            />
+          </View>
+          <View style={styles.rightTopRight}>
+            <Typography
+              variant="h4"
+              fontSize={12}
+              lineHeight={14}
+              color={Colors.GRAY_SIX}>
+              Контроль качества -
+            </Typography>
+            <BadgeUI
+              count={badge.verifying}
+              isZero={true}
+              backgroundColor={Colors.GRAY_TWO}
+              style={{
+                borderRadius: 0,
+                borderBottomLeftRadius: 5,
+                borderBottomRightRadius: 5,
+              }}
+              typographyStyles={{ fontSize: 15 }}
+            />
+          </View>
+        </View>
+      )}
       {children && <View style={styles.children}>{children}</View>}
     </TouchableOpacity>
   );
