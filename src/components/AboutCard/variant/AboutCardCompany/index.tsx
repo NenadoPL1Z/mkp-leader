@@ -18,6 +18,7 @@ const AboutCardCompany = (props: Props) => {
       subtitle={address || ""}
       badge={badge}
       isDisplayMark={isDisplayMark}
+      containerStyle={{ paddingVertical: 10 }}
       avatar={{
         name: name,
         phone: `${id}`,

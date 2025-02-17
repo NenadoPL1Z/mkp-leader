@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
   },
   rightTopRight: {
     flex: 0,
-    gap: 5,
+    gap: 4,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -56,6 +56,7 @@ export const styles = StyleSheet.create({
     marginLeft: 8,
   },
   badgeContainer: {
+    gap: 5,
     marginLeft: 8,
     flexDirection: "column",
     alignItems: "flex-end",

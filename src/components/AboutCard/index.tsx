@@ -73,11 +73,6 @@ const AboutCard = ({
             <BadgeUI
               count={badge.working}
               isZero={true}
-              style={{
-                borderRadius: 0,
-                borderTopLeftRadius: 5,
-                borderTopRightRadius: 5,
-              }}
               typographyStyles={{ fontSize: 15 }}
             />
           </View>
@@ -93,11 +88,6 @@ const AboutCard = ({
               count={badge.verifying}
               isZero={true}
               backgroundColor={Colors.GRAY_TWO}
-              style={{
-                borderRadius: 0,
-                borderBottomLeftRadius: 5,
-                borderBottomRightRadius: 5,
-              }}
               typographyStyles={{ fontSize: 15 }}
             />
           </View>
