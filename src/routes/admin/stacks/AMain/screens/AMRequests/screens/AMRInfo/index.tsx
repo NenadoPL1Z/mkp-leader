@@ -17,6 +17,7 @@ import { useBottomOffset } from "@app/hooks/useBottomOffset";
 import { useAMRInfo } from "./useAMRInfo";
 import { styles } from "./styles";
 import AMRIClose from "./components/AMRIClose";
+import AMRIRefuse from "./components/AMRIRefuse";
 import type { AMRInfoScreenProps } from "../../types";
 
 const AMRInfo = (props: AMRInfoScreenProps) => {
@@ -33,6 +34,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
     handleChangeEditMode,
     handleChangePrevScreenInfo,
     handleClose,
+    handleRefuse,
   } = useAMRInfo(props);
 
   return (
@@ -55,6 +57,9 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
             !isEditMode &&
             tabName === "quality" &&
             data.status === "Контроль качества";
+
+          const isDisplayRefuse =
+            !isEditMode && tabName === "work" && data.status === "В работе";
 
           return (
             <>
@@ -94,6 +99,12 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                     />
                   )}
                   {isDisplayExecutor && <RIExecutors {...data} />}
+                  {isDisplayRefuse && (
+                    <AMRIRefuse
+                      id={data.id}
+                      onRefuse={handleRefuse(onUpdateData)}
+                    />
+                  )}
                   {isDisplayClose && (
                     <AMRIClose
                       id={data.id}

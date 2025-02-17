@@ -118,6 +118,31 @@ export const useAMRInfo = ({ route }: AMRInfoScreenProps) => {
     };
   };
 
+  const handleRefuse = (onUpdateData: RInfoChildrenOnUpdate) => {
+    return (data: ServicesDetailModel, callback: () => void) => {
+      callback();
+      onUpdateData(data);
+      toast.onShowToast({ text1: "Заявка успешно отклонена" });
+      currenTabRef.filterRef?.current?.(data.id);
+      nextTabRef?.setCardRef?.current?.((prevState): ServiceCardModel[] => [
+        {
+          id: data.id,
+          title: data.title,
+          status: data.status,
+          emergency: Boolean(data.emergency),
+          custom_position: Boolean(data.custom_position),
+          created_at: data.created_at,
+          deadline_at: data.deadline_at,
+          viewed_admin: true,
+          viewed_executor: false,
+          viewed_customer: false,
+        },
+        ...prevState,
+      ]);
+      company.handleUpdateStatusCounter("working");
+    };
+  };
+
   return {
     toast,
     editMode,
@@ -125,5 +150,6 @@ export const useAMRInfo = ({ route }: AMRInfoScreenProps) => {
     handleChangeEditMode,
     handleChangePrevScreenInfo,
     handleClose,
+    handleRefuse,
   };
 };

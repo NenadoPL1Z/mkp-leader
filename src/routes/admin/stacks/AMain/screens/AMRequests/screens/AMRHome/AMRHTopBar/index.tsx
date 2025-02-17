@@ -60,7 +60,7 @@ const AMRHTopBar = (props: AMRequestsHomeProps) => {
       </Tab.Screen>
       <Tab.Screen
         name={N_REFUSED}
-        options={setBadge("Отказ", counters[N_REFUSED])}
+        options={setBadge("Отказы", counters[N_REFUSED])}
         initialParams={props}>
         {(props) => (
           <AMRHRefused

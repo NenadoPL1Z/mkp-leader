@@ -57,7 +57,7 @@ const CRHTopBar = (props: CRHTopBarProps) => {
       </Tab.Screen>
       <Tab.Screen
         name={N_REFUSED}
-        options={setBadge("Отказ", counters[N_REFUSED])}>
+        options={setBadge("Отказы", counters[N_REFUSED])}>
         {(props) => (
           <CRRefused
             {...props}

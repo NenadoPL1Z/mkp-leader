@@ -38,6 +38,7 @@ export const Api = {
     assign: "/services/assign",
     verify: "/services/verify",
     close: (id: ServiceId) => `/services/close/${id}`,
+    refuse: (id: ServiceId) => `/services/refuse/${id}`,
     companies: "/services/companies/all",
     id: (id: ServiceId) => `/services/get/${id}`,
     getStatusService: (state: StateService, id: string | number) =>
