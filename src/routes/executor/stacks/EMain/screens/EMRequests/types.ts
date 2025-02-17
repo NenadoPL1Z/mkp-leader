@@ -25,7 +25,7 @@ export type EMRequestsHomeProps = {
       newCounter: number,
     ) => void;
     handleUpdateStatusCounter: (
-      currentTabName?: RequestBadgeModelKey,
+      currentTabName: RequestBadgeModelKey,
       nextTabName?: RequestBadgeModelKey,
     ) => void;
     handleSetStatusCounter: (

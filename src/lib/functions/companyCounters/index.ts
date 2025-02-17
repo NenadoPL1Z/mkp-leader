@@ -53,7 +53,7 @@ export const updateStatusCounter = (
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
 ) => {
   return (
-    currentTabName?: RequestBadgeModelKey,
+    currentTabName: RequestBadgeModelKey,
     nextTabName?: RequestBadgeModelKey,
   ) => {
     setCardRef?.((companies) => {
