@@ -38,6 +38,9 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  rightTopMax: {
+    minHeight: 28,
+  },
   rightTopLeft: {
     flex: 0,
     marginRight: 8,

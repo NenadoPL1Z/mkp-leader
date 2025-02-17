@@ -37,7 +37,7 @@ const AboutCard = ({
         <AvatarUI {...avatar} />
       </View>
       <View style={styles.right}>
-        <View style={styles.rightTop}>
+        <View style={[styles.rightTop, !!badge && styles.rightTopMax]}>
           {isDisplayMark && (
             <View style={styles.rightTopLeft}>
               <BadgeUI size={12} />
