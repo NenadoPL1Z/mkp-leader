@@ -183,7 +183,7 @@ export const usePaginationList = <Item extends PaginationExtends>({
           data: { items, total, counter },
         } = response;
 
-        callbackCounter?.(counter, sendQuery);
+        callbackCounter?.(total, counter, sendQuery);
 
         if (isReset) {
           const isEnd = items.length >= total;

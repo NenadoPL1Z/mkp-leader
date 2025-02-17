@@ -6,7 +6,10 @@ import type {
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { TopBarNames } from "@app/types/enums/TopBarNames";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { PaginationRefs } from "@app/components/PaginationList/types";
+import type {
+  PaginationCallbackCounter,
+  PaginationRefs,
+} from "@app/components/PaginationList/types";
 
 export enum EMRequestsSN {
   HOME = "Home",
@@ -26,7 +29,7 @@ export type EMRequestsHomeProps = {
       nextTabName: RequestBadgeModelKey,
     ) => void;
     handleSetStatusCounter: (
-      updatedBadge: Record<keyof RequestBadgeModel, number>,
+      updatedBadge: Partial<Record<keyof RequestBadgeModel, number>>,
     ) => void;
   };
 };
@@ -34,7 +37,7 @@ export type EMRequestsHomeProps = {
 export type EMRHGeneralProps = EMRequestsHomeProps & {
   counter: {
     value: number;
-    onSetUnreadCounters: (counter: number) => void;
+    onSetUnreadCounters: PaginationCallbackCounter;
     onDecrementUnreadCounter: () => void;
   };
   workRefs: Required<PaginationRefs<ServiceCardModel>>;

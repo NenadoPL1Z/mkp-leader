@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { usePaginationRefs } from "@app/hooks/usePaginationRefs";
 import { EMRHTopBarNamespace } from "./types";
-import type { ResetArg } from "@app/components/PaginationList/types";
+import type {
+  PaginationCallbackCounter,
+  ResetArg,
+} from "@app/components/PaginationList/types";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { EMRequestsHomeProps, EMRHGeneralProps } from "../../../types";
 
@@ -20,17 +23,21 @@ export const useEMRHTopBar = ({ company }: EMRequestsHomeProps) => {
     },
   );
 
-  const onSetUnreadCounters = (tabName: EMRHTopBarNamespace) => {
-    return (count: number) => {
+  const onSetUnreadCounters = (
+    tabName: EMRHTopBarNamespace,
+  ): PaginationCallbackCounter => {
+    return (total, count) => {
       setCounters((prevState) => ({ ...prevState, [tabName]: count }));
 
       //? HIDE REFRESH IN PAGINATION LIST
       switch (tabName) {
         case EMRHTopBarNamespace.WORK:
           workRefs.displayRefreshRef.current?.(false);
+          company.handleSetStatusCounter({ working: total });
           break;
         case EMRHTopBarNamespace.QUALITY:
           qualityRefs.displayRefreshRef.current?.(false);
+          company.handleSetStatusCounter({ verifying: total });
           break;
         case EMRHTopBarNamespace.CLOSED:
           closedRefs.displayRefreshRef.current?.(false);

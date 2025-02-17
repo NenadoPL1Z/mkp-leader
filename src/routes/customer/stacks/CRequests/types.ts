@@ -2,7 +2,10 @@ import type {
   ServiceCardModel,
   ServicesDetailModel,
 } from "@app/lib/models/ServiceModel.ts";
-import type { PaginationRefs } from "@app/components/PaginationList/types";
+import type {
+  PaginationCallbackCounter,
+  PaginationRefs,
+} from "@app/components/PaginationList/types";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export enum CRequestsSN {
@@ -14,7 +17,7 @@ export enum CRequestsSN {
 export type CRGeneralProps = {
   counter: {
     value: number;
-    onSetUnreadCounters: (counter: number) => void;
+    onSetUnreadCounters: PaginationCallbackCounter;
     onDecrementUnreadCounter: () => void;
   };
   workRefs: Required<PaginationRefs<ServiceCardModel>>;

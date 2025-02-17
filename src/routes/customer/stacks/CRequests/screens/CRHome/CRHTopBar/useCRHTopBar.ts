@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { usePaginationRefs } from "@app/hooks/usePaginationRefs";
 import { CRTopBarNamespace } from "./types";
-import type { ResetArg } from "@app/components/PaginationList/types";
+import type {
+  PaginationCallbackCounter,
+  ResetArg,
+} from "@app/components/PaginationList/types";
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { CRHTopBarProps, CRGeneralProps } from "../../../types";
 
@@ -17,8 +20,10 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
     [CRTopBarNamespace.REFUSED]: 0,
   });
 
-  const onSetUnreadCounters = (tabName: CRTopBarNamespace) => {
-    return (count: number) => {
+  const onSetUnreadCounters = (
+    tabName: CRTopBarNamespace,
+  ): PaginationCallbackCounter => {
+    return (_, count) => {
       setCounters((prevState) => ({ ...prevState, [tabName]: count }));
 
       //? HIDE REFRESH IN PAGINATION LIST

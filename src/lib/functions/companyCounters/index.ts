@@ -76,7 +76,7 @@ export const setStatusCounter = (
   updatedCompany: RequestCompanyModel,
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
 ) => {
-  return (updatedBadge: Record<keyof RequestBadgeModel, number>) => {
+  return (updatedBadge: Partial<Record<keyof RequestBadgeModel, number>>) => {
     setCardRef?.((companies) => {
       return companies.reduce<RequestCompanyModel[]>((acc, company) => {
         if (company.id !== updatedCompany.id) {

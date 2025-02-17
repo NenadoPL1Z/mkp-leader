@@ -49,6 +49,7 @@ export interface PaginationRefs<T extends PaginationExtends> {
 }
 
 export type PaginationCallbackCounter = (
+  total: number,
   count: number,
   queryData?: PaginationConfigQuery,
 ) => void;

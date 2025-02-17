@@ -43,7 +43,7 @@ export type AMRequestsHomeProps = {
       nextTabName: RequestBadgeModelKey,
     ) => void;
     handleSetStatusCounter: (
-      updatedBadge: Record<keyof RequestBadgeModel, number>,
+      updatedBadge: Partial<Record<keyof RequestBadgeModel, number>>,
     ) => void;
   };
 };

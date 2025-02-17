@@ -47,16 +47,18 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
   const onSetUnreadCounters = (
     tabName: AMRHTopBarNamespace,
   ): PaginationCallbackCounter => {
-    return (count, queryData = []) => {
+    return (total, count, queryData = []) => {
       setCounters((prevState) => ({ ...prevState, [tabName]: count }));
 
       //? HIDE REFRESH IN PAGINATION LIST
       switch (tabName) {
         case AMRHTopBarNamespace.WORK:
           workRefs.displayRefreshRef.current?.(false);
+          company.handleSetStatusCounter({ working: total });
           break;
         case AMRHTopBarNamespace.QUALITY:
           qualityRefs.displayRefreshRef.current?.(false);
+          company.handleSetStatusCounter({ verifying: total });
           break;
         case AMRHTopBarNamespace.CLOSED:
           closedRefs.displayRefreshRef.current?.(false);
@@ -97,7 +99,7 @@ export const useAMRHTopBar = ({ company }: AMRequestsHomeProps) => {
     workRefs.resetRef.current?.(config);
     qualityRefs.resetRef.current?.(config);
     closedRefs.resetRef.current?.(config);
-    refusedRefs.displayRefreshRef.current?.(true);
+    refusedRefs.resetRef.current?.(config);
   };
 
   const onChangeSort: SortChange = (sort) => {
