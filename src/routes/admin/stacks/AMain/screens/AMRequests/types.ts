@@ -39,8 +39,8 @@ export type AMRequestsHomeProps = {
       newCounter: number,
     ) => void;
     handleUpdateStatusCounter: (
-      currentTabName: RequestBadgeModelKey,
-      nextTabName: RequestBadgeModelKey,
+      currentTabName?: RequestBadgeModelKey,
+      nextTabName?: RequestBadgeModelKey,
     ) => void;
     handleSetStatusCounter: (
       updatedBadge: Partial<Record<keyof RequestBadgeModel, number>>,

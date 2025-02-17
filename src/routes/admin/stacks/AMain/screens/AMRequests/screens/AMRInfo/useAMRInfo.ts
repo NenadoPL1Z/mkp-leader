@@ -12,7 +12,7 @@ import type { RInfoChildrenOnUpdate } from "@app/components/RequestInfo/types";
 export const useAMRInfo = ({ route }: AMRInfoScreenProps) => {
   //? PROPS
   const { params } = route;
-  const { tabName, nextTabName } = params;
+  const { tabName, nextTabName, company } = params;
   const currenTabRef = params[`${tabName}Refs`];
   const nextTabRef = nextTabName ? params[`${nextTabName}Refs`] : null;
 
@@ -114,6 +114,7 @@ export const useAMRInfo = ({ route }: AMRInfoScreenProps) => {
         },
         ...prevState,
       ]);
+      company.handleUpdateStatusCounter("verifying");
     };
   };
 

@@ -53,8 +53,8 @@ export const updateStatusCounter = (
   setCardRef: PaginationSetCardRef<RequestCompanyModel>,
 ) => {
   return (
-    currentTabName: RequestBadgeModelKey,
-    nextTabName: RequestBadgeModelKey,
+    currentTabName?: RequestBadgeModelKey,
+    nextTabName?: RequestBadgeModelKey,
   ) => {
     setCardRef?.((companies) => {
       return companies.reduce<RequestCompanyModel[]>((acc, company) => {
@@ -62,9 +62,10 @@ export const updateStatusCounter = (
           acc.push(company);
           return acc;
         }
-        const badge = company.badge;
-        if (currentTabName in badge) badge[currentTabName] -= 1;
-        if (nextTabName in badge) badge[nextTabName] += 1;
+        const badge = { ...company.badge };
+        if (currentTabName && currentTabName in badge)
+          badge[currentTabName] -= 1;
+        if (nextTabName && nextTabName in badge) badge[nextTabName] += 1;
         acc.push({ ...company, badge });
         return acc;
       }, []);
