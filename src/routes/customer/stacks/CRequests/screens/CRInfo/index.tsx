@@ -12,6 +12,7 @@ import RIContent from "@app/components/RequestInfo/components/RIContent";
 import RIExecutors from "@app/components/RequestInfo/components/RIExecutors";
 import ToastUI from "@app/ui/ToastUI";
 import { Colors } from "@app/theme/colors";
+import RIComment from "@app/components/RequestInfo/components/RIComment";
 import type { CRInfoScreenProps } from "../../types";
 
 const CRInfo = (props: CRInfoScreenProps) => {
@@ -61,6 +62,7 @@ const CRInfo = (props: CRInfoScreenProps) => {
                   media_files={data.media_files}
                 />
               </View>
+              <RIComment />
               <RIExecutors {...data} />
             </ScrollView>
             <ToastUI

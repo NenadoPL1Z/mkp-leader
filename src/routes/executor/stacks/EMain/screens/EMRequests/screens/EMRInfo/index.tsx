@@ -13,6 +13,7 @@ import RequestInfo from "@app/components/RequestInfo";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { PortalHost, PortalProvider } from "@gorhom/portal";
 import { Portal } from "@app/theme/portal";
+import RIComment from "@app/components/RequestInfo/components/RIComment";
 import EMRIMediaUploadForm from "./components/EMRIMediaUploadForm";
 import { useEMRInfo } from "./useEMRInfo";
 import type { EMRInfoScreenProps } from "@app/routes/executor/stacks/EMain/screens/EMRequests/types";
@@ -64,6 +65,7 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
                     material_availability={data.material_availability}
                     media_files={data.media_files}
                   />
+                  <RIComment />
                   <RIExecutors {...data}>
                     {isDisplayForm && (
                       <EMRIMediaUploadForm

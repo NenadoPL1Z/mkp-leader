@@ -14,6 +14,7 @@ import { Portal } from "@app/theme/portal";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { Colors } from "@app/theme/colors";
 import { useBottomOffset } from "@app/hooks/useBottomOffset";
+import RIComment from "@app/components/RequestInfo/components/RIComment";
 import { useAMRInfo } from "./useAMRInfo";
 import { styles } from "./styles";
 import AMRIClose from "./components/AMRIClose";
@@ -88,6 +89,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                     material_availability={data.material_availability}
                     media_files={data.media_files}
                   />
+                  <RIComment />
                   {isDisplayForm && (
                     <RIExecutorForm
                       {...data}
