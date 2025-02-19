@@ -9,7 +9,6 @@ import ButtonUI from "@app/ui/ButtonUI";
 import { ACTIVE_COMMENTS_BY_STATUS } from "@app/routes/screens/RIComments/constants.ts";
 import { useRIComments } from "./useRIComments.ts";
 import { styles } from "./styles.ts";
-import { COMMENT_BUTTON } from "../constants.ts";
 import type { RICommentsProps } from "./types.ts";
 
 const RIComments = ({ route: { params } }: RICommentsProps) => {
@@ -40,7 +39,7 @@ const RIComments = ({ route: { params } }: RICommentsProps) => {
         }}
       />
       <View style={[styles.bottom, { paddingBottom }]}>
-        {isActiveComments && <ButtonUI>{COMMENT_BUTTON}</ButtonUI>}
+        {isActiveComments && <ButtonUI>Оставить комментарий</ButtonUI>}
       </View>
     </ScreenContainer>
   );

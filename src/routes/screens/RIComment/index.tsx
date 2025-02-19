@@ -12,7 +12,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./styles.ts";
 import { PADDING_BOTTOM } from "./constants.ts";
 import { useRIComment } from "./useRIComment.ts";
-import { COMMENT_BUTTON } from "../constants.ts";
 
 const RIComment = () => {
   const { top, bottom } = useSafeAreaInsets();
@@ -77,7 +76,7 @@ const RIComment = () => {
               }}
             />
           )}
-          <ButtonUI onPress={onSave}>{COMMENT_BUTTON}</ButtonUI>
+          <ButtonUI onPress={onSave}>Отправить</ButtonUI>
         </View>
       </KeyboardContainer>
     </View>
