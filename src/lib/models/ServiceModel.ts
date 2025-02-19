@@ -7,7 +7,6 @@ export type ServiceId = string;
 
 // deprecated: статус "Новая" устарел
 export type ServiceStatus =
-  | "Новая"
   | "В работе"
   | "Контроль качества"
   | "Закрыта"

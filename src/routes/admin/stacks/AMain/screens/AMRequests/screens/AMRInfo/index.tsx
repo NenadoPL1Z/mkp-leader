@@ -95,6 +95,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                     onShowToast={(text1) => toast.onShowToast({ text1 })}
                     onPushToComments={(comments, handleUpdateComments) =>
                       navigation.navigate(AMRequestsSN.COMMENTS, {
+                        service: data,
                         comments,
                         handleUpdateComments,
                       })

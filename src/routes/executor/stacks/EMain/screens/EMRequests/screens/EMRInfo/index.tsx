@@ -71,6 +71,7 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
                     onShowToast={(text1) => toast.onShowToast({ text1 })}
                     onPushToComments={(comments, handleUpdateComments) =>
                       navigation.navigate(EMRequestsSN.COMMENTS, {
+                        service: data,
                         comments,
                         handleUpdateComments,
                       })

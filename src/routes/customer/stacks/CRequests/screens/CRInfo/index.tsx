@@ -68,6 +68,7 @@ const CRInfo = (props: CRInfoScreenProps) => {
                 onShowToast={(text1) => toast.onShowToast({ text1 })}
                 onPushToComments={(comments, handleUpdateComments) =>
                   navigation.navigate(CRequestsSN.COMMENTS, {
+                    service: data,
                     comments,
                     handleUpdateComments,
                   })
