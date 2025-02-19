@@ -23,10 +23,6 @@ const EMRequests = () => {
         component={EMRInfo}
       />
       <NativeStack.Screen
-        name={EMRequestsSN.INFO}
-        component={EMRInfo}
-      />
-      <NativeStack.Screen
         name={EMRequestsSN.COMMENTS}
         component={RIComments}
       />
