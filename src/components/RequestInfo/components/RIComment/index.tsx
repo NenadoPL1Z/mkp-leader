@@ -7,14 +7,22 @@ import SpinnerUI from "@app/ui/SpinnerUI";
 import ButtonUI from "@app/ui/ButtonUI";
 import { Colors } from "@app/theme/colors.ts";
 import { IS_ANDROID } from "@app/lib/constants";
+import Animated from "react-native-reanimated";
 import { styles } from "./styles.ts";
 import { useRIComment } from "./useRIComment.ts";
 import type { RICommentProps } from "./types.ts";
 
 const RIComment = (props: RICommentProps) => {
   const { onPushToComments } = props;
-  const { isLoading, hasError, comments, loadData, handleUpdateComments } =
-    useRIComment(props);
+  const {
+    opacityContent,
+    opacityLoading,
+    isLoading,
+    hasError,
+    comments,
+    loadData,
+    handleUpdateComments,
+  } = useRIComment(props);
 
   const disabled = Boolean(isLoading || hasError);
   const isDisplayLoading = Boolean(isLoading && !comments?.length);
@@ -33,13 +41,19 @@ const RIComment = (props: RICommentProps) => {
           Комментарии
         </Typography>
         {isDisplayContent && (
-          <BadgeUI
-            count={comments?.length ?? 0}
-            isZero={true}
-          />
+          <Animated.View style={{ opacity: opacityContent }}>
+            <BadgeUI
+              count={comments?.length ?? 0}
+              isZero={true}
+            />
+          </Animated.View>
         )}
       </View>
-      {isDisplayLoading && <SpinnerUI size={IS_ANDROID ? 24 : "small"} />}
+      {isDisplayLoading && (
+        <Animated.View style={{ opacity: opacityLoading }}>
+          <SpinnerUI size={IS_ANDROID ? 24 : "small"} />
+        </Animated.View>
+      )}
       {isDisplayError && (
         <ButtonUI
           variant="text"
@@ -49,7 +63,11 @@ const RIComment = (props: RICommentProps) => {
           Повторить попытку
         </ButtonUI>
       )}
-      {isDisplayContent && <ArrowDownIcon style={styles.arrowRight} />}
+      {isDisplayContent && (
+        <Animated.View style={{ opacity: opacityContent }}>
+          <ArrowDownIcon style={styles.arrowRight} />
+        </Animated.View>
+      )}
     </TouchableOpacity>
   );
 };
