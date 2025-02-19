@@ -1,3 +1,4 @@
+import type { Comments } from "@app/routes/screens/RIComments/types.ts";
 import type {
   PaginationCallbackCounter,
   PaginationRefs,
@@ -28,6 +29,7 @@ export enum AMRequestsSN {
   INFO = "Info",
   EXECUTOR = "Executor",
   COMMENT = "Comment",
+  COMMENTS = "Comments",
 }
 
 export type AMRequestsHomeProps = {
@@ -85,7 +87,7 @@ type Executor = ServicesDetailModel & {
   ) => void;
 };
 
-type Comments = {
+type Comment = {
   initialValue: string;
   onChange: (value: string) => void;
 };
@@ -94,7 +96,8 @@ export type AMRequestsSPL = {
   [AMRequestsSN.HOME]: AMRequestsHomeProps;
   [AMRequestsSN.INFO]: Info;
   [AMRequestsSN.EXECUTOR]: Executor;
-  [AMRequestsSN.COMMENT]: Comments;
+  [AMRequestsSN.COMMENT]: Comment;
+  [AMRequestsSN.COMMENTS]: Comments;
 };
 
 export type AMHomeScreenProps = NativeStackScreenProps<
@@ -111,6 +114,7 @@ export type AMRExecutorScreenProps = NativeStackScreenProps<
   AMRequestsSPL,
   AMRequestsSN.EXECUTOR
 >;
+
 export type AMRCommentScreenProps = NativeStackScreenProps<
   AMRequestsSPL,
   AMRequestsSN.COMMENT

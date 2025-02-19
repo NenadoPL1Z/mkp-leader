@@ -1,7 +1,7 @@
 import { useStatus } from "@app/hooks/useStatus";
 import { useEffect, useMemo, useState } from "react";
-import { getServiceById } from "@app/lib/api/customer/getServiceById";
 import { Response } from "@app/lib/constants/response";
+import { getServiceById } from "@app/lib/api/services/getServiceById.ts";
 import type {
   ServiceCardModel,
   ServicesDetailModel,

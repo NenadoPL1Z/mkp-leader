@@ -13,10 +13,11 @@ import RIExecutors from "@app/components/RequestInfo/components/RIExecutors";
 import ToastUI from "@app/ui/ToastUI";
 import { Colors } from "@app/theme/colors";
 import RIComment from "@app/components/RequestInfo/components/RIComment";
+import { CRequestsSN } from "../../types";
 import type { CRInfoScreenProps } from "../../types";
 
 const CRInfo = (props: CRInfoScreenProps) => {
-  const { route } = props;
+  const { route, navigation } = props;
   const { params } = route;
   const { card, counter } = params;
 
@@ -62,7 +63,16 @@ const CRInfo = (props: CRInfoScreenProps) => {
                   media_files={data.media_files}
                 />
               </View>
-              <RIComment />
+              <RIComment
+                serviceId={data.id}
+                onShowToast={(text1) => toast.onShowToast({ text1 })}
+                onPushToComments={(comments, handleUpdateComments) =>
+                  navigation.navigate(CRequestsSN.COMMENTS, {
+                    comments,
+                    handleUpdateComments,
+                  })
+                }
+              />
               <RIExecutors {...data} />
             </ScrollView>
             <ToastUI

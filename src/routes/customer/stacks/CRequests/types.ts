@@ -1,3 +1,4 @@
+import type { Comments } from "@app/routes/screens/RIComments/types.ts";
 import type {
   ServiceCardModel,
   ServicesDetailModel,
@@ -12,6 +13,7 @@ export enum CRequestsSN {
   HOME = "Home",
   INFO = "Info",
   NEW = "New",
+  COMMENTS = "Comments",
 }
 
 export type CRGeneralProps = {
@@ -52,6 +54,7 @@ export type CRequestsSPL = {
   [CRequestsSN.HOME]: undefined;
   [CRequestsSN.INFO]: Info;
   [CRequestsSN.NEW]: New;
+  [CRequestsSN.COMMENTS]: Comments;
 };
 
 export type CRHomeScreenProps = NativeStackScreenProps<

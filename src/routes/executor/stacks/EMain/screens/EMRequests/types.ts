@@ -1,3 +1,4 @@
+import type { Comments } from "@app/routes/screens/RIComments/types.ts";
 import type {
   RequestBadgeModel,
   RequestBadgeModelKey,
@@ -14,6 +15,7 @@ import type {
 export enum EMRequestsSN {
   HOME = "Home",
   INFO = "Info",
+  COMMENTS = "Comments",
 }
 
 export type EMRequestsHomeProps = {
@@ -56,6 +58,7 @@ type Info = EMRHGeneralProps & {
 export type EMRequestsSPL = {
   [EMRequestsSN.HOME]: EMRequestsHomeProps;
   [EMRequestsSN.INFO]: Info;
+  [EMRequestsSN.COMMENTS]: Comments;
 };
 
 export type EMRHomeScreenProps = NativeStackScreenProps<

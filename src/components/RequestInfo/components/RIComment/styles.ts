@@ -29,4 +29,9 @@ export const styles = StyleSheet.create({
   arrowRight: {
     transform: [{ rotate: "-90deg" }],
   },
+  buttonStyles: {
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    minHeight: 0,
+  },
 });

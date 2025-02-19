@@ -1,11 +1,12 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { nativeScreenOptions } from "@app/lib/constants/screen";
+import RIComments from "@app/routes/screens/RIComments";
 import { AMRequestsSN } from "./types";
 import AMRHome from "./screens/AMRHome";
 import AMRInfo from "./screens/AMRInfo";
 import AMRExecutor from "./screens/AMRExecutor";
-import AMRComments from "./screens/AMRComment";
+import AMRComment from "./screens/AMRComment";
 import type { AMRequestsSPL } from "./types";
 
 const NativeStack = createNativeStackNavigator<AMRequestsSPL>();
@@ -29,7 +30,11 @@ const AMRequests = () => {
       />
       <NativeStack.Screen
         name={AMRequestsSN.COMMENT}
-        component={AMRComments}
+        component={AMRComment}
+      />
+      <NativeStack.Screen
+        name={AMRequestsSN.COMMENTS}
+        component={RIComments}
       />
     </NativeStack.Navigator>
   );

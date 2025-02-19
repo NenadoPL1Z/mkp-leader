@@ -19,10 +19,11 @@ import { useAMRInfo } from "./useAMRInfo";
 import { styles } from "./styles";
 import AMRIClose from "./components/AMRIClose";
 import AMRIRefuse from "./components/AMRIRefuse";
+import { AMRequestsSN } from "../../types";
 import type { AMRInfoScreenProps } from "../../types";
 
 const AMRInfo = (props: AMRInfoScreenProps) => {
-  const { route } = props;
+  const { route, navigation } = props;
   const { params } = route;
   const { card, counter, tabName } = params;
 
@@ -89,7 +90,16 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                     material_availability={data.material_availability}
                     media_files={data.media_files}
                   />
-                  <RIComment />
+                  <RIComment
+                    serviceId={data.id}
+                    onShowToast={(text1) => toast.onShowToast({ text1 })}
+                    onPushToComments={(comments, handleUpdateComments) =>
+                      navigation.navigate(AMRequestsSN.COMMENTS, {
+                        comments,
+                        handleUpdateComments,
+                      })
+                    }
+                  />
                   {isDisplayForm && (
                     <RIExecutorForm
                       {...data}

@@ -45,6 +45,7 @@ export const Api = {
       `services/status/${state}/${id}`,
     getCustomerStatusService: (state: StateService) =>
       `services/customer/status/${state}`,
+    comments: (id: ServiceId) => `/services/comments/${id}`,
   },
   media: {
     getImage: (id: string) => `/media/image/${id}`,

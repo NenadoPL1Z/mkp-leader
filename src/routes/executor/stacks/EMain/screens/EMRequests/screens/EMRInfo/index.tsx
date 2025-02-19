@@ -16,10 +16,11 @@ import { Portal } from "@app/theme/portal";
 import RIComment from "@app/components/RequestInfo/components/RIComment";
 import EMRIMediaUploadForm from "./components/EMRIMediaUploadForm";
 import { useEMRInfo } from "./useEMRInfo";
+import { EMRequestsSN } from "../../types";
 import type { EMRInfoScreenProps } from "@app/routes/executor/stacks/EMain/screens/EMRequests/types";
 
 const EMRInfo = (props: EMRInfoScreenProps) => {
-  const { route } = props;
+  const { route, navigation } = props;
   const { params } = route;
   const { tabName, card, counter } = params;
 
@@ -65,7 +66,16 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
                     material_availability={data.material_availability}
                     media_files={data.media_files}
                   />
-                  <RIComment />
+                  <RIComment
+                    serviceId={data.id}
+                    onShowToast={(text1) => toast.onShowToast({ text1 })}
+                    onPushToComments={(comments, handleUpdateComments) =>
+                      navigation.navigate(EMRequestsSN.COMMENTS, {
+                        comments,
+                        handleUpdateComments,
+                      })
+                    }
+                  />
                   <RIExecutors {...data}>
                     {isDisplayForm && (
                       <EMRIMediaUploadForm
