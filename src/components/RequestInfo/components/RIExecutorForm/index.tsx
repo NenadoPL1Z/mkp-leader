@@ -1,7 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import TextField from "@app/ui/TextField";
-import TextAreaUI from "@app/ui/TextAreaUI/TextAreaUI";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import DatePickerUI from "@app/ui/DatePickerUI";
 import ButtonUI from "@app/ui/ButtonUI";
@@ -31,12 +30,10 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
     executorDefaultController,
     executorAdditionalController,
     deadlineAtController,
-    commentController,
     emergencyController,
     customPositionController,
     handlePushExecutorDefaultScreen,
     handlePushExecutorAdditionalScreen,
-    handlePushCommentScreen,
     handleClearStatus,
     onSubmit,
     toast,
@@ -91,22 +88,6 @@ const RIExecutorForm = (props: RIExecutorFormProps) => {
               pickerProps={{ mode: "date", minimumDate: new Date() }}
             />
           </View>
-          <TouchableOpacity
-            style={styles.item}
-            onPress={handlePushCommentScreen}>
-            <TextAreaUI
-              disabled={true}
-              style={styles.pointer}
-              inputStyle={styles.textArea}
-              label="Комментарий"
-              autoCorrect={true}
-              autoCapitalize="none"
-              numberOfLines={undefined}
-              value={commentController.field.value}
-              onChangeText={commentController.field.onChange}
-              onClear={() => commentController.field.onChange("")}
-            />
-          </TouchableOpacity>
           <View style={styles.item}>
             <CheckBoxUI
               title="Заказная позиция"

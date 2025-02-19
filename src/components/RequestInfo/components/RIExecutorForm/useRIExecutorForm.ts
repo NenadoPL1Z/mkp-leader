@@ -5,7 +5,6 @@ import { Response } from "@app/lib/constants/response";
 import { useStatus } from "@app/hooks/useStatus";
 import { fetchServicesAssign } from "@app/lib/api/services/assign";
 import { useToastLocal } from "@app/hooks/useToastLocal";
-import { Count } from "@app/lib/constants/count";
 import {
   FIRST_EXECUTOR_NAME,
   FIRST_EXECUTOR_NAME_SELECT,
@@ -24,7 +23,6 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
     executor_default,
     executor_additional,
     deadline_at,
-    comment,
     custom_position,
     emergency,
     onAssignExecutor,
@@ -47,7 +45,6 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
       executor_default: executor_default,
       executor_additional: executor_additional,
       deadline_at: deadline_at ?? "",
-      comment: comment ?? "",
       emergency: emergency ?? false,
       custom_position: custom_position ?? false,
     },
@@ -70,14 +67,6 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
   const deadlineAtController = useController({
     control,
     name: "deadline_at",
-  });
-
-  const commentController = useController({
-    control,
-    name: "comment",
-    rules: {
-      maxLength: { value: Count.DESCRIPTION, message: "" },
-    },
   });
 
   const customPositionController = useController({
@@ -124,13 +113,6 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
     });
   };
 
-  const handlePushCommentScreen = () => {
-    navigation.navigate(AMRequestsSN.COMMENT, {
-      initialValue: commentController.field.value,
-      onChange: commentController.field.onChange,
-    });
-  };
-
   const onSubmit = handleSubmit(
     (data) => {
       handleLoadingStatus();
@@ -142,7 +124,6 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
         deadline_at: data.deadline_at
           ? new Date(data.deadline_at).toISOString()
           : null,
-        comment: data.comment,
         emergency: data.emergency,
         custom_position: data.custom_position,
         is_edit: tabName === "quality",
@@ -167,10 +148,6 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
         onShowToast({ text1: `Выберите ${FIRST_EXECUTOR_NAME_SELECT}` });
         return;
       }
-      if (errors.comment?.type === "maxLength") {
-        onShowToast({ text1: "Слишком большой комментарий" });
-        return;
-      }
       onShowToast({ text1: Response.UNKNOWN });
     },
   );
@@ -181,12 +158,10 @@ export const useRIExecutorForm = (props: RIExecutorFormProps) => {
     executorDefaultController,
     executorAdditionalController,
     deadlineAtController,
-    commentController,
     customPositionController,
     emergencyController,
     handlePushExecutorDefaultScreen,
     handlePushExecutorAdditionalScreen,
-    handlePushCommentScreen,
     handleClearStatus,
     onSubmit,
     toast,

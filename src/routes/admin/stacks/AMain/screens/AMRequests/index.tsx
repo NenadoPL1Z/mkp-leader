@@ -6,7 +6,6 @@ import { AMRequestsSN } from "./types";
 import AMRHome from "./screens/AMRHome";
 import AMRInfo from "./screens/AMRInfo";
 import AMRExecutor from "./screens/AMRExecutor";
-import AMRComment from "./screens/AMRComment";
 import type { AMRequestsSPL } from "./types";
 
 const NativeStack = createNativeStackNavigator<AMRequestsSPL>();
@@ -27,10 +26,6 @@ const AMRequests = () => {
       <NativeStack.Screen
         name={AMRequestsSN.EXECUTOR}
         component={AMRExecutor}
-      />
-      <NativeStack.Screen
-        name={AMRequestsSN.COMMENT}
-        component={AMRComment}
       />
       <NativeStack.Screen
         name={AMRequestsSN.COMMENTS}

@@ -87,16 +87,10 @@ type Executor = ServicesDetailModel & {
   ) => void;
 };
 
-type Comment = {
-  initialValue: string;
-  onChange: (value: string) => void;
-};
-
 export type AMRequestsSPL = {
   [AMRequestsSN.HOME]: AMRequestsHomeProps;
   [AMRequestsSN.INFO]: Info;
   [AMRequestsSN.EXECUTOR]: Executor;
-  [AMRequestsSN.COMMENT]: Comment;
   [AMRequestsSN.COMMENTS]: Comments;
 };
 
@@ -113,9 +107,4 @@ export type AMRInfoScreenProps = NativeStackScreenProps<
 export type AMRExecutorScreenProps = NativeStackScreenProps<
   AMRequestsSPL,
   AMRequestsSN.EXECUTOR
->;
-
-export type AMRCommentScreenProps = NativeStackScreenProps<
-  AMRequestsSPL,
-  AMRequestsSN.COMMENT
 >;
