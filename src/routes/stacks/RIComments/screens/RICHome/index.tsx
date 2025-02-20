@@ -9,6 +9,7 @@ import ButtonUI from "@app/ui/ButtonUI";
 import RefreshControlUI from "@app/ui/RefreshControlUI";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import { CommentIcon } from "@app/assets/icons/dist";
+import { Colors } from "@app/theme/colors.ts";
 import { ACTIVE_COMMENTS_BY_STATUS } from "./constants.ts";
 import { useRICHome } from "./useRICHome.ts";
 import { styles } from "./styles.ts";
@@ -63,7 +64,7 @@ const RICHome = (props: RICHomeScreenProps) => {
         ListEmptyComponent={() => (
           <EmptyContainer
             title="Комментарии отсутствуют"
-            Icon={CommentIcon}
+            Icon={() => <CommentIcon color={Colors.GRAY_TEN} />}
           />
         )}
         keyExtractor={(item) => `${item.id}`}

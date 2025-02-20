@@ -1,5 +1,8 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { ServicesDetailModel } from "@app/lib/models/ServiceModel.ts";
+import type {
+  ServiceId,
+  ServicesDetailModel,
+} from "@app/lib/models/ServiceModel.ts";
 import type { CommentModel } from "@app/lib/models/CommentModel.ts";
 
 export enum RICommentsSN {
@@ -14,7 +17,8 @@ export type RICHomeProps = {
 };
 
 export type RICAddCommentProps = {
-  refreshComments: () => void;
+  serviceId: ServiceId;
+  refreshComments: (callback?: () => void) => void;
 };
 
 export type RICommentsSPL = {

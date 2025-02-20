@@ -45,7 +45,10 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
   };
 
   const handlePushAddComment = () => {
-    navigation.navigate(RICommentsSN.ADD_COMMENT, { refreshComments: refresh });
+    navigation.navigate(RICommentsSN.ADD_COMMENT, {
+      serviceId: service.id,
+      refreshComments: refresh,
+    });
   };
 
   useEffect(() => {

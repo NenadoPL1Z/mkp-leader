@@ -11,22 +11,24 @@ import ToastUI from "@app/ui/ToastUI";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./styles.ts";
 import { PADDING_BOTTOM } from "./constants.ts";
-import { useRICAddComment } from "./useRICAddComment.ts";
-// import type { RICAddCommentScreenProps } from "../../types.ts";
+import { useRICAddComment, useKeyboardHeight } from "./hooks";
+import type { RICAddCommentScreenProps } from "../../types.ts";
 
-const RICAddComment = () => {
+const RICAddComment = (props: RICAddCommentScreenProps) => {
   const { top, bottom } = useSafeAreaInsets();
+
   const {
-    value,
     inputRef,
-    isMax,
+    isLoading,
+    comment,
     toast,
-    keyboardHeight,
-    onChangeText,
-    onClear,
-    onSave,
-    setToast,
-  } = useRICAddComment();
+    isMax,
+    setComment,
+    onHideToast,
+    handleSubmit,
+  } = useRICAddComment(props);
+
+  const keyboardHeight = useKeyboardHeight();
 
   return (
     <View
@@ -38,7 +40,7 @@ const RICAddComment = () => {
         <HeaderUI
           right={{
             variant: "text",
-            subtitle: `${value.length} / ${Count.DESCRIPTION}`,
+            subtitle: `${comment.length} / ${Count.DESCRIPTION}`,
             subtitleColor: isMax ? Colors.ERROR : Colors.GRAY_SEVEN,
           }}
         />
@@ -55,9 +57,9 @@ const RICAddComment = () => {
             autoCorrect={true}
             autoCapitalize="none"
             numberOfLines={undefined}
-            value={value}
-            onChangeText={onChangeText}
-            onClear={onClear}
+            value={comment}
+            onChangeText={setComment}
+            onClear={() => setComment("")}
           />
         </View>
         <View
@@ -70,14 +72,18 @@ const RICAddComment = () => {
           {Boolean(toast) && (
             <ToastUI
               params={{
-                text1: toast,
-                isVisible: true,
-                onHide: () => setToast(""),
+                ...toast,
+                isVisible: !!toast,
+                onHide: onHideToast,
                 bottomOffset: Size.BUTTON + 20,
               }}
             />
           )}
-          <ButtonUI onPress={onSave}>Отправить</ButtonUI>
+          <ButtonUI
+            loading={isLoading}
+            onPress={handleSubmit}>
+            Отправить
+          </ButtonUI>
         </View>
       </KeyboardContainer>
     </View>
