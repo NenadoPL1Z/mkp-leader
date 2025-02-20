@@ -13,6 +13,7 @@ import RIExecutors from "@app/components/RequestInfo/components/RIExecutors";
 import ToastUI from "@app/ui/ToastUI";
 import { Colors } from "@app/theme/colors";
 import RIComment from "@app/components/RequestInfo/components/RIComment";
+import { RICommentsSN } from "@app/routes/stacks/RIComments/types.ts";
 import { CRequestsSN } from "../../types";
 import type { CRInfoScreenProps } from "../../types";
 
@@ -68,9 +69,12 @@ const CRInfo = (props: CRInfoScreenProps) => {
                 onShowToast={(text1) => toast.onShowToast({ text1 })}
                 onPushToComments={(comments, handleUpdateComments) =>
                   navigation.navigate(CRequestsSN.COMMENTS, {
-                    service: data,
-                    comments,
-                    handleUpdateComments,
+                    screen: RICommentsSN.HOME,
+                    params: {
+                      service: data,
+                      comments,
+                      handleUpdateComments,
+                    },
                   })
                 }
               />

@@ -1,4 +1,4 @@
-import type { Comments } from "@app/routes/screens/RIComments/types.ts";
+import type { RICommentsSPL } from "@app/routes/stacks/RIComments/types.ts";
 import type {
   PaginationCallbackCounter,
   PaginationRefs,
@@ -23,6 +23,7 @@ import type {
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { Nullable } from "@app/types/general.ts";
 import type { ToastShowParams } from "react-native-toast-message";
+import type { NavigatorScreenParams } from "@react-navigation/native";
 
 export enum AMRequestsSN {
   HOME = "Home",
@@ -91,7 +92,7 @@ export type AMRequestsSPL = {
   [AMRequestsSN.HOME]: AMRequestsHomeProps;
   [AMRequestsSN.INFO]: Info;
   [AMRequestsSN.EXECUTOR]: Executor;
-  [AMRequestsSN.COMMENTS]: Comments;
+  [AMRequestsSN.COMMENTS]: NavigatorScreenParams<RICommentsSPL>;
 };
 
 export type AMHomeScreenProps = NativeStackScreenProps<

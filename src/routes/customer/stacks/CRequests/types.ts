@@ -1,4 +1,3 @@
-import type { Comments } from "@app/routes/screens/RIComments/types.ts";
 import type {
   ServiceCardModel,
   ServicesDetailModel,
@@ -8,6 +7,8 @@ import type {
   PaginationRefs,
 } from "@app/components/PaginationList/types";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { NavigatorScreenParams } from "@react-navigation/native";
+import type { RICommentsSPL } from "@app/routes/stacks/RIComments/types.ts";
 
 export enum CRequestsSN {
   HOME = "Home",
@@ -54,7 +55,7 @@ export type CRequestsSPL = {
   [CRequestsSN.HOME]: undefined;
   [CRequestsSN.INFO]: Info;
   [CRequestsSN.NEW]: New;
-  [CRequestsSN.COMMENTS]: Comments;
+  [CRequestsSN.COMMENTS]: NavigatorScreenParams<RICommentsSPL>;
 };
 
 export type CRHomeScreenProps = NativeStackScreenProps<

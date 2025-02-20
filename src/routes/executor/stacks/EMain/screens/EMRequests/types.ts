@@ -1,4 +1,3 @@
-import type { Comments } from "@app/routes/screens/RIComments/types.ts";
 import type {
   RequestBadgeModel,
   RequestBadgeModelKey,
@@ -11,6 +10,8 @@ import type {
   PaginationCallbackCounter,
   PaginationRefs,
 } from "@app/components/PaginationList/types";
+import type { NavigatorScreenParams } from "@react-navigation/native";
+import type { RICommentsSPL } from "@app/routes/stacks/RIComments/types.ts";
 
 export enum EMRequestsSN {
   HOME = "Home",
@@ -58,7 +59,7 @@ type Info = EMRHGeneralProps & {
 export type EMRequestsSPL = {
   [EMRequestsSN.HOME]: EMRequestsHomeProps;
   [EMRequestsSN.INFO]: Info;
-  [EMRequestsSN.COMMENTS]: Comments;
+  [EMRequestsSN.COMMENTS]: NavigatorScreenParams<RICommentsSPL>;
 };
 
 export type EMRHomeScreenProps = NativeStackScreenProps<

@@ -14,6 +14,7 @@ import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { PortalHost, PortalProvider } from "@gorhom/portal";
 import { Portal } from "@app/theme/portal";
 import RIComment from "@app/components/RequestInfo/components/RIComment";
+import { RICommentsSN } from "@app/routes/stacks/RIComments/types.ts";
 import EMRIMediaUploadForm from "./components/EMRIMediaUploadForm";
 import { useEMRInfo } from "./useEMRInfo";
 import { EMRequestsSN } from "../../types";
@@ -71,9 +72,12 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
                     onShowToast={(text1) => toast.onShowToast({ text1 })}
                     onPushToComments={(comments, handleUpdateComments) =>
                       navigation.navigate(EMRequestsSN.COMMENTS, {
-                        service: data,
-                        comments,
-                        handleUpdateComments,
+                        screen: RICommentsSN.HOME,
+                        params: {
+                          service: data,
+                          comments,
+                          handleUpdateComments,
+                        },
                       })
                     }
                   />

@@ -15,6 +15,7 @@ import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { Colors } from "@app/theme/colors";
 import { useBottomOffset } from "@app/hooks/useBottomOffset";
 import RIComment from "@app/components/RequestInfo/components/RIComment";
+import { RICommentsSN } from "@app/routes/stacks/RIComments/types.ts";
 import { useAMRInfo } from "./useAMRInfo";
 import { styles } from "./styles";
 import AMRIClose from "./components/AMRIClose";
@@ -95,9 +96,12 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                     onShowToast={(text1) => toast.onShowToast({ text1 })}
                     onPushToComments={(comments, handleUpdateComments) =>
                       navigation.navigate(AMRequestsSN.COMMENTS, {
-                        service: data,
-                        comments,
-                        handleUpdateComments,
+                        screen: RICommentsSN.HOME,
+                        params: {
+                          service: data,
+                          comments,
+                          handleUpdateComments,
+                        },
                       })
                     }
                   />
