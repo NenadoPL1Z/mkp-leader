@@ -7,6 +7,8 @@ import ToastUI from "@app/ui/ToastUI";
 import { Size } from "@app/lib/constants/size.ts";
 import ButtonUI from "@app/ui/ButtonUI";
 import RefreshControlUI from "@app/ui/RefreshControlUI";
+import EmptyContainer from "@app/containers/EmptyContainer";
+import { CommentIcon } from "@app/assets/icons/dist";
 import { ACTIVE_COMMENTS_BY_STATUS } from "./constants.ts";
 import { useRICHome } from "./useRICHome.ts";
 import { styles } from "./styles.ts";
@@ -58,6 +60,12 @@ const RICHome = (props: RICHomeScreenProps) => {
         style={styles.container}
         contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={() => (
+          <EmptyContainer
+            title="Комментарии отсутствуют"
+            Icon={CommentIcon}
+          />
+        )}
         keyExtractor={(item) => `${item.id}`}
         renderItem={renderItem}
         data={comments}
