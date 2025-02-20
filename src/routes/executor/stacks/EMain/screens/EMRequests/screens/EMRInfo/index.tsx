@@ -75,8 +75,8 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
                         screen: RICommentsSN.HOME,
                         params: {
                           service: data,
-                          comments,
-                          handleUpdateComments,
+                          initialComments: comments,
+                          handleUpdateInitialComments: handleUpdateComments,
                         },
                       })
                     }

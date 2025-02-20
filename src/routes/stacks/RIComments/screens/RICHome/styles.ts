@@ -4,7 +4,12 @@ import { Colors } from "@app/theme/colors.ts";
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  contentContainerStyle: {
     flexGrow: 1,
+    paddingLeft: Size.SCREEN_PADDING,
+    paddingRight: Size.SCREEN_PADDING,
   },
   bottom: {
     flex: 0,

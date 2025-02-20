@@ -72,8 +72,8 @@ const CRInfo = (props: CRInfoScreenProps) => {
                     screen: RICommentsSN.HOME,
                     params: {
                       service: data,
-                      comments,
-                      handleUpdateComments,
+                      initialComments: comments,
+                      handleUpdateInitialComments: handleUpdateComments,
                     },
                   })
                 }

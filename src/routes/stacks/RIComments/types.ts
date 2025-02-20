@@ -9,12 +9,12 @@ export enum RICommentsSN {
 
 export type RICHomeProps = {
   service: ServicesDetailModel;
-  comments: CommentModel[];
-  handleUpdateComments: (comments: CommentModel[]) => void;
+  initialComments: CommentModel[];
+  handleUpdateInitialComments: (comments: CommentModel[]) => void;
 };
 
 export type RICAddCommentProps = {
-  handleUpdateComments: (comments: CommentModel[]) => void;
+  refreshComments: () => void;
 };
 
 export type RICommentsSPL = {

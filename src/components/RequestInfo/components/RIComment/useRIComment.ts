@@ -24,7 +24,7 @@ export const useRIComment = ({ serviceId, onShowToast }: RICommentProps) => {
     setComments(updatedComments);
   };
 
-  const loadData = async () => {
+  const refresh = async () => {
     try {
       handleLoadingStatus();
       const comments = await getServiceCommentsById(serviceId);
@@ -36,14 +36,12 @@ export const useRIComment = ({ serviceId, onShowToast }: RICommentProps) => {
       }, DURATION);
     } catch {
       handleErrorStatus(Response.UNKNOWN);
-      onShowToast(
-        "Ошибка при попытке получения комментариев! Попробуйте еще раз или повторите позже.",
-      );
+      onShowToast(Response.COMMENTS);
     }
   };
 
   useEffect(() => {
-    loadData();
+    refresh();
   }, []);
 
   return {
@@ -52,7 +50,7 @@ export const useRIComment = ({ serviceId, onShowToast }: RICommentProps) => {
     isLoading,
     hasError,
     comments,
-    loadData,
+    refresh,
     handleUpdateComments,
   };
 };

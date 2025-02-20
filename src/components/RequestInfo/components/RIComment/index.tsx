@@ -20,7 +20,7 @@ const RIComment = (props: RICommentProps) => {
     isLoading,
     hasError,
     comments,
-    loadData,
+    refresh,
     handleUpdateComments,
   } = useRIComment(props);
 
@@ -59,7 +59,7 @@ const RIComment = (props: RICommentProps) => {
           variant="text"
           titleStyle={{ color: Colors.ERROR }}
           buttonStyle={styles.buttonStyles}
-          onPress={() => loadData()}>
+          onPress={refresh}>
           Повторить попытку
         </ButtonUI>
       )}
