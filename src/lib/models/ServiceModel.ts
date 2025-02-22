@@ -39,7 +39,6 @@ export type ServicesDetailModel = {
   created_at: string;
   deadline_at: Nullable<string>;
   status: ServiceStatus;
-  comment: Nullable<string>;
   customer_id: string;
   customer: CustomerDetailModel;
   media_files: Nullable<MediaFilesArr>;
