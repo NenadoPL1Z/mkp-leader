@@ -4,7 +4,6 @@ import AvatarUI from "@app/ui/AvatarUI";
 import Typography from "@app/ui/Typography";
 import { Font } from "@app/theme/font";
 import BadgeUI from "@app/ui/BadgeUI";
-import { Colors } from "@app/theme/colors.ts";
 import { styles } from "./styles";
 import type { AboutCardProps } from "./types";
 
@@ -24,6 +23,7 @@ const AboutCard = ({
 }: AboutCardProps) => {
   return (
     <TouchableOpacity
+      disabled={!onPress}
       onPress={onPress}
       style={[
         styles.root,
@@ -60,39 +60,6 @@ const AboutCard = ({
           {subtitle}
         </Typography>
       </View>
-      {!!badge && (
-        <View style={styles.badgeContainer}>
-          <View style={styles.rightTopRight}>
-            <Typography
-              variant="h4"
-              fontSize={12}
-              lineHeight={14}
-              color={Colors.GRAY_SIX}>
-              В работе -
-            </Typography>
-            <BadgeUI
-              count={badge.working}
-              isZero={true}
-              typographyStyles={{ fontSize: 15 }}
-            />
-          </View>
-          <View style={styles.rightTopRight}>
-            <Typography
-              variant="h4"
-              fontSize={12}
-              lineHeight={14}
-              color={Colors.GRAY_SIX}>
-              Контроль качества -
-            </Typography>
-            <BadgeUI
-              count={badge.verifying}
-              isZero={true}
-              backgroundColor={Colors.GRAY_TWO}
-              typographyStyles={{ fontSize: 15 }}
-            />
-          </View>
-        </View>
-      )}
       {children && <View style={styles.children}>{children}</View>}
     </TouchableOpacity>
   );

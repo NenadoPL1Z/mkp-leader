@@ -2,11 +2,12 @@ import { getUppercaseFirstLetter } from "@app/lib/functions/getUppercaseFirstLet
 import { useMemo } from "react";
 import { Font } from "@app/theme/font";
 import { Colors, colorsAvatar } from "@app/theme/colors";
+import { DEFAULT_SIZE } from "./constants.ts";
 import type { AvatarProps } from "@rneui/themed";
 import type { AvatarUIProps } from "@app/ui/AvatarUI/types";
 
 export const useAvatarUI = ({
-  size,
+  size = DEFAULT_SIZE,
   name,
   phone = "0",
   isDefault,

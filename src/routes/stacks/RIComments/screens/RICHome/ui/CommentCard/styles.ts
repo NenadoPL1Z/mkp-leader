@@ -3,9 +3,19 @@ import { Colors } from "@app/theme/colors.ts";
 
 export const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: Colors.GRAY,
-    borderRadius: 10,
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 10,
+  },
+  shadow: {
+    backgroundColor: Colors.WHITE,
+    shadowColor: Colors.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.2,
+    elevation: 4,
   },
   myComment: {
     alignSelf: "flex-end",
@@ -14,9 +24,7 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   comment: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderColor: Colors.GRAY,
+    marginBottom: 15,
   },
   createdAt: {
     alignSelf: "flex-end",

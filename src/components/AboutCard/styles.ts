@@ -48,19 +48,8 @@ export const styles = StyleSheet.create({
   rightTopMiddle: {
     flex: 1,
   },
-  rightTopRight: {
-    gap: 4,
-    flexDirection: "row",
-    alignItems: "center",
-  },
   children: {
     flex: 0,
     marginLeft: 8,
-  },
-  badgeContainer: {
-    gap: 5,
-    marginLeft: 8,
-    flexDirection: "column",
-    alignItems: "flex-end",
   },
 });

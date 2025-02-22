@@ -8,7 +8,7 @@ export type AboutCardProps = {
   title: string;
   subtitle: string;
   avatar: AvatarUIProps;
-  onPress: () => void;
+  onPress?: () => void;
   badge?: RequestBadgeModel;
   marginBottom?: number;
   children?: ReactNode;

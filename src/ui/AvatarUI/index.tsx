@@ -3,10 +3,11 @@ import React from "react";
 import { Avatar } from "@rneui/base";
 import { AvatarDefaultIcon } from "@app/assets/icons/dist";
 import { useAvatarUI } from "./useAvatarUI";
+import { DEFAULT_SIZE } from "./constants.ts";
 import type { AvatarUIProps } from "./types";
 
 const AvatarUI = (props: AvatarUIProps) => {
-  const { size, isDefault, avatarProps = {} } = props;
+  const { size = DEFAULT_SIZE, isDefault, avatarProps = {} } = props;
   const { moreAvatarProps, backgroundColor } = useAvatarUI(props);
 
   if (isDefault) {

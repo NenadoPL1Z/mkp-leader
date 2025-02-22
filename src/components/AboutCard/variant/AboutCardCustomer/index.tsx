@@ -20,7 +20,6 @@ const AboutCardCustomer = (props: Props) => {
       avatar={{
         name: customer_company.name,
         phone: `${customer_company.id}`,
-        size: 40,
         isDefault: true,
       }}
       onPress={() => onPress(props)}>
