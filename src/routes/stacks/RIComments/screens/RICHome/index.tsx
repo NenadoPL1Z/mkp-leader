@@ -52,7 +52,6 @@ const RICHome = (props: RICHomeScreenProps) => {
   );
 
   const isActiveComments = ACTIVE_COMMENTS_BY_STATUS.has(service.status);
-  const bottomOffset = isActiveComments ? 50 : 0;
   return (
     <ScreenContainer
       top={top}
@@ -89,15 +88,15 @@ const RICHome = (props: RICHomeScreenProps) => {
           ...toast,
           isVisible: !!toast,
           onHide: onHideToast,
-          bottomOffset: Size.BUTTON + bottomOffset,
+          bottomOffset: Size.BUTTON + 50,
         }}
       />
       <View style={[styles.bottom, { paddingBottom }]}>
-        {isActiveComments && (
-          <ButtonUI onPress={handlePushAddComment}>
-            Оставить комментарий
-          </ButtonUI>
-        )}
+        <ButtonUI
+          disabled={!isActiveComments}
+          onPress={handlePushAddComment}>
+          {isActiveComments ? "Оставить комментарий" : "Комментарии закрыты"}
+        </ButtonUI>
       </View>
     </ScreenContainer>
   );
