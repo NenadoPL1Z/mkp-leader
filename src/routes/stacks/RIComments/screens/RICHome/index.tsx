@@ -66,7 +66,8 @@ const RICHome = (props: RICHomeScreenProps) => {
         }}
         style={styles.container}
         contentContainerStyle={styles.contentContainerStyle}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
+        showsHorizontalScrollIndicator={false}
         ListEmptyComponent={() => (
           <EmptyContainer
             title="Комментарии отсутствуют"

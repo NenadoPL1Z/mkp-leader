@@ -30,22 +30,12 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
     setComments(comments);
   };
 
-  const handleSuccessPublish = () => {
-    setTimeout(() => {
-      onShowToast({ text1: "Комментарий успешно опубликован" });
-    }, Timing.KEYBOARD_OPEN);
-  };
-
   const refresh = async (callback?: () => void) => {
     try {
       handleLoadingStatus();
       const comments = await getServiceCommentsById(service.id);
       handleUpdateComments(comments);
       handleClearStatus();
-      // callback передается только с экрана RICAddComment
-      // Если дошли до этого этапа, то комментарий опубликовался
-      if (callback) handleSuccessPublish();
-      scrollRef.current?.scrollToEnd();
     } catch {
       handleErrorStatus(Response.UNKNOWN);
       onShowToast({ text1: Response.COMMENTS });
@@ -64,6 +54,13 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
   useEffect(() => {
     refresh();
   }, []);
+
+  useEffect(() => {
+    if (!comments || !scrollRef.current) return;
+    setTimeout(() => {
+      scrollRef.current?.scrollToEnd({ animated: false });
+    }, Timing.SCROLL_TO_BOTTOM);
+  }, [comments]);
 
   return {
     scrollRef,
