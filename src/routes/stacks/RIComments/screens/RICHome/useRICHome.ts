@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { getServiceCommentsById } from "@app/lib/api/services/getServiceCommentsById.ts";
 import { Response } from "@app/lib/constants/response.ts";
 import { useStatus } from "@app/hooks/useStatus.ts";
+import { Timing } from "@app/lib/constants/timing.ts";
 import type { RICHomeScreenProps } from "@app/routes/stacks/RIComments/types.ts";
 import type { CommentModel } from "@app/lib/models/CommentModel.ts";
 import type { FlatList } from "react-native";
@@ -29,12 +30,21 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
     setComments(comments);
   };
 
+  const handleSuccessPublish = () => {
+    setTimeout(() => {
+      onShowToast({ text1: "Комментарий успешно опубликован" });
+    }, Timing.KEYBOARD_OPEN);
+  };
+
   const refresh = async (callback?: () => void) => {
     try {
       handleLoadingStatus();
       const comments = await getServiceCommentsById(service.id);
       handleUpdateComments(comments);
       handleClearStatus();
+      // callback передается только с экрана RICAddComment
+      // Если дошли до этого этапа, то комментарий опубликовался
+      if (callback) handleSuccessPublish();
       scrollRef.current?.scrollToEnd();
     } catch {
       handleErrorStatus(Response.UNKNOWN);
