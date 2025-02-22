@@ -9,7 +9,7 @@ export const CommentCard = ({
   created_at,
   isMy,
 }: CommentCardProps) => {
-  const date = new Date(created_at).toLocaleString();
+  const localeDate = new Date(created_at).toLocaleString();
   const align = isMy ? styles.myComment : styles.otherComment;
   return (
     <View style={[styles.container, styles.shadow, align]}>
@@ -30,7 +30,7 @@ export const CommentCard = ({
       <Typography
         fontSize={12}
         lineHeight={12}>
-        {date}
+        {localeDate}
       </Typography>
     </View>
   );

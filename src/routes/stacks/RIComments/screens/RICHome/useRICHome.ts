@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { getServiceCommentsById } from "@app/lib/api/services/getServiceCommentsById.ts";
 import { Response } from "@app/lib/constants/response.ts";
 import { useStatus } from "@app/hooks/useStatus.ts";
+import { useAppState } from "@app/hooks/useAppState.ts";
 import type { RICHomeScreenProps } from "@app/routes/stacks/RIComments/types.ts";
 import type { CommentModel } from "@app/lib/models/CommentModel.ts";
 
 export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
   const { service, initialComments, handleUpdateInitialComments } =
     route.params;
+  const { isActive } = useAppState();
 
   const [comments, setComments] = useState<CommentModel[]>(initialComments);
   const {
@@ -47,8 +49,9 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
   };
 
   useEffect(() => {
+    if (!isActive) return;
     refresh();
-  }, []);
+  }, [isActive]);
 
   return {
     toast,
