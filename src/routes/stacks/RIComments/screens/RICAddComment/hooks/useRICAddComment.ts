@@ -17,7 +17,7 @@ export const useRICAddComment = ({
 
   const [comment, setComment] = useState("");
   const isMax = comment.length > Count.DESCRIPTION;
-  const isInvalid = !comment.trim().length && isMax;
+  const isInvalid = !comment.trim().length || isMax;
 
   const {
     isLoading,
@@ -45,7 +45,9 @@ export const useRICAddComment = ({
   const handleSubmit = () => {
     if (isInvalid) {
       onShowToast({
-        text1: `Максимальное количество символов ${Count.DESCRIPTION}`,
+        text1: isMax
+          ? `Максимальное количество символов ${Count.DESCRIPTION}`
+          : "Комментарий не может быть пустым",
       });
       return;
     }
