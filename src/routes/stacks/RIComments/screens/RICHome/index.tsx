@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { FlatList, type ListRenderItem, View } from "react-native";
 import ScreenContainer from "@app/containers/ScreenContainer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -6,7 +6,6 @@ import HeaderUI from "@app/ui/HeaderUI";
 import ToastUI from "@app/ui/ToastUI";
 import { Size } from "@app/lib/constants/size.ts";
 import ButtonUI from "@app/ui/ButtonUI";
-import RefreshControlUI from "@app/ui/RefreshControlUI";
 import EmptyContainer from "@app/containers/EmptyContainer";
 import { CommentIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors.ts";
@@ -23,20 +22,14 @@ type RenderItem = ListRenderItem<CommentModel>;
 
 const RICHome = (props: RICHomeScreenProps) => {
   const { service } = props.route.params;
+  const scrollRef = useRef<FlatList | null>(null);
   const userInfo = useAppSelector(user.selectors.selectUserInfo);
 
   const { top, bottom } = useSafeAreaInsets();
   const paddingBottom = bottom || styles.bottom.paddingVertical;
 
-  const {
-    scrollRef,
-    toast,
-    isLoading,
-    comments,
-    onHideToast,
-    handlePushAddComment,
-    refresh,
-  } = useRICHome(props);
+  const { toast, comments, onHideToast, handlePushAddComment } =
+    useRICHome(props);
 
   const renderItem = useCallback<RenderItem>(
     ({ item: comment }) => {
@@ -61,28 +54,24 @@ const RICHome = (props: RICHomeScreenProps) => {
         isOverLinear={true}
       />
       <FlatList
-        ref={(ref) => {
-          scrollRef.current = ref;
-        }}
+        ref={scrollRef}
         style={styles.container}
         contentContainerStyle={styles.contentContainerStyle}
+        inverted={true}
         showsVerticalScrollIndicator={true}
         showsHorizontalScrollIndicator={false}
+        data={[...comments].reverse()}
+        keyExtractor={(item) => `${item.id}`}
+        renderItem={renderItem}
         ListEmptyComponent={() => (
           <EmptyContainer
             title="Комментарии отсутствуют"
             Icon={() => <CommentIcon color={Colors.GRAY_TEN} />}
           />
         )}
-        keyExtractor={(item) => `${item.id}`}
-        renderItem={renderItem}
-        data={comments}
-        refreshControl={
-          <RefreshControlUI
-            refreshing={isLoading}
-            onRefresh={refresh}
-          />
-        }
+        onContentSizeChange={() => {
+          scrollRef.current?.scrollToOffset({ animated: false, offset: 0 });
+        }}
       />
       <ToastUI
         params={{

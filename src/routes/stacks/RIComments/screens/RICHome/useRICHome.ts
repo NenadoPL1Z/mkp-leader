@@ -1,23 +1,18 @@
 import { useToastLocal } from "@app/hooks/useToastLocal.ts";
 import { RICommentsSN } from "@app/routes/stacks/RIComments/types.ts";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getServiceCommentsById } from "@app/lib/api/services/getServiceCommentsById.ts";
 import { Response } from "@app/lib/constants/response.ts";
 import { useStatus } from "@app/hooks/useStatus.ts";
-import { Timing } from "@app/lib/constants/timing.ts";
 import type { RICHomeScreenProps } from "@app/routes/stacks/RIComments/types.ts";
 import type { CommentModel } from "@app/lib/models/CommentModel.ts";
-import type { FlatList } from "react-native";
 
 export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
   const { service, initialComments, handleUpdateInitialComments } =
     route.params;
 
-  const scrollRef = useRef<FlatList | null>(null);
-
   const [comments, setComments] = useState<CommentModel[]>(initialComments);
   const {
-    isLoading,
     hasError,
     handleLoadingStatus,
     handleErrorStatus,
@@ -55,22 +50,12 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
     refresh();
   }, []);
 
-  useEffect(() => {
-    if (!comments || !scrollRef.current) return;
-    setTimeout(() => {
-      scrollRef.current?.scrollToEnd({ animated: false });
-    }, Timing.SCROLL_TO_BOTTOM);
-  }, [comments]);
-
   return {
-    scrollRef,
     toast,
     comments,
-    isLoading,
     hasError,
     onHideToast,
     onShowToast,
     handlePushAddComment,
-    refresh,
   };
 };
