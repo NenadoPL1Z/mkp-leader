@@ -52,6 +52,7 @@ const RICHome = (props: RICHomeScreenProps) => {
   );
 
   const isActiveComments = ACTIVE_COMMENTS_BY_STATUS.has(service.status);
+  const bottomOffset = isActiveComments ? 50 : 0;
   return (
     <ScreenContainer
       top={top}
@@ -88,7 +89,7 @@ const RICHome = (props: RICHomeScreenProps) => {
           ...toast,
           isVisible: !!toast,
           onHide: onHideToast,
-          bottomOffset: Size.BUTTON + 50,
+          bottomOffset: Size.BUTTON + bottomOffset,
         }}
       />
       <View style={[styles.bottom, { paddingBottom }]}>
