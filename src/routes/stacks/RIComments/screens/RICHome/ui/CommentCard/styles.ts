@@ -17,12 +17,6 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 4,
   },
-  myComment: {
-    alignSelf: "flex-end",
-  },
-  otherComment: {
-    alignSelf: "flex-start",
-  },
   comment: {
     marginBottom: 15,
   },

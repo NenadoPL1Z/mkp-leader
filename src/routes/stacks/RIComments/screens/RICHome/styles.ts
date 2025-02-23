@@ -8,10 +8,10 @@ export const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     flexGrow: 1,
-    paddingTop: 10,
+    gap: 15,
     paddingLeft: Size.SCREEN_PADDING,
     paddingRight: Size.SCREEN_PADDING,
-    gap: 15,
+    paddingBottom: Size.SCREEN_PADDING,
   },
   bottom: {
     flex: 0,

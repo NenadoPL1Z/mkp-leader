@@ -1,26 +1,31 @@
 import { View } from "react-native";
 import Typography from "@app/ui/Typography";
 import AboutCard from "@app/components/AboutCard";
+import BadgeUI from "@app/ui/BadgeUI";
 import { styles } from "./styles.ts";
+import { getCommentAuthor } from "./helpers.ts";
 import type { CommentCardProps } from "./types.ts";
 
-export const CommentCard = ({
-  comments,
-  created_at,
-  isMy,
-}: CommentCardProps) => {
+export const CommentCard = (props: CommentCardProps) => {
+  const { user_role, user_phone, comments, created_at } = props.comment;
+
+  const { name, subtitle, avatarName } = getCommentAuthor(props);
+
   const localeDate = new Date(created_at).toLocaleString();
-  const align = isMy ? styles.myComment : styles.otherComment;
   return (
-    <View style={[styles.container, styles.shadow, align]}>
+    <View style={[styles.container, styles.shadow]}>
       <AboutCard
-        title="test"
-        subtitle="123"
-        containerStyle={{ width: undefined }}
+        title={name}
+        subtitle={subtitle}
         isShadow={false}
         isPadding={false}
-        avatar={{ name: "Test", phone: `+1` }}
-      />
+        avatar={{
+          name: avatarName,
+          phone: user_phone,
+          isDefault: user_role !== "executor",
+        }}>
+        <BadgeUI count={props.count} />
+      </AboutCard>
       <Typography
         style={styles.comment}
         fontSize={16}

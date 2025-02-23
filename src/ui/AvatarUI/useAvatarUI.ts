@@ -18,7 +18,7 @@ export const useAvatarUI = ({
     return getFontSize(size);
   }, [size]);
 
-  const lastIndex = +(phone[phone?.length - 1] || 0);
+  const lastIndex = phone ? +(phone[phone?.length - 1] || 0) : 0;
   const backgroundColor = colorsAvatar[lastIndex] || Colors.PRIMARY;
 
   const moreAvatarProps: AvatarProps = {
@@ -36,7 +36,9 @@ export const useAvatarUI = ({
   return { moreAvatarProps, backgroundColor };
 };
 
-const getTitle = (name: string) => {
+const getTitle = (name: string | null) => {
+  if (!name) return "";
+
   const splitName = name.split(" ");
   const firstName = splitName[0] || "";
   const lastName = splitName.slice(1).join(" ") || "";

@@ -32,12 +32,14 @@ const RICHome = (props: RICHomeScreenProps) => {
     useRICHome(props);
 
   const renderItem = useCallback<RenderItem>(
-    ({ item: comment }) => {
+    ({ item: comment, index }) => {
       return (
         <CommentCard
           key={comment.id}
-          {...comment}
-          isMy={userInfo.id === comment.user_id}
+          service={service}
+          comment={comment}
+          count={comments.length - index}
+          isMyComment={userInfo.id === comment.user_id}
         />
       );
     },

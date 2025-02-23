@@ -3,6 +3,12 @@ import type { CompanyModel } from "./CompanyModel";
 
 export type UserRole = "admin" | "executor" | "customer";
 
+export const UserRoles: Record<UserRole, string> = {
+  admin: "Админ",
+  customer: "Заказчик",
+  executor: "Исполнитель",
+} as const;
+
 export type UserId = number;
 
 export interface UserModel {
