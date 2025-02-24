@@ -46,9 +46,16 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
       handleUpdateComments(response);
       handleClose();
       handleClearStatus();
+
       if (isUpdate && commentUpdateCount.current > 0) {
         onShowToast({
           text1: `Комментарии успешно обновлены!\nНовых комментариев: ${newCommentsLength}`,
+        });
+      }
+
+      if (callback) {
+        onShowToast({
+          text1: `Комментарий успешно опубликован!\nПод номером: ${response.length}`,
         });
       }
     } catch {

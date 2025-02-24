@@ -10,7 +10,7 @@ import type { ServicesDetailModel } from "@app/lib/models/ServiceModel.ts";
 import type { CommentCardProps } from "./types.ts";
 
 const getName = (comment: CommentModel, service?: ServicesDetailModel) => {
-  const { user_role, user_id } = comment;
+  const { user_role, user_name, user_id } = comment;
   if (!user_role) return "Пользователь";
 
   if (user_role !== "executor" || !service) {
@@ -19,11 +19,11 @@ const getName = (comment: CommentModel, service?: ServicesDetailModel) => {
 
   const { executor_default_id, executor_additional_id } = service;
   if (executor_default_id === user_id) {
-    return `${FIRST_EXECUTOR_NAME}`;
+    return `${user_name} / ${FIRST_EXECUTOR_NAME}`;
   } else if (executor_additional_id === user_id) {
-    return `${SECOND_EXECUTOR_NAME}`;
+    return `${user_name} / ${SECOND_EXECUTOR_NAME}`;
   } else {
-    return `${OLD_EXECUTOR}`;
+    return `${user_name} / ${OLD_EXECUTOR}`;
   }
 };
 

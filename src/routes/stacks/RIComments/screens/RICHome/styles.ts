@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     gap: 15,
     paddingLeft: Size.SCREEN_PADDING,
     paddingRight: Size.SCREEN_PADDING,
-    paddingBottom: Size.SCREEN_PADDING,
+    paddingTop: Size.SCREEN_PADDING,
   },
   bottom: {
     flex: 0,

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import {
   FlatList,
   type ListRenderItem,
@@ -29,7 +29,6 @@ type RenderItem = ListRenderItem<CommentModel>;
 
 const RICHome = (props: RICHomeScreenProps) => {
   const { service } = props.route.params;
-  const scrollRef = useRef<FlatList | null>(null);
   const userInfo = useAppSelector(user.selectors.selectUserInfo);
 
   const { top, bottom } = useSafeAreaInsets();
@@ -55,7 +54,7 @@ const RICHome = (props: RICHomeScreenProps) => {
           key={comment.id}
           service={service}
           comment={comment}
-          count={comments.length - index}
+          count={index + 1}
           isMyComment={userInfo.id === comment.user_id}
         />
       );
@@ -79,13 +78,11 @@ const RICHome = (props: RICHomeScreenProps) => {
         </TouchableOpacity>
       </HeaderUI>
       <FlatList
-        ref={scrollRef}
         style={styles.container}
         contentContainerStyle={styles.contentContainerStyle}
-        inverted={true}
         showsVerticalScrollIndicator={true}
         showsHorizontalScrollIndicator={false}
-        data={[...comments].reverse()}
+        data={comments}
         keyExtractor={(item) => `${item.id}`}
         renderItem={renderItem}
         ListEmptyComponent={() => (
@@ -94,9 +91,6 @@ const RICHome = (props: RICHomeScreenProps) => {
             Icon={() => <CommentIcon color={Colors.GRAY_TEN} />}
           />
         )}
-        onContentSizeChange={() => {
-          scrollRef.current?.scrollToOffset({ animated: false, offset: 0 });
-        }}
       />
       <PopupUI
         visible={isOpen}
