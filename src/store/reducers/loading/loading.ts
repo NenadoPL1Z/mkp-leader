@@ -2,21 +2,26 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "@app/store/store";
 
 type LoadingState = {
-  isHideSplash: boolean;
+  isCheckVersion: boolean;
   isCheckAuth: boolean;
   isNavigation: boolean;
+  isHideSplash: boolean;
 };
 
 const initialState: LoadingState = {
-  isHideSplash: false,
+  isCheckVersion: false,
   isCheckAuth: false,
   isNavigation: false,
+  isHideSplash: false,
 };
 
 const loadingSlice = createSlice({
   name: "loading",
   initialState,
   reducers: {
+    version(state) {
+      state.isCheckVersion = true;
+    },
     auth(state) {
       state.isCheckAuth = true;
     },
@@ -28,6 +33,10 @@ const loadingSlice = createSlice({
     },
   },
 });
+
+const selectVersion = (state: RootState) => {
+  return state.loading.isCheckVersion;
+};
 
 const selectAuth = (state: RootState) => {
   return state.loading.isCheckAuth;
@@ -43,6 +52,7 @@ const selectHideSplash = (state: RootState) => {
 
 export const loading = {
   selectors: {
+    selectVersion,
     selectAuth,
     selectNav,
     selectHideSplash,

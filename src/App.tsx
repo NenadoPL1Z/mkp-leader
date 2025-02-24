@@ -1,4 +1,5 @@
 import { IS_DEV } from "@app/lib/constants";
+import AppVersion from "@app/AppVersion.tsx";
 import AppAuth from "./AppAuth";
 import AppRootStack from "./AppRootStack";
 import AppProvider from "./AppProvider";
@@ -11,9 +12,11 @@ if (IS_DEV) {
 const App = () => {
   return (
     <AppProvider>
-      <AppAuth>
-        <AppRootStack />
-      </AppAuth>
+      <AppVersion>
+        <AppAuth>
+          <AppRootStack />
+        </AppAuth>
+      </AppVersion>
     </AppProvider>
   );
 };

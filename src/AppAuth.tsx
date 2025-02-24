@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Modal, StyleSheet, View } from "react-native";
 import { useAppSelector } from "@app/store/hooks";
 import { loading, user } from "@app/store/reducers";
@@ -11,18 +11,24 @@ const AppAuth = ({ children }: ChildrenProps) => {
   const isCheckAuth = useAppSelector(loading.selectors.selectAuth);
   const isAuth = useAppSelector(user.selectors.selectUserAuth);
   const userId = useAppSelector((state) => state.user.user.id);
+  const isActualVersion = useAppSelector(
+    (state) => state.global.version.isActual,
+  );
 
-  const isBooleanAuth = useMemo(() => typeof isAuth === "boolean", [isAuth]);
+  const isBooleanAuth = typeof isAuth === "boolean";
 
-  const isDisplayAuth = useMemo(() => {
-    return Boolean(isCheckAuth && isBooleanAuth && !isAuth);
-  }, [isCheckAuth, isAuth]);
+  const isDisplayAuth = Boolean(
+    isActualVersion && isCheckAuth && isBooleanAuth && !isAuth,
+  );
 
-  const isDisplayApp = useMemo(() => {
-    return Boolean(
-      isCheckAuth && isBooleanAuth && isAuth && userId && !isDisplayAuth,
-    );
-  }, [isCheckAuth, isAuth, isDisplayAuth, userId]);
+  const isDisplayApp = Boolean(
+    isActualVersion &&
+      isCheckAuth &&
+      isBooleanAuth &&
+      isAuth &&
+      userId &&
+      !isDisplayAuth,
+  );
 
   useStatusBar(isDisplayAuth, {
     backgroundColor: Colors.PRIMARY,

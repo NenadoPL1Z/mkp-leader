@@ -7,7 +7,21 @@ export interface StatusBarGlobal {
   statusBar?: StatusBarStyle | null;
 }
 
+export type VersionsDetails = {
+  google_play_version: string;
+  app_store_version: string;
+  google_play_url: string;
+  app_store_url: string;
+};
+
+export interface VersionGlobal {
+  isActual: Nullable<boolean>;
+  currentVersion: Nullable<string>;
+  details: Nullable<VersionsDetails>;
+}
+
 export type GlobalState = {
-  netInfo: Nullable<NetworkInfoState>;
+  version: VersionGlobal;
   statusBar: StatusBarGlobal;
+  netInfo: Nullable<NetworkInfoState>;
 };
