@@ -18,7 +18,7 @@ export type RICHomeProps = {
 
 export type RICAddCommentProps = {
   serviceId: ServiceId;
-  refreshComments: (callback?: () => void) => void;
+  refreshComments: (isUpdate: boolean, callback?: () => void) => void;
 };
 
 export type RICommentsSPL = {

@@ -1,5 +1,10 @@
 import React, { useCallback, useRef } from "react";
-import { FlatList, type ListRenderItem, View } from "react-native";
+import {
+  FlatList,
+  type ListRenderItem,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import ScreenContainer from "@app/containers/ScreenContainer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HeaderUI from "@app/ui/HeaderUI";
@@ -7,10 +12,12 @@ import ToastUI from "@app/ui/ToastUI";
 import { Size } from "@app/lib/constants/size.ts";
 import ButtonUI from "@app/ui/ButtonUI";
 import EmptyContainer from "@app/containers/EmptyContainer";
-import { CommentIcon } from "@app/assets/icons/dist";
+import { ArrowReloadIcon, CommentIcon } from "@app/assets/icons/dist";
 import { Colors } from "@app/theme/colors.ts";
 import { useAppSelector } from "@app/store/hooks";
 import { user } from "@app/store/reducers";
+import PopupUI from "@app/ui/ModalUI/ui/PopupUI";
+import PopupText from "@app/ui/ModalUI/ui/PopupUI/PopupText/PopupText.tsx";
 import { ACTIVE_COMMENTS_BY_STATUS } from "./constants.ts";
 import { useRICHome } from "./useRICHome.ts";
 import { styles } from "./styles.ts";
@@ -28,8 +35,18 @@ const RICHome = (props: RICHomeScreenProps) => {
   const { top, bottom } = useSafeAreaInsets();
   const paddingBottom = bottom || styles.bottom.paddingVertical;
 
-  const { toast, comments, onHideToast, handlePushAddComment } =
-    useRICHome(props);
+  const {
+    commentUpdateCount,
+    isLoading,
+    isOpen,
+    toast,
+    comments,
+    onHideToast,
+    handleOpen,
+    handleClose,
+    handlePushAddComment,
+    refresh,
+  } = useRICHome(props);
 
   const renderItem = useCallback<RenderItem>(
     ({ item: comment, index }) => {
@@ -46,6 +63,7 @@ const RICHome = (props: RICHomeScreenProps) => {
     [comments],
   );
 
+  const isRefresh = isLoading && commentUpdateCount.current > 0;
   const isActiveComments = ACTIVE_COMMENTS_BY_STATUS.has(service.status);
   return (
     <ScreenContainer
@@ -53,8 +71,13 @@ const RICHome = (props: RICHomeScreenProps) => {
       isSaveArea={false}>
       <HeaderUI
         title="Комментарии"
-        isOverLinear={true}
-      />
+        isOverLinear={true}>
+        <TouchableOpacity
+          style={styles.reload}
+          onPress={handleOpen}>
+          <ArrowReloadIcon color={isRefresh ? Colors.GRAY_TEN : Colors.MAIN} />
+        </TouchableOpacity>
+      </HeaderUI>
       <FlatList
         ref={scrollRef}
         style={styles.container}
@@ -75,6 +98,15 @@ const RICHome = (props: RICHomeScreenProps) => {
           scrollRef.current?.scrollToOffset({ animated: false, offset: 0 });
         }}
       />
+      <PopupUI
+        visible={isOpen}
+        onSuccess={() => refresh(true)}
+        onClose={handleClose}
+        successButtonProps={{ loading: isLoading, title: "Обновить" }}
+        cancelButtonProps={{ disabled: isLoading }}
+        isBackdoorClose={!isLoading}>
+        <PopupText>Подтвердите обновление комментариев</PopupText>
+      </PopupUI>
       <ToastUI
         params={{
           ...toast,
@@ -85,7 +117,7 @@ const RICHome = (props: RICHomeScreenProps) => {
       />
       <View style={[styles.bottom, { paddingBottom }]}>
         <ButtonUI
-          disabled={!isActiveComments}
+          disabled={!isActiveComments || isRefresh}
           onPress={handlePushAddComment}>
           {isActiveComments ? "Оставить комментарий" : "Комментарии закрыты"}
         </ButtonUI>

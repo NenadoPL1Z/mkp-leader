@@ -32,7 +32,7 @@ export const useRICAddComment = ({
     try {
       handleLoadingStatus();
       await postServiceComment(serviceId, comment.trim());
-      refreshComments(() => {
+      refreshComments(false, () => {
         handleClearStatus();
         navigation.goBack();
       });
