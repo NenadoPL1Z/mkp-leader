@@ -42,13 +42,13 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
     try {
       handleLoadingStatus();
       const response = await getServiceCommentsById(service.id);
-      const newCommentsLength = comments.length - response.length;
+      const newCommentsLength = response.length - comments.length;
       handleUpdateComments(response);
       handleClose();
       handleClearStatus();
       if (isUpdate && commentUpdateCount.current > 0) {
         onShowToast({
-          text1: `Комментарии успешно обновлены! Новых комментариев: ${newCommentsLength}`,
+          text1: `Комментарии успешно обновлены!\nНовых комментариев: ${newCommentsLength}`,
         });
       }
     } catch {
