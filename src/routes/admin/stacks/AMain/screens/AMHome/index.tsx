@@ -38,7 +38,7 @@ const AMHome = (props: AMHomeScreenProps) => {
           right={{ variant: "logout" }}
         />
         <View style={styles.middle}>
-          <PaginationList<RequestCompanyModel>
+          <PaginationList
             config={{
               url: Api.service.companies,
               setCardRef,

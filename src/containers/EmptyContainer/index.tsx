@@ -8,7 +8,7 @@ import type { FC } from "react";
 
 type Props = {
   title?: string;
-  Icon?: FC<SvgProps>;
+  Icon?: FC<SvgProps> | null;
 };
 
 const EmptyContainer = ({
@@ -18,7 +18,7 @@ const EmptyContainer = ({
   const { bottom } = useMarginBottom();
   return (
     <View style={[styles.container, { marginBottom: bottom }]}>
-      <Icon style={styles.icon} />
+      {Icon && <Icon style={styles.icon} />}
       <Typography
         fontSize={15}
         color={Colors.GRAY_ELEVEN}
