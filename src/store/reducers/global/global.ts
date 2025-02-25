@@ -6,7 +6,12 @@ import type { NetworkInfoState } from "@app/lib/modules/network";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: GlobalState = {
-  version: { isActual: null, currentVersion: null, details: null },
+  version: {
+    isActual: null,
+    actualVersion: null,
+    currentVersion: null,
+    details: null,
+  },
   statusBar: { backgroundColor: Colors.PRIMARY, statusBar: null },
   netInfo: null,
 };

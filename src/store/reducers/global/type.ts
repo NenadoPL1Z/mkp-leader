@@ -16,6 +16,7 @@ export type VersionsDetails = {
 
 export interface VersionGlobal {
   isActual: Nullable<boolean>;
+  actualVersion: Nullable<string>;
   currentVersion: Nullable<string>;
   details: Nullable<VersionsDetails>;
 }

@@ -16,13 +16,15 @@ export const fetchVersions = createAsyncThunk<VersionGlobal, void, Store>(
       },
     });
 
-    const platformVersion = IS_IOS
+    const actualVersion = IS_IOS
       ? response.data.app_store_version
       : response.data.google_play_version;
-    const isActual = currentVersion === platformVersion;
+
+    const isActual = currentVersion === actualVersion;
 
     return {
       isActual,
+      actualVersion,
       currentVersion,
       details: response.data,
     };
