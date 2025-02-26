@@ -3,7 +3,7 @@ import { useAppSelector } from "@app/store/hooks";
 import { loading, user } from "@app/store/reducers";
 import { useStatusBar } from "@app/hooks/useStatusBar.ts";
 import { Colors } from "@app/theme/colors.ts";
-import Auth from "../../../components/Auth";
+import { AuthContent } from "./components";
 import type { ChildrenProps } from "@app/types/general";
 
 export const AuthStep = ({ children }: ChildrenProps) => {
@@ -40,7 +40,7 @@ export const AuthStep = ({ children }: ChildrenProps) => {
       <Modal
         animationType="slide"
         visible={isDisplayAuth}>
-        <Auth />
+        <AuthContent />
       </Modal>
     </View>
   );

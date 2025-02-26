@@ -2,7 +2,7 @@ import { Modal, StyleSheet, View } from "react-native";
 import { Colors } from "@app/theme/colors.ts";
 import { useAppSelector } from "@app/store/hooks";
 import { useStatusBar } from "@app/hooks/useStatusBar.ts";
-import UpdateVersion from "@app/components/UpdateVersion";
+import { VersionContent } from "./components";
 import type { ChildrenProps } from "@app/types/general.ts";
 
 export const VersionStep = ({ children }: ChildrenProps) => {
@@ -23,7 +23,7 @@ export const VersionStep = ({ children }: ChildrenProps) => {
       <Modal
         animationType="slide"
         visible={isDisplayUpdate}>
-        <UpdateVersion {...version} />
+        <VersionContent {...version} />
       </Modal>
     </View>
   );

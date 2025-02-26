@@ -6,7 +6,7 @@ import { useAppDispatch } from "@app/store/hooks";
 import { useToastLocal } from "@app/hooks/useToastLocal";
 import type { AuthForm } from "@app/lib/models/form/AuthForm";
 
-export const useAuth = () => {
+export const useAuthContent = () => {
   const dispatch = useAppDispatch();
   const { toast, onShowToast, onHideToast } = useToastLocal();
 

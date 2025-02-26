@@ -1,4 +1,3 @@
-import React from "react";
 import { SafeAreaView, View } from "react-native";
 import Typography from "@app/ui/Typography";
 import { FormProvider } from "react-hook-form";
@@ -13,14 +12,13 @@ import Documentation from "@app/components/Documentation";
 import { IS_DEV } from "@app/lib/constants";
 import { AutoAuth } from "./components/AutoAuth";
 import AuthForm from "./components/AuthForm";
-import { useAuth } from "./useAuth";
+import { useAuthContent } from "./useAuthContent.ts";
 import { styles } from "./index.styles";
 import SessionLimit from "./components/SessionLimit";
 
-const Auth = () => {
+export const AuthContent = () => {
   const { top, bottom } = useSafeAreaInsets();
-  const { isLoading, toast, onHideToast, methods, onSubmit } = useAuth();
-
+  const { isLoading, toast, onHideToast, methods, onSubmit } = useAuthContent();
   return (
     <LinearGradient
       style={styles.container}
@@ -91,5 +89,3 @@ const Auth = () => {
     </LinearGradient>
   );
 };
-
-export default React.memo(Auth);

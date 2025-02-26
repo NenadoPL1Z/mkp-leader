@@ -1,4 +1,3 @@
-import React from "react";
 import { SafeAreaView, View } from "react-native";
 import { LinearGradient } from "react-native-linear-gradient";
 import { Colors, linear } from "@app/theme/colors.ts";
@@ -12,7 +11,10 @@ import type { VersionGlobal } from "@app/store/reducers/global/type.ts";
 
 const platform = !IS_IOS ? "App Store" : "Google Play";
 
-const UpdateVersion = ({ actualVersion, currentVersion }: VersionGlobal) => {
+export const VersionContent = ({
+  actualVersion,
+  currentVersion,
+}: VersionGlobal) => {
   return (
     <LinearGradient
       style={styles.container}
@@ -72,5 +74,3 @@ const UpdateVersion = ({ actualVersion, currentVersion }: VersionGlobal) => {
     </LinearGradient>
   );
 };
-
-export default React.memo(UpdateVersion);
