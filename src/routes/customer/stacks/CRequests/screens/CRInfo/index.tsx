@@ -39,7 +39,8 @@ const CRInfo = (props: CRInfoScreenProps) => {
         setCardRef={currenTabRef?.setCardRef?.current}
         onDecrementUnreadCounter={counter.onDecrementUnreadCounter}>
         {({ data, onUpdateData }) => {
-          const isDisplayDelete = tabName === "work";
+          const isDisplayDelete =
+            tabName === "work" && data.status === "В работе";
           return (
             <>
               <HeaderUI
