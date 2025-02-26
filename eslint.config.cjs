@@ -1,40 +1,24 @@
-import globals from "globals";
-import javascript from "@eslint/js";
-import typescript from "typescript-eslint";
-import eslintPluginReact from "eslint-plugin-react";
-import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import eslintPluginReactNative from "eslint-plugin-react-native";
-import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
-import eslintPluginPromise from "eslint-plugin-promise";
-import eslintPluginImport from "eslint-plugin-import";
+const javascript = require("@eslint/js");
+const typescript = require("typescript-eslint");
+const eslintPluginReact = require("eslint-plugin-react");
+const eslintPluginReactHooks = require("eslint-plugin-react-hooks");
+const eslintPluginReactNative = require("eslint-plugin-react-native");
+const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
+const eslintPluginPromise = require("eslint-plugin-promise");
+const eslintPluginImport = require("eslint-plugin-import");
 
 const recommended = [
   javascript.configs.recommended,
-  ...typescript.configs.recommended,
-  eslintPluginPrettier,
+  typescript.configs.recommended,
+  eslintPluginPrettierRecommended,
   eslintPluginReact.configs.flat.recommended,
   eslintPluginReact.configs.flat["jsx-runtime"],
   eslintPluginPromise.configs["flat/recommended"],
 ];
 
-const settings = {
-  react: {
-    version: "detect",
-  },
-};
-
-const languageOptions = {
-  globals: {
-    NodeJS: true,
-    __DEV__: true,
-    JSX: true,
-    ...globals.browser,
-    ...globals.node,
-  },
-};
-
 const files = ["**/*.{js,jsx,ts,tsx}"];
 const ignores = [
+  "eslint.config.cjs",
   ".husky",
   ".git",
   ".idea",
@@ -49,17 +33,20 @@ const ignores = [
   "react-native.config.js",
 ];
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+const settings = {
+  react: {
+    version: "detect",
+  },
+};
+
+module.exports = typescript.config(
   ...recommended,
   { ignores },
   { settings },
-  { languageOptions },
   // core
   {
     files,
     rules: {
-      ...javascript.configs.recommended.rules,
       "no-template-curly-in-string": "error",
       "default-case-last": "error",
       "default-param-last": "error",
@@ -144,8 +131,6 @@ export default [
   {
     files,
     rules: {
-      ...eslintPluginReact.configs.flat.recommended.rules,
-      ...eslintPluginReact.configs.flat["jsx-runtime"].rules,
       "react/hook-use-state": "error",
       "react/jsx-boolean-value": ["error", "always"],
       "react/jsx-curly-brace-presence": [
@@ -189,4 +174,4 @@ export default [
       "react-native/no-single-element-style-arrays": "error",
     },
   },
-];
+);
