@@ -19,11 +19,11 @@ const getName = (comment: CommentModel, service?: ServicesDetailModel) => {
 
   const { executor_default_id, executor_additional_id } = service;
   if (executor_default_id === user_id) {
-    return `${user_name} / ${FIRST_EXECUTOR_NAME}`;
+    return `${user_name}\n${FIRST_EXECUTOR_NAME}`;
   } else if (executor_additional_id === user_id) {
-    return `${user_name} / ${SECOND_EXECUTOR_NAME}`;
+    return `${user_name}\n${SECOND_EXECUTOR_NAME}`;
   } else {
-    return `${user_name} / ${OLD_EXECUTOR}`;
+    return `${user_name}\n${OLD_EXECUTOR}`;
   }
 };
 

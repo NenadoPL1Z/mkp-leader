@@ -1,3 +1,4 @@
+import type { TypographyProps } from "@app/ui/Typography/types.ts";
 import type { ViewStyle } from "react-native";
 import type { ReactNode } from "react";
 import type { RequestBadgeModel } from "@app/lib/models/RequestModel";
@@ -16,4 +17,5 @@ export type AboutCardProps = {
   isTouch?: boolean;
   isPadding?: boolean;
   isDisplayMark?: boolean;
+  titleProps?: TypographyProps;
 };

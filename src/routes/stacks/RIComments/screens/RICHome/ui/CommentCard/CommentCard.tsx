@@ -19,12 +19,22 @@ export const CommentCard = (props: CommentCardProps) => {
         subtitle={subtitle}
         isShadow={false}
         isPadding={false}
+        containerStyle={{
+          alignItems: "flex-start",
+        }}
+        titleProps={{
+          numberOfLines: 2,
+          lineHeight: 18,
+          style: { marginBottom: 5 },
+        }}
         avatar={{
           name: avatarName,
           phone: user_phone,
           isDefault: user_role !== "executor",
         }}>
-        <BadgeUI count={props.count} />
+        <View style={styles.badge}>
+          <BadgeUI count={props.count} />
+        </View>
       </AboutCard>
       <Typography
         style={styles.comment}
