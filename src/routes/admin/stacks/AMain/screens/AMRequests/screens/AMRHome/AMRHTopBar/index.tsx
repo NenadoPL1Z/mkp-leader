@@ -3,7 +3,7 @@ import { useTopBarProps } from "@app/hooks/useTopBarProps";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import TopBarBadge from "@app/ui/BadgeUI/variant/TopBarBadge";
 import AMRHWork from "./screens/AMRHWork";
-// import AMRHRefusal from "./screens/AMRHRefusal";
+import AMRHRefused from "./screens/AMRHRefused";
 import AMRHQuality from "./screens/AMRHQuality";
 import AMRHClosed from "./screens/AMRHClosed";
 import { useAMRHTopBar } from "./useAMRHTopBar";
@@ -58,17 +58,17 @@ const AMRHTopBar = (props: AMRequestsHomeProps) => {
           />
         )}
       </Tab.Screen>
-      {/*<Tab.Screen*/}
-      {/*  name={N_REFUSAL}*/}
-      {/*  options={setBadge("Отказ", counters[N_REFUSAL])}*/}
-      {/*  initialParams={props}>*/}
-      {/*  {(props) => (*/}
-      {/*    <AMRHRefusal*/}
-      {/*      {...props}*/}
-      {/*      {...tabProps(N_REFUSAL)}*/}
-      {/*    />*/}
-      {/*  )}*/}
-      {/*</Tab.Screen>*/}
+      <Tab.Screen
+        name={N_REFUSED}
+        options={setBadge("Отказы", counters[N_REFUSED])}
+        initialParams={props}>
+        {(props) => (
+          <AMRHRefused
+            {...props}
+            {...tabProps(N_REFUSED)}
+          />
+        )}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
@@ -76,7 +76,7 @@ const AMRHTopBar = (props: AMRequestsHomeProps) => {
 const N_WORK = AMRHTopBarNamespace.WORK;
 const N_QUALITY = AMRHTopBarNamespace.QUALITY;
 const N_CLOSED = AMRHTopBarNamespace.CLOSED;
-// const N_REFUSAL = AMRHTopBarNamespace.REFUSAL;
+const N_REFUSED = AMRHTopBarNamespace.REFUSED;
 
 const setBadge = (title: string, counter: number, isLast: boolean = false) => {
   return {

@@ -19,11 +19,11 @@ const AboutCard = ({
   isShadow = true,
   isTouch = true,
   isPadding = true,
+  isDisplayMark = false,
 }: AboutCardProps) => {
-  const isDisplayCount = !!badge?.counter;
-
   return (
     <TouchableOpacity
+      disabled={!onPress}
       onPress={onPress}
       style={[
         styles.root,
@@ -37,8 +37,8 @@ const AboutCard = ({
         <AvatarUI {...avatar} />
       </View>
       <View style={styles.right}>
-        <View style={styles.rightTop}>
-          {badge?.mark && (
+        <View style={[styles.rightTop, !!badge && styles.rightTopMax]}>
+          {isDisplayMark && (
             <View style={styles.rightTopLeft}>
               <BadgeUI size={12} />
             </View>
@@ -53,11 +53,6 @@ const AboutCard = ({
               {title}
             </Typography>
           </View>
-          {isDisplayCount && (
-            <View style={styles.rightTopRight}>
-              <BadgeUI count={badge.counter} />
-            </View>
-          )}
         </View>
         <Typography
           numberOfLines={1}

@@ -28,7 +28,6 @@ const RIExecutors = (props: Props) => {
     deadline_at,
     custom_position,
     media_files,
-    comment,
     children,
   } = props;
 
@@ -113,16 +112,6 @@ const RIExecutors = (props: Props) => {
               containerStyle={styles.check}
               checked={Boolean(custom_position)}
             />
-          </View>
-        )}
-        {!!comment && (
-          <View style={styles.comment}>
-            <Typography
-              fontSize={15}
-              lineHeight={20}
-              fontWeight="400">
-              {comment}
-            </Typography>
           </View>
         )}
         {isDisplayMedia && (

@@ -6,7 +6,8 @@ export const useAMRHWork = ({ navigation, route, ...props }: AMRHWorkProps) => {
   const handlePushProfile = (card: ServiceCardModel) => {
     navigation.navigate(AMRequestsSN.INFO, {
       tabName: "work",
-      nextTabName: "quality",
+      // можем только отправить в отказ, поэтому refused
+      nextTabName: "refused",
       card,
       ...props,
     });

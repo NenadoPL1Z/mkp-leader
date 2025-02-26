@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Colors } from "@app/theme/colors.ts";
+import { fetchVersions } from "./asyncThunks/fetchVersions";
 import type { GlobalState, StatusBarGlobal } from "./type.ts";
 import type { NetworkInfoState } from "@app/lib/modules/network";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: GlobalState = {
-  netInfo: null,
-  statusBar: {
-    backgroundColor: Colors.PRIMARY,
-    statusBar: null,
+  version: {
+    isActual: null,
+    actualVersion: null,
+    currentVersion: null,
+    details: null,
   },
+  statusBar: { backgroundColor: Colors.PRIMARY, statusBar: null },
+  netInfo: null,
 };
 
 export const globalSlice = createSlice({
@@ -22,6 +26,11 @@ export const globalSlice = createSlice({
     changeStatusBar(state, action: PayloadAction<StatusBarGlobal>) {
       state.statusBar = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchVersions.fulfilled, (state, action) => {
+      state.version = action.payload;
+    });
   },
 });
 

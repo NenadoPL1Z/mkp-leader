@@ -38,17 +38,15 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  rightTopMax: {
+    minHeight: 28,
+  },
   rightTopLeft: {
     flex: 0,
     marginRight: 8,
   },
   rightTopMiddle: {
     flex: 1,
-  },
-  rightTopRight: {
-    flex: 0,
-    marginLeft: 8,
-    marginBottom: 3,
   },
   children: {
     flex: 0,

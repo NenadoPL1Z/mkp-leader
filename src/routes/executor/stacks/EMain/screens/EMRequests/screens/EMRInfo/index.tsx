@@ -13,12 +13,15 @@ import RequestInfo from "@app/components/RequestInfo";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { PortalHost, PortalProvider } from "@gorhom/portal";
 import { Portal } from "@app/theme/portal";
+import RIComment from "@app/components/RequestInfo/components/RIComment";
+import { RICommentsSN } from "@app/routes/stacks/RIComments/types.ts";
 import EMRIMediaUploadForm from "./components/EMRIMediaUploadForm";
 import { useEMRInfo } from "./useEMRInfo";
+import { EMRequestsSN } from "../../types";
 import type { EMRInfoScreenProps } from "@app/routes/executor/stacks/EMain/screens/EMRequests/types";
 
 const EMRInfo = (props: EMRInfoScreenProps) => {
-  const { route } = props;
+  const { route, navigation } = props;
   const { params } = route;
   const { tabName, card, counter } = params;
 
@@ -33,7 +36,7 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
         role="executor"
         card={card}
         setCardRef={currenTabRef?.setCardRef?.current}
-        onDecrementCounter={counter.onDecrementCounter}>
+        onDecrementUnreadCounter={counter.onDecrementUnreadCounter}>
         {({ data, onUpdateData }) => {
           const isDisplayForm =
             tabName === "work" &&
@@ -63,6 +66,20 @@ const EMRInfo = (props: EMRInfoScreenProps) => {
                     description={data.description}
                     material_availability={data.material_availability}
                     media_files={data.media_files}
+                  />
+                  <RIComment
+                    serviceId={data.id}
+                    onShowToast={(text1) => toast.onShowToast({ text1 })}
+                    onPushToComments={(comments, handleUpdateComments) =>
+                      navigation.navigate(EMRequestsSN.COMMENTS, {
+                        screen: RICommentsSN.HOME,
+                        params: {
+                          service: data,
+                          initialComments: comments,
+                          handleUpdateInitialComments: handleUpdateComments,
+                        },
+                      })
+                    }
                   />
                   <RIExecutors {...data}>
                     {isDisplayForm && (

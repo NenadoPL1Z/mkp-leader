@@ -18,6 +18,7 @@ type RenderItem = ListRenderItem<RequestCompanyModel>;
 
 const AMHome = (props: AMHomeScreenProps) => {
   const { setCardRef, onPress } = useAMHome(props);
+
   const renderItem = useCallback<RenderItem>(({ item }) => {
     return (
       <AboutCardCompany
@@ -37,7 +38,7 @@ const AMHome = (props: AMHomeScreenProps) => {
           right={{ variant: "logout" }}
         />
         <View style={styles.middle}>
-          <PaginationList<RequestCompanyModel>
+          <PaginationList
             config={{
               url: Api.service.companies,
               setCardRef,

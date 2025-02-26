@@ -53,7 +53,7 @@ export const ACExecutor = (props: ACExecutorProps) => {
           />
         </View>
         <View style={styles.body}>
-          <PaginationList<ExecutorModel>
+          <PaginationList
             config={{
               url: Api.users.executor.all,
               query,

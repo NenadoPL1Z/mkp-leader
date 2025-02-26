@@ -8,7 +8,7 @@ type Props = Partial<Pick<TextFieldProps, "left">> & {
   handleChangeSearch: (text: string) => void;
 };
 
-const handleDebounce = debounce(1000);
+const handleDebounce = debounce(300);
 
 const PaginationSearch = ({
   placeholder,

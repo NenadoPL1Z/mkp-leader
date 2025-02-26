@@ -11,6 +11,7 @@ import ToastUI from "@app/ui/ToastUI";
 import { Size } from "@app/lib/constants/size";
 import PaginationSearch from "@app/components/PaginationSearch";
 import AboutCardExecutor from "@app/components/AboutCard/variant/AboutCardExecutor";
+import EmptyContainer from "@app/containers/EmptyContainer";
 import { styles } from "./index.styles";
 import { useAEHome } from "./useAEHome";
 import type { ExecutorModel } from "@app/lib/models/ExecutorModel";
@@ -67,7 +68,7 @@ const AEHome = (props: AEHomeProps) => {
           />
         </View>
         <View style={styles.middle}>
-          <PaginationList<ExecutorModel>
+          <PaginationList
             config={{
               url: Api.users.executor.all,
               query,
@@ -77,6 +78,14 @@ const AEHome = (props: AEHomeProps) => {
             }}
             contentContainerStyle={styles.contentContainerStyle}
             renderItem={renderItem}
+            empty={{
+              Component: () => (
+                <EmptyContainer
+                  title="Исполнители не найдены"
+                  Icon={null}
+                />
+              ),
+            }}
           />
           <ToastUI
             params={{

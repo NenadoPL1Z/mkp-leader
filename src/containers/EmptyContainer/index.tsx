@@ -3,16 +3,22 @@ import { EmptyServicesIcon } from "@app/assets/icons/dist";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors";
 import { useMarginBottom } from "@app/hooks/useMarginBottom";
+import type { SvgProps } from "react-native-svg";
+import type { FC } from "react";
 
 type Props = {
   title?: string;
+  Icon?: FC<SvgProps> | null;
 };
 
-const EmptyContainer = ({ title = "Пока нет заявок" }: Props) => {
+const EmptyContainer = ({
+  title = "Пока нет заявок",
+  Icon = EmptyServicesIcon,
+}: Props) => {
   const { bottom } = useMarginBottom();
   return (
     <View style={[styles.container, { marginBottom: bottom }]}>
-      <EmptyServicesIcon style={styles.icon} />
+      {Icon && <Icon style={styles.icon} />}
       <Typography
         fontSize={15}
         color={Colors.GRAY_ELEVEN}

@@ -30,7 +30,6 @@ const AboutCardExecutor = (props: Props) => {
       avatar={{
         name: name || "",
         phone: phone || "",
-        size: 40,
       }}
       isTouch={!!onPress}
       onPress={() => onPress && onPress(props)}>

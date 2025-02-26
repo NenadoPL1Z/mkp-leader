@@ -36,7 +36,7 @@ const EMHome = (props: EMHomeScreenProps) => {
           isBack={false}
         />
         <View style={styles.middle}>
-          <PaginationList<RequestCompanyModel>
+          <PaginationList
             config={{
               url: Api.service.companies,
               setCardRef,

@@ -5,7 +5,7 @@ import type {
 } from "@app/lib/models/CompanyModel";
 import type { UserId } from "@app/lib/models/UserModel";
 
-type StateService = "new" | "working" | "verifying" | "closed" | "refusal";
+type StateService = "new" | "working" | "verifying" | "closed" | "refused";
 
 export const Api = {
   auth: {
@@ -38,12 +38,15 @@ export const Api = {
     assign: "/services/assign",
     verify: "/services/verify",
     close: (id: ServiceId) => `/services/close/${id}`,
+    refuse: (id: ServiceId) => `/services/refuse/${id}`,
     companies: "/services/companies/all",
     id: (id: ServiceId) => `/services/get/${id}`,
     getStatusService: (state: StateService, id: string | number) =>
       `services/status/${state}/${id}`,
     getCustomerStatusService: (state: StateService) =>
       `services/customer/status/${state}`,
+    comments: (id: ServiceId) => `/services/comments/${id}`,
+    postComments: (id: ServiceId) => `/services/comments/${id}`,
   },
   media: {
     getImage: (id: string) => `/media/image/${id}`,

@@ -11,6 +11,7 @@ import ToastUI from "@app/ui/ToastUI";
 import { Size } from "@app/lib/constants/size";
 import PaginationSearch from "@app/components/PaginationSearch";
 import AboutCardCustomer from "@app/components/AboutCard/variant/AboutCardCustomer";
+import EmptyContainer from "@app/containers/EmptyContainer";
 import { styles } from "./index.styles";
 import { useCEHome } from "./useCEHome";
 import type { ACHomeProps } from "@app/routes/admin/stacks/ACustomers/types";
@@ -62,7 +63,7 @@ const ACHome = (props: ACHomeProps) => {
           />
         </View>
         <View style={styles.middle}>
-          <PaginationList<CustomerModel>
+          <PaginationList
             config={{
               url: Api.users.customer.all,
               query,
@@ -72,6 +73,14 @@ const ACHome = (props: ACHomeProps) => {
             }}
             contentContainerStyle={styles.contentContainerStyle}
             renderItem={renderItem}
+            empty={{
+              Component: () => (
+                <EmptyContainer
+                  title="Заказчики не найдены"
+                  Icon={null}
+                />
+              ),
+            }}
           />
           <ToastUI
             params={{

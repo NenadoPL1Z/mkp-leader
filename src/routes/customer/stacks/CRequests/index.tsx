@@ -1,6 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { nativeScreenOptions } from "@app/lib/constants/screen";
+import RICComments from "@app/routes/stacks/RIComments";
 import CRNew from "./screens/CRNew";
 import CRInfo from "./screens/CRInfo";
 import CRHome from "./screens/CRHome";
@@ -25,6 +26,10 @@ const CRequests = () => {
       <NativeStack.Screen
         name={CRequestsSN.NEW}
         component={CRNew}
+      />
+      <NativeStack.Screen
+        name={CRequestsSN.COMMENTS}
+        component={RICComments}
       />
     </NativeStack.Navigator>
   );

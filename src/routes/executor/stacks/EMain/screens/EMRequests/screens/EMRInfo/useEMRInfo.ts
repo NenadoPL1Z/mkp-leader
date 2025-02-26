@@ -5,7 +5,7 @@ import type { EMRInfoScreenProps } from "@app/routes/executor/stacks/EMain/scree
 
 export const useEMRInfo = ({ route }: EMRInfoScreenProps) => {
   const { params } = route;
-  const { tabName, nextTabName } = params;
+  const { tabName, nextTabName, company } = params;
   const currenTabRef = params[`${tabName}Refs`];
   const nextTabRef = nextTabName ? params[`${nextTabName}Refs`] : null;
 
@@ -15,9 +15,7 @@ export const useEMRInfo = ({ route }: EMRInfoScreenProps) => {
   const handleVerify = (onUpdateData: RInfoChildrenOnUpdate) => {
     return (data: ServicesDetailModel) => {
       onUpdateData(data);
-      toast.onShowToast({
-        text1: "Заявка направлена в контроль качества",
-      });
+      toast.onShowToast({ text1: "Заявка направлена в контроль качества" });
       currenTabRef.filterRef.current?.(data.id);
       nextTabRef?.setCardRef?.current?.((prevState) => [
         {
@@ -34,6 +32,7 @@ export const useEMRInfo = ({ route }: EMRInfoScreenProps) => {
         },
         ...prevState,
       ]);
+      company.handleUpdateStatusCounter("working", "verifying");
     };
   };
 

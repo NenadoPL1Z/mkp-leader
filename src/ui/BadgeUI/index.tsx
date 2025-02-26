@@ -7,7 +7,12 @@ import { styles } from "@app/ui/BadgeUI/index.styles.ts";
 import type { BadgeUIProps } from "./types";
 
 const BadgeUI = (props: BadgeUIProps) => {
-  const { backgroundColor = Colors.PRIMARY, style, isDisplay = true } = props;
+  const {
+    backgroundColor = Colors.PRIMARY,
+    style,
+    isDisplay = true,
+    typographyStyles,
+  } = props;
   const { sizeStyle, displayCount, isDisplayCount } = useBadgeUI(props);
 
   if (!isDisplay) {
@@ -20,7 +25,8 @@ const BadgeUI = (props: BadgeUIProps) => {
         <Typography
           variant="h3"
           fontWeight="700"
-          color={Colors.WHITE}>
+          color={Colors.WHITE}
+          style={typographyStyles}>
           {displayCount}
         </Typography>
       )}

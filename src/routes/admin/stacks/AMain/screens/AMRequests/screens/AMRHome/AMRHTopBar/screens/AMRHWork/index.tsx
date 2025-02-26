@@ -51,7 +51,7 @@ const AMRHWork = (props: AMRHWorkProps) => {
             filterRef: props.workRefs.filterRef,
             scrollRef: props.workRefs.scrollRef,
             displayRefreshRef: props.workRefs.displayRefreshRef,
-            callbackCounter: props.counter.onChange,
+            callbackCounter: props.counter.onSetUnreadCounters,
             callbackRefresh: props.onResetAllTabs,
           }}
           renderItem={renderItem}

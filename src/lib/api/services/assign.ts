@@ -11,7 +11,6 @@ type Data = {
   executor_default_id: ExecutorId;
   executor_additional_id: ExecutorId | null;
   deadline_at: string | null;
-  comment: string;
   emergency: boolean;
   is_edit: boolean;
   custom_position: boolean;

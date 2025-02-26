@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import {
-  decrementCompanyCounter,
-  updateCompanyCounter,
-} from "@app/lib/functions/decrementCompanyCounter";
-import { TopBarNames } from "@app/types/enums/TopBarNames";
+  decrementUnreadCounter,
+  setUnreadCounter,
+  updateStatusCounter,
+  setStatusCounter,
+} from "@app/lib/functions/companyCounters";
 import { EMainSN } from "../../types";
 import { EMRequestsSN } from "../EMRequests/types";
 import type { PaginationSetCardRef } from "@app/components/PaginationList/types";
@@ -13,11 +14,17 @@ import type { EMHomeScreenProps } from "../../types";
 export const useEMHome = ({ navigation }: EMHomeScreenProps) => {
   const setCardRef = useRef<PaginationSetCardRef<RequestCompanyModel>>(null);
 
-  const handleCounterDecrement = (item: RequestCompanyModel) =>
-    decrementCompanyCounter(item, setCardRef.current, TopBarNames.WORK);
+  const handleDecrementUnreadCount = (item: RequestCompanyModel) =>
+    decrementUnreadCounter(item, setCardRef.current);
 
-  const handleCounterUpdate = (item: RequestCompanyModel) =>
-    updateCompanyCounter(item, setCardRef.current, TopBarNames.WORK);
+  const handleSetUnreadCount = (item: RequestCompanyModel) =>
+    setUnreadCounter(item, setCardRef.current);
+
+  const handleUpdateStatusCounter = (item: RequestCompanyModel) =>
+    updateStatusCounter(item, setCardRef.current);
+
+  const handleSetStatusCounter = (item: RequestCompanyModel) =>
+    setStatusCounter(item, setCardRef.current);
 
   const onPress = (item: RequestCompanyModel) => {
     navigation.navigate(EMainSN.REQUESTS, {
@@ -25,8 +32,10 @@ export const useEMHome = ({ navigation }: EMHomeScreenProps) => {
       params: {
         company: {
           value: item,
-          handleCounterUpdate: handleCounterUpdate(item),
-          handleCounterDecrement: handleCounterDecrement(item),
+          handleSetUnreadCount: handleSetUnreadCount(item),
+          handleDecrementUnreadCount: handleDecrementUnreadCount(item),
+          handleUpdateStatusCounter: handleUpdateStatusCounter(item),
+          handleSetStatusCounter: handleSetStatusCounter(item),
         },
       },
     });

@@ -3,15 +3,17 @@ import type { CompanyModel } from "@app/lib/models/CompanyModel";
 type Parent = Pick<CompanyModel, "id" | "name" | "address">;
 
 export interface RequestBadgeModel {
-  mark: boolean;
-  counter: number;
+  working: number;
+  verifying: number;
 }
+
+export type RequestBadgeModelKey = keyof RequestBadgeModel;
 
 export interface RequestTabsModel {
   working: number;
   verifying: number;
   closed: number;
-  refusal: number;
+  refused: number;
 }
 
 export interface RequestCompanyModel extends Parent {

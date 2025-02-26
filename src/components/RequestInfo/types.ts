@@ -1,4 +1,4 @@
-import type { UseRole } from "@app/lib/models/UserModel";
+import type { UserRole } from "@app/lib/models/UserModel";
 import type { PaginationSetCardRef } from "@app/components/PaginationList/types";
 import type {
   ServicesDetailModel,
@@ -16,9 +16,9 @@ export type RInfoChildrenProps = {
 };
 
 export type RequestInfoProps = {
-  role: UseRole;
+  role: UserRole;
   card: ServiceCardModel;
   setCardRef: PaginationSetCardRef<ServiceCardModel>;
-  onDecrementCounter: () => void;
+  onDecrementUnreadCounter: () => void;
   children: (props: RInfoChildrenProps) => ReactNode;
 };

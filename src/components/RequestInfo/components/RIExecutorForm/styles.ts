@@ -28,9 +28,6 @@ export const styles = StyleSheet.create({
   pointer: {
     pointerEvents: "none",
   },
-  textArea: {
-    maxHeight: undefined,
-  },
   bottom: {
     flex: 0,
     paddingVertical: 10,

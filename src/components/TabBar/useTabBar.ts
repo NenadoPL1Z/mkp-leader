@@ -9,11 +9,11 @@ import {
   HomeIcon,
   ProfileIcon,
 } from "@app/assets/icons/dist";
-import type { UseRole } from "@app/lib/models/UserModel";
+import type { UserRole } from "@app/lib/models/UserModel";
 import type { TabBarItem, TabBarItemCallback } from "./types";
 
 const tabBar: Record<
-  UseRole,
+  UserRole,
   Omit<TabBarItem, "onPress" | "activeRouteName">[]
 > = {
   admin: [

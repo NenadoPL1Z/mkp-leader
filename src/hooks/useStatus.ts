@@ -47,9 +47,7 @@ export const useStatus = (initialArg?: NotRequiredStatus) => {
     isLoading,
     isError,
     hasError,
-
     handleChangeStatus,
-
     handleLoadingStatus,
     handleErrorStatus,
     handleClearStatus,

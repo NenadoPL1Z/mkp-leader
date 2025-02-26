@@ -8,11 +8,12 @@ export type AboutCardProps = {
   title: string;
   subtitle: string;
   avatar: AvatarUIProps;
-  onPress: () => void;
+  onPress?: () => void;
   badge?: RequestBadgeModel;
   marginBottom?: number;
   children?: ReactNode;
   isShadow?: boolean;
   isTouch?: boolean;
   isPadding?: boolean;
+  isDisplayMark?: boolean;
 };

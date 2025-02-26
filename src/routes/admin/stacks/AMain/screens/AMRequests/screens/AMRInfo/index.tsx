@@ -14,13 +14,17 @@ import { Portal } from "@app/theme/portal";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { Colors } from "@app/theme/colors";
 import { useBottomOffset } from "@app/hooks/useBottomOffset";
+import RIComment from "@app/components/RequestInfo/components/RIComment";
+import { RICommentsSN } from "@app/routes/stacks/RIComments/types.ts";
 import { useAMRInfo } from "./useAMRInfo";
 import { styles } from "./styles";
 import AMRIClose from "./components/AMRIClose";
+import AMRIRefuse from "./components/AMRIRefuse";
+import { AMRequestsSN } from "../../types";
 import type { AMRInfoScreenProps } from "../../types";
 
 const AMRInfo = (props: AMRInfoScreenProps) => {
-  const { route } = props;
+  const { route, navigation } = props;
   const { params } = route;
   const { card, counter, tabName } = params;
 
@@ -33,6 +37,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
     handleChangeEditMode,
     handleChangePrevScreenInfo,
     handleClose,
+    handleRefuse,
   } = useAMRInfo(props);
 
   return (
@@ -41,7 +46,7 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
         role="admin"
         card={card}
         setCardRef={currenTabRef?.setCardRef?.current}
-        onDecrementCounter={counter.onDecrementCounter}>
+        onDecrementUnreadCounter={counter.onDecrementUnreadCounter}>
         {({ data, onUpdateData }) => {
           //? CONSTANTS
           const isChangeTab = tabName === "work" || tabName === "quality";
@@ -55,6 +60,9 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
             !isEditMode &&
             tabName === "quality" &&
             data.status === "Контроль качества";
+
+          const isDisplayRefuse =
+            !isEditMode && tabName === "work" && data.status === "В работе";
 
           return (
             <>
@@ -83,6 +91,20 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                     material_availability={data.material_availability}
                     media_files={data.media_files}
                   />
+                  <RIComment
+                    serviceId={data.id}
+                    onShowToast={(text1) => toast.onShowToast({ text1 })}
+                    onPushToComments={(comments, handleUpdateComments) =>
+                      navigation.navigate(AMRequestsSN.COMMENTS, {
+                        screen: RICommentsSN.HOME,
+                        params: {
+                          service: data,
+                          initialComments: comments,
+                          handleUpdateInitialComments: handleUpdateComments,
+                        },
+                      })
+                    }
+                  />
                   {isDisplayForm && (
                     <RIExecutorForm
                       {...data}
@@ -94,6 +116,12 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
                     />
                   )}
                   {isDisplayExecutor && <RIExecutors {...data} />}
+                  {isDisplayRefuse && (
+                    <AMRIRefuse
+                      id={data.id}
+                      onRefuse={handleRefuse(onUpdateData)}
+                    />
+                  )}
                   {isDisplayClose && (
                     <AMRIClose
                       id={data.id}
