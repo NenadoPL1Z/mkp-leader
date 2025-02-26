@@ -11,7 +11,6 @@ import { Size } from "@app/lib/constants/size";
 import { Colors } from "@app/theme/colors";
 import MediaUpload from "@app/components/MediaUpload";
 import { FormProvider } from "react-hook-form";
-import { Count } from "@app/lib/constants/count";
 import { useRequestForm } from "./useRequestForm";
 import { styles } from "./styles";
 import { SWITCH_OPTIONS } from "./constants";
@@ -82,7 +81,6 @@ const RequestForm = (props: RequestFormProps) => {
           <View style={[styles.wrapper, styles.shadow]}>
             <FormProvider {...methods}>
               <MediaUpload
-                max={Count.MEDIA_CUSTOMER}
                 callbackShowToast={handleShowToast}
                 required={true}
               />

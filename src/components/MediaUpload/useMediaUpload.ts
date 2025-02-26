@@ -10,7 +10,6 @@ import type { MediaUploadProps } from "./types";
 import type { MediaForm } from "@app/lib/models/form/MediaForm";
 
 export const useMediaUpload = ({
-  max,
   required = false,
   callbackShowToast,
 }: MediaUploadProps) => {
@@ -23,7 +22,7 @@ export const useMediaUpload = ({
     rules: {
       required,
       max: {
-        value: 3,
+        value: Count.MEDIA_MAX,
         message: "",
       },
     },
@@ -38,7 +37,7 @@ export const useMediaUpload = ({
   );
 
   const mediaLength = formValue.length || 0;
-  const selectionLimit = max - mediaLength;
+  const selectionLimit = Count.MEDIA_MAX - mediaLength;
 
   const isMedia = Boolean(mediaLength);
   const isDisabled = selectionLimit === 0;
@@ -89,15 +88,15 @@ export const useMediaUpload = ({
           item.type?.includes("image"),
         );
 
-        const isLimitMedia = assets.length > max;
+        const isLimitMedia = assets.length > Count.MEDIA_MAX;
         const isLimitVideos = uploadVideos.length > Count.MEDIA_VIDEO;
-        const isLimitPhotos = uploadImages.length > max;
+        const isLimitPhotos = uploadImages.length > Count.MEDIA_PHOTO;
 
         //? MAX MEDIA
         if (isLimitMedia) {
           timeoutDisplay(() => {
             callbackShowToast(
-              `Вы добавили слишком много медиа контента. Сократили до ${max}`,
+              `Вы добавили слишком много медиа контента. Сократили до ${Count.MEDIA_MAX}`,
             );
           });
         }
@@ -115,14 +114,13 @@ export const useMediaUpload = ({
         if (isLimitPhotos) {
           timeoutDisplay(() => {
             callbackShowToast(
-              `Вы добавили слишком много фото. Сократили до ${max}`,
+              `Вы добавили слишком много фото. Сократили до ${Count.MEDIA_PHOTO}`,
             );
           });
         }
 
         onChange(
           mediaUtils.pickerToForm({
-            max,
             uploadVideos,
             uploadImages,
             formVideos,
