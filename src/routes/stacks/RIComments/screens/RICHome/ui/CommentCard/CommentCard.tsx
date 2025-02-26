@@ -3,6 +3,7 @@ import Typography from "@app/ui/Typography";
 import AboutCard from "@app/components/AboutCard";
 import BadgeUI from "@app/ui/BadgeUI";
 import { formatDateTime } from "@app/lib/functions/formatDateTime";
+import { EU_FULL_FORMAT } from "@app/lib/dayjs";
 import { styles } from "./styles.ts";
 import { getCommentAuthor } from "./helpers.ts";
 import type { CommentCardProps } from "./types.ts";
@@ -45,7 +46,7 @@ export const CommentCard = (props: CommentCardProps) => {
       <Typography
         fontSize={12}
         lineHeight={12}>
-        {formatDateTime(created_at, "date_time")}
+        {formatDateTime(created_at, EU_FULL_FORMAT)}
       </Typography>
     </View>
   );
