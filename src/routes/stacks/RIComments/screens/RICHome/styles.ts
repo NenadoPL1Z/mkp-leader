@@ -12,11 +12,12 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainerStyle: {
+    flexDirection: "column-reverse",
     flexGrow: 1,
     gap: 15,
     paddingLeft: Size.SCREEN_PADDING,
     paddingRight: Size.SCREEN_PADDING,
-    paddingTop: Size.SCREEN_PADDING,
+    paddingBottom: Size.SCREEN_PADDING,
   },
   bottom: {
     flex: 0,

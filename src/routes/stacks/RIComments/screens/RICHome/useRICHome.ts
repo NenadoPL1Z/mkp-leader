@@ -6,12 +6,14 @@ import { Response } from "@app/lib/constants/response.ts";
 import { useStatus } from "@app/hooks/useStatus.ts";
 import { useAppState } from "@app/hooks/useAppState.ts";
 import { useToggle } from "@app/hooks/useToggle.ts";
+import type { FlatList } from "react-native";
 import type { RICHomeScreenProps } from "@app/routes/stacks/RIComments/types.ts";
 import type { CommentModel } from "@app/lib/models/CommentModel.ts";
 
 export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
   const { service, initialComments, handleUpdateInitialComments } =
     route.params;
+  const listRef = useRef<FlatList | null>(null);
 
   const commentUpdateCount = useRef(0);
 
@@ -47,15 +49,12 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
       handleClose();
       handleClearStatus();
 
+      // если публикуем комментарий
+      if (callback) listRef.current?.scrollToOffset({ offset: 0 });
+
       if (isUpdate && commentUpdateCount.current > 0) {
         onShowToast({
           text1: `Комментарии успешно обновлены!\nНовых комментариев: ${newCommentsLength}`,
-        });
-      }
-
-      if (callback) {
-        onShowToast({
-          text1: `Комментарий успешно опубликован!\nПод номером: ${response.length}`,
         });
       }
     } catch {
@@ -80,6 +79,7 @@ export const useRICHome = ({ route, navigation }: RICHomeScreenProps) => {
   }, [isActive]);
 
   return {
+    listRef,
     commentUpdateCount,
     isLoading,
     isOpen,

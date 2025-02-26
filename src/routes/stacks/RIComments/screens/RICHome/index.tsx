@@ -35,6 +35,7 @@ const RICHome = (props: RICHomeScreenProps) => {
   const paddingBottom = bottom || styles.bottom.paddingVertical;
 
   const {
+    listRef,
     commentUpdateCount,
     isLoading,
     isOpen,
@@ -78,10 +79,12 @@ const RICHome = (props: RICHomeScreenProps) => {
         </TouchableOpacity>
       </HeaderUI>
       <FlatList
+        ref={listRef}
         style={styles.container}
         contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={true}
         showsHorizontalScrollIndicator={false}
+        inverted={Boolean(comments.length)}
         data={comments}
         keyExtractor={(item) => `${item.id}`}
         renderItem={renderItem}
