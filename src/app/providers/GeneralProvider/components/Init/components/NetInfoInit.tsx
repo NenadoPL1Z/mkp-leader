@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-
+import { useEffect } from "react";
 import { networkAddEventListener } from "@app/lib/modules/network";
 import { useAppDispatch } from "@app/store/hooks";
 import { changeNetInfo } from "@app/store/reducers/global/global";
 
-const NetInfoInit = () => {
+export const NetInfoInit = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -19,5 +18,3 @@ const NetInfoInit = () => {
 
   return null;
 };
-
-export default React.memo(NetInfoInit);

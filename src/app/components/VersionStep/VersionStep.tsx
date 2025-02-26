@@ -1,4 +1,3 @@
-import React from "react";
 import { Modal, StyleSheet, View } from "react-native";
 import { Colors } from "@app/theme/colors.ts";
 import { useAppSelector } from "@app/store/hooks";
@@ -6,7 +5,7 @@ import { useStatusBar } from "@app/hooks/useStatusBar.ts";
 import UpdateVersion from "@app/components/UpdateVersion";
 import type { ChildrenProps } from "@app/types/general.ts";
 
-const AppVersion = ({ children }: ChildrenProps) => {
+export const VersionStep = ({ children }: ChildrenProps) => {
   const version = useAppSelector((state) => state.global.version);
   const { isActual } = version;
 
@@ -37,5 +36,3 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.MAIN,
   },
 });
-
-export default React.memo(AppVersion);

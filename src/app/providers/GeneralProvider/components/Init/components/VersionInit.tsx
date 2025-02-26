@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store/hooks";
 import { fetchVersions } from "@app/store/reducers/global/asyncThunks/fetchVersions";
 import { loading } from "@app/store/reducers";
 
-const VersionInit = () => {
+export const VersionInit = () => {
   const { details } = useAppSelector((state) => state.global.version);
   const dispatch = useAppDispatch();
 
@@ -17,5 +17,3 @@ const VersionInit = () => {
 
   return null;
 };
-
-export default React.memo(VersionInit);

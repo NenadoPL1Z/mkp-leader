@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store/hooks";
 import { jwt } from "@app/lib/modules/asyncStorage/tokens";
 import { loading, user } from "@app/store/reducers";
@@ -8,7 +8,7 @@ import { isNetworkError, isRefreshExist } from "@app/lib/functions/network";
 import { Timing } from "@app/lib/constants/timing";
 import type { Nullable } from "@app/types/general";
 
-const UserInit = () => {
+export const UserInit = () => {
   const isAuth = useAppSelector(user.selectors.selectUserAuth);
   const netInfo = useAppSelector((state) => state.global.netInfo);
   const dispatch = useAppDispatch();
@@ -99,5 +99,3 @@ const UserInit = () => {
 
   return null;
 };
-
-export default React.memo(UserInit);

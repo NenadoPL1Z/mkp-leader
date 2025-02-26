@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store/hooks";
 import { loading } from "@app/store/reducers";
 import { hide } from "react-native-bootsplash";
 
-const LoadingInit = () => {
+export const LoadingInit = () => {
   const netInfo = useAppSelector((state) => state.global.netInfo);
 
   const isCheckVersion = useAppSelector(loading.selectors.selectVersion);
@@ -30,5 +30,3 @@ const LoadingInit = () => {
 
   return null;
 };
-
-export default React.memo(LoadingInit);

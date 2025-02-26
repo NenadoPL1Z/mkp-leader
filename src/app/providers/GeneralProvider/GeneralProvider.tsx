@@ -1,12 +1,10 @@
-import React from "react";
-import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "@app/store/store";
 import { ThemeProvider } from "@rneui/themed";
 import { theme } from "@app/theme/theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import InitLayout from "@app/layout/init";
+import { Init } from "./components/Init";
 import type { ChildrenProps } from "@app/types/general";
 
 //? 1 - STORE
@@ -15,13 +13,13 @@ import type { ChildrenProps } from "@app/types/general";
 //? 4 - Save area (IOS)
 //? 5 - GESTURE
 
-const AppProvider = ({ children }: ChildrenProps) => {
+export const GeneralProvider = ({ children }: ChildrenProps) => {
   return (
     <Provider store={store}>
-      <InitLayout />
+      <Init />
       <ThemeProvider theme={theme}>
         <SafeAreaProvider>
-          <GestureHandlerRootView style={styles.flex}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
             {children}
           </GestureHandlerRootView>
         </SafeAreaProvider>
@@ -29,11 +27,3 @@ const AppProvider = ({ children }: ChildrenProps) => {
     </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  flex: {
-    flex: 1,
-  },
-});
-
-export default React.memo(AppProvider);

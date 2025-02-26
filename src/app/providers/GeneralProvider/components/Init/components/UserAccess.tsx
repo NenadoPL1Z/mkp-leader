@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store/hooks";
 import { user } from "@app/store/reducers";
 import { jwt } from "@app/lib/modules/asyncStorage/tokens";
@@ -6,7 +6,7 @@ import { getUpdateAccessToken } from "@app/lib/api/auth/thokens/getUpdateAccessT
 import { Timing } from "@app/lib/constants/timing";
 import { isNetworkError, isRefreshExist } from "@app/lib/functions/network";
 
-const UserAccess = () => {
+export const UserAccess = () => {
   const tokenUpdateAt = useRef(0);
 
   const isAuth = useAppSelector(user.selectors.selectUserAuth);
@@ -86,5 +86,3 @@ const UserAccess = () => {
 
   return null;
 };
-
-export default React.memo(UserAccess);
