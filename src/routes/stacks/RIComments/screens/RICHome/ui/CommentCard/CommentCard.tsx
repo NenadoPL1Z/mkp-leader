@@ -2,6 +2,7 @@ import { View } from "react-native";
 import Typography from "@app/ui/Typography";
 import AboutCard from "@app/components/AboutCard";
 import BadgeUI from "@app/ui/BadgeUI";
+import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { styles } from "./styles.ts";
 import { getCommentAuthor } from "./helpers.ts";
 import type { CommentCardProps } from "./types.ts";
@@ -11,7 +12,6 @@ export const CommentCard = (props: CommentCardProps) => {
 
   const { name, subtitle, avatarName } = getCommentAuthor(props);
 
-  const localeDate = new Date(created_at).toLocaleString();
   return (
     <View style={[styles.container, styles.shadow]}>
       <AboutCard
@@ -45,7 +45,7 @@ export const CommentCard = (props: CommentCardProps) => {
       <Typography
         fontSize={12}
         lineHeight={12}>
-        {localeDate}
+        {formatDateTime(created_at, "date_time")}
       </Typography>
     </View>
   );

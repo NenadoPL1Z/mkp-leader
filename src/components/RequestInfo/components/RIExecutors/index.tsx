@@ -10,6 +10,7 @@ import {
   FIRST_EXECUTOR_NAME,
   SECOND_EXECUTOR_NAME,
 } from "@app/lib/constants/executors.ts";
+import { formatDateTime } from "@app/lib/functions/formatDateTime";
 import { styles } from "./styles";
 import type { ReactNode } from "react";
 import type { ServicesDetailModel } from "@app/lib/models/ServiceModel";
@@ -100,7 +101,7 @@ const RIExecutors = (props: Props) => {
               lineHeight={20}
               fontWeight="400"
               color={Colors.GREEN}>
-              {deadline_at ? new Date(deadline_at).toLocaleDateString() : ""}
+              {deadline_at ? formatDateTime(deadline_at) : ""}
             </Typography>
           </View>
         )}
