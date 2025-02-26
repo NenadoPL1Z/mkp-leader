@@ -48,6 +48,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flex: 0,
   },
+  bottomMargin: {
+    marginBottom: 10,
+  },
   url: {
     textDecorationLine: "underline",
   },
