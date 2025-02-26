@@ -13,7 +13,8 @@ import { useCRHome } from "./useCRHome";
 import type { CRHomeScreenProps } from "../../types";
 
 const CRHome = (props: CRHomeScreenProps) => {
-  const { workRefs, toast, onHideToast, handlePushWork } = useCRHome(props);
+  const { workRefs, toast, onHideToast, handleDisplayToast, handlePushWork } =
+    useCRHome(props);
 
   return (
     <TabBar activeRouteName={CustomerRootSN.REQUESTS}>
@@ -23,7 +24,10 @@ const CRHome = (props: CRHomeScreenProps) => {
           isBack={false}
         />
         <View style={styles.container}>
-          <CRHTopBar workRefs={workRefs} />
+          <CRHTopBar
+            workRefs={workRefs}
+            onDisplayToast={handleDisplayToast}
+          />
           <ToastUI
             params={{
               ...toast,

@@ -37,6 +37,7 @@ export const Api = {
     edit: (id: string) => `/services/edit/${id}`,
     assign: "/services/assign",
     verify: "/services/verify",
+    delete: (id: ServiceId) => `/services/delete/${id}`,
     close: (id: ServiceId) => `/services/close/${id}`,
     refuse: (id: ServiceId) => `/services/refuse/${id}`,
     companies: "/services/companies/all",

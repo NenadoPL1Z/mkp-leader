@@ -8,7 +8,7 @@ import type {
 import type { ServiceCardModel } from "@app/lib/models/ServiceModel";
 import type { CRHTopBarProps, CRGeneralProps } from "../../../types";
 
-export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
+export const useCRHTopBar = ({ workRefs, onDisplayToast }: CRHTopBarProps) => {
   const qualityRefs = usePaginationRefs<ServiceCardModel>();
   const closedRefs = usePaginationRefs<ServiceCardModel>();
   const refusedRefs = usePaginationRefs<ServiceCardModel>();
@@ -79,6 +79,7 @@ export const useCRHTopBar = ({ workRefs }: CRHTopBarProps) => {
     closedRefs,
     refusedRefs,
     onResetAllTabs,
+    onDisplayToast,
   });
 
   return {

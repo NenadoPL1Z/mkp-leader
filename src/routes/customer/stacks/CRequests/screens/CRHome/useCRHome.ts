@@ -30,6 +30,10 @@ export const useCRHome = ({ navigation }: CRHomeScreenProps) => {
     onShowToast({ text1: "Заявка успешно создана" });
   };
 
+  const handleDisplayToast = (text: string) => {
+    onShowToast({ text1: text });
+  };
+
   const handlePushWork = () => {
     navigation.navigate(CRequestsSN.NEW, {
       tabName: "work",
@@ -43,6 +47,7 @@ export const useCRHome = ({ navigation }: CRHomeScreenProps) => {
     workRefs,
     toast,
     onHideToast,
+    handleDisplayToast,
     handlePushWork,
   };
 };
