@@ -30,6 +30,7 @@
     "@rneui/themed": "^4.0.0-rc.8",
     "axios": "^1.6.7",
     "base-64": "^1.0.0",
+    "dayjs": "^1.11.13",
     "react": "18.3.1",
     "react-hook-form": "^7.49.3",
     "react-native": "0.76.5",

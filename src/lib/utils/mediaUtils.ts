@@ -30,14 +30,12 @@ const assetToForm = (arr: Asset[]): MediaFileFormModel[] => {
 };
 
 type arg = {
-  max: number;
   uploadVideos: Asset[];
   uploadImages: Asset[];
   formVideos: MediaFileFormModel[];
   formPhotos: MediaFileFormModel[];
 };
 const pickerToForm = ({
-  max,
   uploadVideos,
   uploadImages,
   formVideos,
@@ -48,12 +46,9 @@ const pickerToForm = ({
   const videos = isMaxVideoInForm ? formVideos : assetToForm(uploadVideos);
   const videosResult = videos.splice(0, 1);
 
-  //? CALC PHOTO COUNT
-  const splicePhotos = videosResult.length ? max - Count.MEDIA_VIDEO : max;
-
   //? ADD PHOTO
   const photos = [...formPhotos, ...assetToForm(uploadImages)];
-  const photosResult = photos.splice(0, splicePhotos);
+  const photosResult = photos.splice(0, Count.MEDIA_PHOTO);
 
   return [...videosResult, ...photosResult];
 };

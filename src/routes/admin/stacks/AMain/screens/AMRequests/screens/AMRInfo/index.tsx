@@ -49,7 +49,8 @@ const AMRInfo = (props: AMRInfoScreenProps) => {
         onDecrementUnreadCounter={counter.onDecrementUnreadCounter}>
         {({ data, onUpdateData }) => {
           //? CONSTANTS
-          const isChangeTab = tabName === "work" || tabName === "quality";
+          const isChangeTab =
+            data.status === "В работе" || data.status === "Контроль качества";
 
           const isEnableEdit = isChangeTab;
           const isEditMode = isEnableEdit && editMode.isToggle;

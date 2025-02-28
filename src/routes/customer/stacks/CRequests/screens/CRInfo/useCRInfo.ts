@@ -12,7 +12,7 @@ import type {
 
 export const useCRInfo = ({ route, navigation }: CRInfoScreenProps) => {
   const { params } = route;
-  const { tabName, nextTabName, cardIndex } = params;
+  const { tabName, nextTabName, cardIndex, card, onDisplayToast } = params;
   const currenTabRef = params[`${tabName}Refs`];
   const nextTabRef = nextTabName ? params[`${nextTabName}Refs`] : null;
   const isEdit = tabName === "work";
@@ -39,6 +39,15 @@ export const useCRInfo = ({ route, navigation }: CRInfoScreenProps) => {
         ...prevState.slice(cardIndex + 1),
       ]);
     }
+  };
+
+  const handleDelete = (callback: () => void) => {
+    callback();
+    currenTabRef.filterRef?.current?.(card.id);
+    setTimeout(() => {
+      navigation.goBack();
+      onDisplayToast("Заявка успешно удалена");
+    });
   };
 
   const registerEdit = (onUpdateData: RInfoChildrenOnUpdate) => {
@@ -69,6 +78,7 @@ export const useCRInfo = ({ route, navigation }: CRInfoScreenProps) => {
     toast,
     currenTabRef,
     nextTabRef,
+    handleDelete,
     handlePush,
   };
 };

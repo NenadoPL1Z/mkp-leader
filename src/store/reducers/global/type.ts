@@ -8,10 +8,10 @@ export interface StatusBarGlobal {
 }
 
 export type VersionsDetails = {
-  google_play_version: string;
-  app_store_version: string;
   google_play_url: string;
   app_store_url: string;
+  google_play_version: string;
+  app_store_version: string;
 };
 
 export interface VersionGlobal {

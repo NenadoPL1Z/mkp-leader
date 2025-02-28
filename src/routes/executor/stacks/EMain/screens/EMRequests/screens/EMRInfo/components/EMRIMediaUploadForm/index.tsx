@@ -9,7 +9,6 @@ import { Portal as PortalNames } from "@app/theme/portal";
 import { Size } from "@app/lib/constants/size";
 import { Colors } from "@app/theme/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Count } from "@app/lib/constants/count";
 import { useEMRIMediaUploadForm } from "./useEMRIMediaUploadForm";
 import type { EMRIMediaUploadFormProps } from "./types";
 
@@ -24,7 +23,6 @@ const EMRIMediaUploadForm = (props: EMRIMediaUploadFormProps) => {
     <View style={styles.container}>
       <FormProvider {...methods}>
         <MediaUpload
-          max={Count.MEDIA_EXECUTOR}
           callbackShowToast={handleShowToast}
           required={true}
         />

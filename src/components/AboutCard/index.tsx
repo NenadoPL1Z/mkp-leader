@@ -20,6 +20,7 @@ const AboutCard = ({
   isTouch = true,
   isPadding = true,
   isDisplayMark = false,
+  titleProps,
 }: AboutCardProps) => {
   return (
     <TouchableOpacity
@@ -49,7 +50,8 @@ const AboutCard = ({
               fontFamily={Font.TEXT}
               fontSize={15}
               lineHeight={20}
-              fontWeight="600">
+              fontWeight="600"
+              {...titleProps}>
               {title}
             </Typography>
           </View>

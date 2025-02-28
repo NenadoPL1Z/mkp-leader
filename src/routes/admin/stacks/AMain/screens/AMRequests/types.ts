@@ -29,7 +29,6 @@ export enum AMRequestsSN {
   HOME = "Home",
   INFO = "Info",
   EXECUTOR = "Executor",
-  COMMENT = "Comment",
   COMMENTS = "Comments",
 }
 

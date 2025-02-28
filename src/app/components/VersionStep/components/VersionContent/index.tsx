@@ -6,15 +6,23 @@ import ButtonUI from "@app/ui/ButtonUI";
 import Documentation from "@app/components/Documentation";
 import { openIndexWebsite } from "@app/lib/functions/openIndexWebsite";
 import { IS_IOS } from "@app/lib/constants";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./index.styles.ts";
-import type { VersionGlobal } from "@app/store/reducers/global/type.ts";
+import { openStore } from "./helpers.ts";
+import type {
+  VersionGlobal,
+  VersionsDetails,
+} from "@app/store/reducers/global/type.ts";
 
-const platform = !IS_IOS ? "App Store" : "Google Play";
+const platform = IS_IOS ? "App Store" : "Google Play";
 
 export const VersionContent = ({
   actualVersion,
   currentVersion,
+  details,
 }: VersionGlobal) => {
+  const { bottom } = useSafeAreaInsets();
+
   return (
     <LinearGradient
       style={styles.container}
@@ -34,7 +42,7 @@ export const VersionContent = ({
             Для корректной работы приложения, установите обновление!
           </Typography>
         </View>
-        <View style={styles.bottom}>
+        <View style={[styles.bottom, bottom === 0 && styles.bottomMargin]}>
           <View style={styles.block}>
             <Typography
               variant="h3"
@@ -48,7 +56,11 @@ export const VersionContent = ({
             </Typography>
           </View>
           <View style={styles.button}>
-            <ButtonUI variant="inverted">Обновить ({platform})</ButtonUI>
+            <ButtonUI
+              variant="inverted"
+              onPress={() => openStore(details as unknown as VersionsDetails)}>
+              Обновить ({platform})
+            </ButtonUI>
           </View>
           <Documentation />
           <Typography

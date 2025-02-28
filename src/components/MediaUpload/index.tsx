@@ -5,6 +5,7 @@ import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors";
 import { ScracthIcon } from "@app/assets/icons/dist";
 import MUItem from "@app/components/MediaUpload/components/MUItem";
+import { Count } from "@app/lib/constants/count.ts";
 import { styles } from "./styles";
 import { useMediaUpload } from "./useMediaUpload";
 import type { MediaUploadProps } from "./types";
@@ -52,8 +53,8 @@ const MediaUpload = (props: MediaUploadProps) => {
           fontSize={13}
           lineHeight={15}
           fontWeight="400">
-          Вы можете добавить не более {props.max}х медиафайлов, в том числе одно
-          видео.
+          Вы можете добавить не более {Count.MEDIA_MAX}х медиафайлов, в том
+          числе одно видео.
         </Typography>
       </View>
     </View>

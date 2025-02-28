@@ -10,7 +10,7 @@ export type OnAssignExecutorArg = {
 };
 
 export type RIExecutorFormProps = ServicesDetailModel & {
-  tabName: "quality" | "work";
+  tabName: "work" | "quality" | "closed" | "refused";
   isEditMode?: boolean;
   onAssignExecutor: (data: OnAssignExecutorArg) => void;
 };

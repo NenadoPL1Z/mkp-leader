@@ -6,8 +6,7 @@ if (IS_DEV) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   require("../../reactotron.config.js");
 }
-
-export const App = () => (
+const App = () => (
   <GeneralProvider>
     <VersionStep>
       <AuthStep>
@@ -16,3 +15,5 @@ export const App = () => (
     </VersionStep>
   </GeneralProvider>
 );
+
+export default App;

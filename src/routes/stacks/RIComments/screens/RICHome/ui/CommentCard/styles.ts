@@ -17,7 +17,14 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 4,
   },
+  badge: {
+    marginLeft: 8,
+  },
   comment: {
+    borderTopWidth: 1,
+    borderStyle: "solid",
+    borderColor: Colors.GRAY_TEN,
+    paddingTop: 15,
     marginBottom: 15,
   },
   createdAt: {

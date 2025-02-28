@@ -7,7 +7,7 @@ import type { Store } from "@app/store/store";
 const currentVersion = getVersion();
 
 export const fetchVersions = createAsyncThunk<VersionGlobal, void, Store>(
-  "user/fetchUserMe",
+  "global/fetchVersions",
   async (_, { extra: api }) => {
     const response = await api.get<VersionsDetails>("/versions", {
       baseURL: BASE_URL,

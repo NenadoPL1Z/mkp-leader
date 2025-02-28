@@ -28,9 +28,13 @@ export type CRGeneralProps = {
   closedRefs: Required<PaginationRefs<ServiceCardModel>>;
   refusedRefs: Required<PaginationRefs<ServiceCardModel>>;
   onResetAllTabs: () => void;
+  onDisplayToast: (text: string) => void;
 };
 
-export type CRHTopBarProps = Pick<CRGeneralProps, "workRefs">;
+export type CRHTopBarProps = Pick<
+  CRGeneralProps,
+  "workRefs" | "onDisplayToast"
+>;
 
 type Info = CRGeneralProps & {
   tabName: "work" | "quality" | "closed" | "refused";
