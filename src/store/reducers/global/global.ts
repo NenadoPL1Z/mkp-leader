@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Colors } from "@app/theme/colors.ts";
 import { fetchVersions } from "./asyncThunks/fetchVersions";
-import type { GlobalState, StatusBarGlobal } from "./type.ts";
+import type { GlobalState, StatusBarGlobal, VersionGlobal } from "./type.ts";
 import type { NetworkInfoState } from "@app/lib/modules/network";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -30,6 +30,9 @@ export const globalSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchVersions.fulfilled, (state, action) => {
       state.version = action.payload;
+    });
+    builder.addCase(fetchVersions.rejected, (state, action) => {
+      state.version = action.payload as VersionGlobal;
     });
   },
 });

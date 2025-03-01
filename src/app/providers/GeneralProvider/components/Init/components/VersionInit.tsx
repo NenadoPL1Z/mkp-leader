@@ -4,7 +4,7 @@ import { fetchVersions } from "@app/store/reducers/global/asyncThunks/fetchVersi
 import { loading } from "@app/store/reducers";
 
 export const VersionInit = () => {
-  const { details } = useAppSelector((state) => state.global.version);
+  const { isActual } = useAppSelector((state) => state.global.version);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -12,8 +12,10 @@ export const VersionInit = () => {
   }, []);
 
   useEffect(() => {
-    if (details) dispatch(loading.actions.version());
-  }, [details]);
+    if (typeof isActual === "boolean") {
+      dispatch(loading.actions.version());
+    }
+  }, [isActual]);
 
   return null;
 };

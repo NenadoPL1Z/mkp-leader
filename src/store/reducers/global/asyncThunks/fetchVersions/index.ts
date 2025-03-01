@@ -8,25 +8,34 @@ const currentVersion = getVersion();
 
 export const fetchVersions = createAsyncThunk<VersionGlobal, void, Store>(
   "global/fetchVersions",
-  async (_, { extra: api }) => {
-    const response = await api.get<VersionsDetails>("/versions", {
-      baseURL: BASE_URL,
-      headers: {
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-      },
-    });
+  async (_, { extra: api, rejectWithValue }) => {
+    try {
+      const response = await api.get<VersionsDetails>("/versions", {
+        baseURL: BASE_URL,
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+        },
+      });
 
-    const actualVersion = IS_IOS
-      ? response.data.app_store_version
-      : response.data.google_play_version;
+      const actualVersion = IS_IOS
+        ? response.data.app_store_version
+        : response.data.google_play_version;
 
-    const isActual = currentVersion === actualVersion;
+      const isActual = currentVersion === actualVersion;
 
-    return {
-      isActual,
-      actualVersion,
-      currentVersion,
-      details: response.data,
-    };
+      return {
+        isActual,
+        actualVersion,
+        currentVersion,
+        details: response.data,
+      };
+    } catch {
+      return rejectWithValue({
+        isActual: false,
+        actualVersion: null,
+        currentVersion: null,
+        details: null,
+      });
+    }
   },
 );
