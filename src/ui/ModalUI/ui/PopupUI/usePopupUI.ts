@@ -1,10 +1,5 @@
 import { useEffect } from "react";
-import {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
-import type { WithTimingConfig } from "react-native-reanimated";
+import { useAnimatedValue, Animated } from "react-native";
 
 import type { PopupUIProps } from "./types";
 
@@ -12,39 +7,56 @@ type UsePopupFuncType = Pick<PopupUIProps, "onClose" | "visible">;
 
 const MB_INITIAL = 0;
 const OPACITY_INITIAL = 0;
-const ANIM_CONFIG: WithTimingConfig = { duration: 300 };
+const DURATION = 300;
 
 export const usePopupUI = ({ visible, onClose }: UsePopupFuncType) => {
-  const translateY = useSharedValue(MB_INITIAL);
-  const opacity = useSharedValue(OPACITY_INITIAL);
-  const opacityBackdoor = useSharedValue(visible ? 1 : 0);
+  const translateY = useAnimatedValue(MB_INITIAL);
+  const opacity = useAnimatedValue(OPACITY_INITIAL);
+  const opacityBackdoor = useAnimatedValue(visible ? 1 : 0);
 
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: translateY.value }],
-      opacity: opacity.value,
-    };
-  });
-
-  const opacityBackdoorStyles = useAnimatedStyle(() => {
-    return {
-      opacity: opacityBackdoor.value,
-    };
-  });
+  const animatedStyles = {
+    opacity: opacity,
+    transform: [{ translateY: translateY }],
+  };
+  const opacityBackdoorStyles = { opacity: opacityBackdoor };
 
   useEffect(() => {
     if (visible) {
-      translateY.value = withTiming(-50, ANIM_CONFIG);
-      opacity.value = withTiming(1, ANIM_CONFIG);
-      opacityBackdoor.value = withTiming(1, ANIM_CONFIG);
+      Animated.timing(translateY, {
+        toValue: -50,
+        duration: DURATION,
+        useNativeDriver: true,
+      }).start();
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: DURATION,
+        useNativeDriver: true,
+      }).start();
+      Animated.timing(opacityBackdoor, {
+        toValue: 1,
+        duration: DURATION,
+        useNativeDriver: true,
+      }).start();
     }
   }, [visible]);
 
   const handleClose = () => {
-    translateY.value = withTiming(MB_INITIAL, ANIM_CONFIG);
-    opacity.value = withTiming(OPACITY_INITIAL, ANIM_CONFIG);
-    opacityBackdoor.value = withTiming(0, ANIM_CONFIG);
-    setTimeout(onClose, (ANIM_CONFIG.duration || 0) + 20);
+    Animated.timing(translateY, {
+      toValue: MB_INITIAL,
+      duration: DURATION,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(opacity, {
+      toValue: OPACITY_INITIAL,
+      duration: DURATION,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(opacityBackdoor, {
+      toValue: 0,
+      duration: DURATION,
+      useNativeDriver: true,
+    }).start();
+    setTimeout(onClose, DURATION + 20);
   };
 
   return {

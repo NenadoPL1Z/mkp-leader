@@ -1,6 +1,5 @@
 import React from "react";
-import { Pressable, SafeAreaView, View } from "react-native";
-import Animated from "react-native-reanimated";
+import { Pressable, SafeAreaView, View, Animated } from "react-native";
 
 import ModalUI from "@app/ui/ModalUI/ModalUI";
 import ButtonUI from "@app/ui/ButtonUI";

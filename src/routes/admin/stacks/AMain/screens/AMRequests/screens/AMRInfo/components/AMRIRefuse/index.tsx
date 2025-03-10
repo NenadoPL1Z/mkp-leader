@@ -27,22 +27,24 @@ const AMRIRefuse = (props: AMRIRefuseProps) => {
   } = useAMRIRefuse(props);
 
   return (
-    <Portal hostName={PortalNamespace.REQUEST_FOOTER}>
-      <ToastUI
-        params={{
-          ...toast,
-          isVisible: !!toast,
-          onHide: onHideToast,
-          bottomOffset: Size.BUTTON + paddingBottom + 10,
-        }}
-      />
-      <View style={[styles.bottom, { paddingBottom }]}>
-        <ButtonUI
-          loading={isLoading}
-          onPress={handleOpen}>
-          Отказаться от заявки
-        </ButtonUI>
-      </View>
+    <>
+      <Portal hostName={PortalNamespace.REQUEST_FOOTER}>
+        <ToastUI
+          params={{
+            ...toast,
+            isVisible: !!toast,
+            onHide: onHideToast,
+            bottomOffset: Size.BUTTON + paddingBottom + 10,
+          }}
+        />
+        <View style={[styles.bottom, { paddingBottom }]}>
+          <ButtonUI
+            loading={isLoading}
+            onPress={handleOpen}>
+            Отказаться от заявки
+          </ButtonUI>
+        </View>
+      </Portal>
       <PopupUI
         visible={isOpen}
         onSuccess={onSubmit}
@@ -52,7 +54,7 @@ const AMRIRefuse = (props: AMRIRefuseProps) => {
         isBackdoorClose={!isLoading}>
         <PopupText>Вы уверены, что хотите отказаться от заявки?</PopupText>
       </PopupUI>
-    </Portal>
+    </>
   );
 };
 
