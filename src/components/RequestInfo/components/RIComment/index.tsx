@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Animated } from "react-native";
 import Typography from "@app/ui/Typography";
 import BadgeUI from "@app/ui/BadgeUI";
 import { ArrowDownIcon } from "@app/assets/icons/dist";
@@ -7,7 +7,6 @@ import SpinnerUI from "@app/ui/SpinnerUI";
 import ButtonUI from "@app/ui/ButtonUI";
 import { Colors } from "@app/theme/colors.ts";
 import { IS_ANDROID } from "@app/lib/constants";
-import Animated from "react-native-reanimated";
 import { styles } from "./styles.ts";
 import { useRIComment } from "./useRIComment.ts";
 import type { RICommentProps } from "./types.ts";

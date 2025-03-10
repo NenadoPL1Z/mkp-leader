@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { getServiceCommentsById } from "@app/lib/api/services/getServiceCommentsById.ts";
 import { useStatus } from "@app/hooks/useStatus.ts";
 import { Response } from "@app/lib/constants/response.ts";
-import { useSharedValue, withTiming } from "react-native-reanimated";
+import { Animated, useAnimatedValue } from "react-native";
 import { DURATION } from "./constants.ts";
 import type { RICommentProps } from "./types.ts";
 import type { CommentModel } from "@app/lib/models/CommentModel.ts";
 
 export const useRIComment = ({ serviceId, onShowToast }: RICommentProps) => {
-  const opacityContent = useSharedValue(0);
-  const opacityLoading = useSharedValue(1);
+  const opacityContent = useAnimatedValue(0);
+  const opacityLoading = useAnimatedValue(1);
   const [comments, setComments] = useState<CommentModel[]>();
 
   const {
@@ -29,10 +29,18 @@ export const useRIComment = ({ serviceId, onShowToast }: RICommentProps) => {
       handleLoadingStatus();
       const comments = await getServiceCommentsById(serviceId);
       handleUpdateComments(comments);
-      opacityLoading.value = withTiming(0, { duration: DURATION });
+      Animated.timing(opacityLoading, {
+        toValue: 0,
+        duration: DURATION,
+        useNativeDriver: true,
+      }).start();
       setTimeout(() => {
         handleClearStatus();
-        opacityContent.value = withTiming(1, { duration: DURATION });
+        Animated.timing(opacityContent, {
+          toValue: 1,
+          duration: DURATION,
+          useNativeDriver: true,
+        }).start();
       }, DURATION);
     } catch {
       handleErrorStatus(Response.UNKNOWN);
