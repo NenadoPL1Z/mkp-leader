@@ -31,6 +31,7 @@ const ignores = [
   "babel.config.js",
   "metro.config.js",
   "react-native.config.js",
+  "src/assets/icons/dist",
 ];
 
 const settings = {

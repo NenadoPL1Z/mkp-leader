@@ -39,8 +39,8 @@ const HRLogout = (props: HRChildrenProps) => {
 
 const styles = StyleSheet.create({
   root: {
+    width: 18,
     height: "100%",
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
