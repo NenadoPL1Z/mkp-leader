@@ -17,7 +17,7 @@ export const decrementUnreadCounter = (
           acc.push(company);
           return acc;
         }
-        const tabs = company.tabs;
+        const tabs = { ...company.tabs };
         // decrement
         if (tabs[tabName] > 0) tabs[tabName] -= 1;
         acc.push({ ...company, tabs });
@@ -38,7 +38,7 @@ export const setUnreadCounter = (
           acc.push(company);
           return acc;
         }
-        const tabs = company.tabs;
+        const tabs = { ...company.tabs };
         // update
         tabs[tabName] = newCounter;
         acc.push({ ...company, tabs });
