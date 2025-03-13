@@ -36,16 +36,6 @@ const CRHTopBar = (props: CRHTopBarProps) => {
         )}
       </Tab.Screen>
       <Tab.Screen
-        name={N_QUALITY}
-        options={setBadge("Контроль качества", counters[N_QUALITY])}>
-        {(props) => (
-          <CRQuality
-            {...props}
-            {...tabProps(N_QUALITY)}
-          />
-        )}
-      </Tab.Screen>
-      <Tab.Screen
         name={N_CLOSED}
         options={setBadge("Закрытые", counters[N_CLOSED], true)}>
         {(props) => (
@@ -62,6 +52,16 @@ const CRHTopBar = (props: CRHTopBarProps) => {
           <CRRefused
             {...props}
             {...tabProps(N_REFUSED)}
+          />
+        )}
+      </Tab.Screen>
+      <Tab.Screen
+        name={N_QUALITY}
+        options={setBadge("Контроль качества", counters[N_QUALITY])}>
+        {(props) => (
+          <CRQuality
+            {...props}
+            {...tabProps(N_QUALITY)}
           />
         )}
       </Tab.Screen>
