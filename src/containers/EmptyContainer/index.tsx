@@ -12,7 +12,7 @@ type Props = {
 };
 
 const EmptyContainer = ({
-  title = "Пока нет заявок",
+  title = "Заявки ещё не созданы",
   Icon = EmptyServicesIcon,
 }: Props) => {
   const { bottom } = useMarginBottom();
