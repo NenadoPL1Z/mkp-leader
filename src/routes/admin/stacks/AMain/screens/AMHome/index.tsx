@@ -47,9 +47,7 @@ const AMHome = (props: AMHomeScreenProps) => {
             contentContainerStyle={styles.contentContainerStyle}
             renderItem={renderItem}
             empty={{
-              Component: () => (
-                <EmptyContainer title="Заказчики ещё не созданы" />
-              ),
+              Component: () => <EmptyContainer title="Заявки ещё не созданы" />,
             }}
           />
         </View>
