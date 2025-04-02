@@ -1,4 +1,4 @@
-package com.mkpleader
+package com.restoservice
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity

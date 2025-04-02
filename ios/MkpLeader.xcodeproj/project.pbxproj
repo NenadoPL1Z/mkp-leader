@@ -481,7 +481,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mkpleader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.restoservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MKPLeader.app/MKPLeader";
 			};
@@ -505,7 +505,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mkpleader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.restoservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MKPLeader.app/MKPLeader";
 			};
@@ -518,9 +518,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 82CTCA4LRW;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MKPLeader/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "MKP Leader";
@@ -556,9 +556,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 82CTCA4LRW;
 				INFOPLIST_FILE = MKPLeader/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "MKP Leader";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
