@@ -31,10 +31,15 @@ export const fetchVersions = createAsyncThunk<VersionGlobal, void, Store>(
       };
     } catch {
       return rejectWithValue({
-        isActual: false,
-        actualVersion: null,
-        currentVersion: null,
-        details: null,
+        isActual: true,
+        actualVersion: "2.0.0",
+        currentVersion: "2.0.0",
+        details: {
+          google_play_version: "",
+          google_play_url: "",
+          app_store_version: "",
+          app_store_url: "",
+        },
       });
     }
   },
