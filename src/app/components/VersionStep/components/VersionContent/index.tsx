@@ -4,7 +4,6 @@ import { Colors, linear } from "@app/theme/colors.ts";
 import Typography from "@app/ui/Typography";
 import ButtonUI from "@app/ui/ButtonUI";
 import Documentation from "@app/components/Documentation";
-import { openIndexWebsite } from "@app/lib/functions/openIndexWebsite";
 import { IS_IOS } from "@app/lib/constants";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./index.styles.ts";
@@ -63,24 +62,6 @@ export const VersionContent = ({
             </ButtonUI>
           </View>
           <Documentation />
-          <Typography
-            variant="h4"
-            fontWeight="400"
-            fontSize={15}
-            lineHeight={20}
-            color={Colors.WHITE}>
-            Разработано{" "}
-            <Typography
-              variant="h4"
-              fontWeight="400"
-              fontSize={15}
-              lineHeight={20}
-              color={Colors.WHITE}
-              style={styles.url}
-              onPress={openIndexWebsite}>
-              INDEX studio
-            </Typography>
-          </Typography>
         </View>
       </SafeAreaView>
     </LinearGradient>

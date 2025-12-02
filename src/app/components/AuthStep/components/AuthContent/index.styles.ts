@@ -22,9 +22,12 @@ export const styles = StyleSheet.create({
     color: Colors.WHITE,
     marginBottom: 40,
   },
-  button: {
-    marginTop: 64,
+  buttonContainer: {
+    marginTop: 30,
     width: "100%",
+  },
+  registerButton: {
+    marginTop: 15,
   },
   bottom: {
     width: "100%",

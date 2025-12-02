@@ -82,8 +82,8 @@ android {
         applicationId "com.restoservice"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10
-        versionName "2.0.0"
+        versionCode 12
+        versionName "2.0.1"
     }
     signingConfigs {
         release {

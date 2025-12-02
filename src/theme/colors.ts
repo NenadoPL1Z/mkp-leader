@@ -21,6 +21,7 @@ export enum Colors {
   WHITE = "#FFFFFF",
   WHITE_TWO = "rgba(255,255,255, .6)",
   ERROR = "#FF7A7A",
+  ERROR_TWO = "red",
   GREEN = "#7FAC1E",
   RGBA_BACKDOOR = "rgba(0, 0, 0, 0.5)",
   RGBA_BACKDOOR_TWO = "rgba(0, 0, 0, 0.7)",
