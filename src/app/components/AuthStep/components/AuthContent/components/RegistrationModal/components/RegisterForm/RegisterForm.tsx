@@ -3,6 +3,9 @@ import { View } from "react-native";
 import TextField from "@app/ui/TextField";
 import TFPassword from "@app/ui/TextField/variant/TFPassword";
 import { ValidateRulesUI } from "@app/ui/ValidateRulesUI";
+import CheckBoxUI from "@app/ui/CheckBoxUI";
+import Typography from "@app/ui/Typography";
+import { Colors } from "@app/theme/colors.ts";
 import { styles } from "./styles";
 import type { RegisterForm as RegisterFormType } from "@app/lib/models/form/RegisterForm";
 
@@ -25,6 +28,11 @@ export const RegisterForm = () => {
       required: "Обязательное поле",
       maxLength: { value: 30, message: "Макс. количество символов 30" },
     },
+  });
+
+  const acceptDocs = useController({
+    name: "acceptDocs",
+    control,
   });
 
   const onChangeUsername = (text: string) => {
@@ -65,6 +73,44 @@ export const RegisterForm = () => {
         errorMessage={password.fieldState.error?.message || ""}
       />
       <ValidateRulesUI value={passwordValue} />
+      <View
+        style={{
+          marginTop: 20,
+          flexDirection: "row",
+          alignItems: "center",
+        }}>
+        <CheckBoxUI
+          checked={acceptDocs.field.value}
+          onPress={() => acceptDocs.field.onChange(!acceptDocs.field.value)}
+          containerStyle={{
+            backgroundColor: "transparent",
+            paddingVertical: 0,
+            margin: 0,
+            marginLeft: 0,
+          }}
+        />
+        <Typography
+          fontSize={14}
+          lineHeight={16}
+          color={Colors.WHITE}>
+          Я согласен с{" "}
+          <Typography
+            fontSize={14}
+            lineHeight={16}
+            color={Colors.DARK_SECONDARY_TWO}
+            onPress={() => undefined}>
+            пользовательским соглашением
+          </Typography>{" "}
+          и{" "}
+          <Typography
+            fontSize={14}
+            lineHeight={16}
+            color={Colors.DARK_SECONDARY_TWO}
+            onPress={() => undefined}>
+            политикой конфиденциальности
+          </Typography>
+        </Typography>
+      </View>
     </View>
   );
 };

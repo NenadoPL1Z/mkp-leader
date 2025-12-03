@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     marginBottom: 40,
   },
   buttonContainer: {
-    marginTop: 30,
+    marginTop: 20,
     width: "100%",
   },
   registerButton: {

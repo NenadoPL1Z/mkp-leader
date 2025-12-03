@@ -15,7 +15,7 @@ export const ValidateRulesUI = ({ value }: ValidateRulesUIProps) => {
   const isAtLeastOneSpecialCharacter = matchAtLeastOneSpecialCharacter(value);
 
   return (
-    <View style={{ paddingTop: 20, gap: 8 }}>
+    <View style={{ paddingTop: 10, gap: 5 }}>
       <View style={{ flexDirection: "row", gap: 5, alignItems: "center" }}>
         {isOnlyLatinCharacters ? <CircleCheck /> : <CircleWarning />}
         <Typography

@@ -50,8 +50,10 @@ export const RegistrationModal = ({
   });
 
   const methods = useForm<RegisterFormType>({
-    defaultValues: { username: "", password: "" },
+    defaultValues: { username: "", password: "", acceptDocs: false },
   });
+
+  const acceptDocs = methods.watch("acceptDocs");
 
   const success = () => {
     handleClearStatus();
@@ -187,6 +189,7 @@ export const RegistrationModal = ({
                 <ButtonUI
                   variant="inverted"
                   loading={isLoading}
+                  disabled={!acceptDocs}
                   onPress={onSubmit}>
                   Зарегистрироваться
                 </ButtonUI>
