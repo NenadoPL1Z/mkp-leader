@@ -33,11 +33,11 @@ const Documentation = () => {
           <DocMain>
             <DocItem
               title="Пользовательское соглашение"
-              uri={BASE_URL + Api.docs.policy}
+              uri={BASE_URL + Api.docs.userAccept}
             />
             <DocItem
               title="Политика конфиденциальности"
-              uri={BASE_URL + Api.docs.userAccept}
+              uri={BASE_URL + Api.docs.policy}
             />
           </DocMain>
           <DocFooter />

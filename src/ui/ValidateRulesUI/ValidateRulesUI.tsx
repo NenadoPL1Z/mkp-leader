@@ -5,7 +5,7 @@ import { CircleCheck, CircleWarning } from "@app/assets/icons/dist";
 import { matchOnlyLatinCharacters } from "@app/lib/functions/matchOnlyLatinCharacters";
 import { matchLength } from "@app/lib/functions/matchLength";
 import { matchAtLeastOneDigit } from "@app/lib/functions/matchAtLeastOneDigit";
-import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/ matchAtLeastOneSpecialCharacter";
+import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/matchAtLeastOneSpecialCharacter";
 import type { ValidateRulesUIProps } from "./types";
 
 export const ValidateRulesUI = ({ value }: ValidateRulesUIProps) => {

@@ -44,10 +44,12 @@ export const RegisterForm = () => {
         <TextField
           isClear={false}
           variant="outlined"
-          label={usernameValue.length ? "Логин" : ""}
-          placeholder={!usernameValue.length ? "Логин" : ""}
+          label={usernameValue.length ? "Почта" : ""}
+          placeholder={!usernameValue.length ? "Почта" : ""}
           autoCapitalize="none"
           value={usernameValue}
+          keyboardType="email-address"
+          autoCorrect={false}
           onChangeText={onChangeUsername}
           errorMessage={username.fieldState.error?.message || ""}
         />

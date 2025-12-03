@@ -22,7 +22,9 @@ import { PrevIcon } from "@app/assets/icons/dist";
 import { matchOnlyLatinCharacters } from "@app/lib/functions/matchOnlyLatinCharacters";
 import { matchLength } from "@app/lib/functions/matchLength";
 import { matchAtLeastOneDigit } from "@app/lib/functions/matchAtLeastOneDigit";
-import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/ matchAtLeastOneSpecialCharacter";
+import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/matchAtLeastOneSpecialCharacter";
+import Documentation from "@app/components/Documentation";
+import { matchValidEmail } from "@app/lib/functions/matchValidEmail";
 import { RegisterForm } from "./components";
 import type { RegisterForm as RegisterFormType } from "@app/lib/models/form/RegisterForm";
 import type { RegistrationModalProps } from "./types";
@@ -35,7 +37,7 @@ export const RegistrationModal = ({
 }: RegistrationModalProps) => {
   const dispatch = useAppDispatch();
 
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
   const { toast, onShowToast, onHideToast } = useToastLocal();
 
   const {
@@ -87,6 +89,12 @@ export const RegistrationModal = ({
 
   const onSubmit = methods.handleSubmit(
     (data) => {
+      if (!matchValidEmail(data.username)) {
+        return onShowToast({
+          text1: "Введите почту в правильном формате. Например: ivanov@mail.ru",
+        });
+      }
+
       const isOnlyLatinCharacters = matchOnlyLatinCharacters(data.password);
       const isLength = matchLength(data.password);
       const isAtLeastOneDigit = matchAtLeastOneDigit(data.password);
@@ -102,7 +110,7 @@ export const RegistrationModal = ({
 
       if (!isLength) {
         return onShowToast({
-          text1: "88: от 8 до 30 символов",
+          text1: "Длина пароля: от 8 до 30 символов",
         });
       }
 
@@ -185,6 +193,9 @@ export const RegistrationModal = ({
               </View>
             </View>
           </KeyboardContainer>
+          <View style={[styles.bottom, bottom === 0 && styles.bottomMargin]}>
+            <Documentation />
+          </View>
         </SafeAreaView>
         <ToastUI
           success={{
