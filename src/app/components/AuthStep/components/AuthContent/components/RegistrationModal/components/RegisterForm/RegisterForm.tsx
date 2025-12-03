@@ -6,11 +6,17 @@ import { ValidateRulesUI } from "@app/ui/ValidateRulesUI";
 import CheckBoxUI from "@app/ui/CheckBoxUI";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors.ts";
+import DocItem from "@app/components/Documentation/components/DocItem";
+import { BASE_URL } from "@app/lib/constants";
+import { Api } from "@app/lib/constants/api.ts";
+import { useState } from "react";
 import { styles } from "./styles";
 import type { RegisterForm as RegisterFormType } from "@app/lib/models/form/RegisterForm";
 
 export const RegisterForm = () => {
   const { control } = useFormContext<RegisterFormType>();
+  const [userAccept, setUserAccept] = useState(false);
+  const [policy, setPolicy] = useState(false);
 
   const username = useController({
     name: "username",
@@ -98,7 +104,7 @@ export const RegisterForm = () => {
             fontSize={14}
             lineHeight={16}
             color={Colors.DARK_SECONDARY_TWO}
-            onPress={() => undefined}>
+            onPress={() => setUserAccept(true)}>
             пользовательским соглашением
           </Typography>{" "}
           и{" "}
@@ -106,11 +112,25 @@ export const RegisterForm = () => {
             fontSize={14}
             lineHeight={16}
             color={Colors.DARK_SECONDARY_TWO}
-            onPress={() => undefined}>
+            onPress={() => setPolicy(true)}>
             политикой конфиденциальности
           </Typography>
         </Typography>
       </View>
+      <DocItem
+        isPreview={false}
+        open={userAccept}
+        onClose={() => setUserAccept(false)}
+        title="Пользовательское соглашение"
+        uri={BASE_URL + Api.docs.userAccept}
+      />
+      <DocItem
+        isPreview={false}
+        open={policy}
+        onClose={() => setPolicy(false)}
+        title="Политика конфиденциальности"
+        uri={BASE_URL + Api.docs.policy}
+      />
     </View>
   );
 };

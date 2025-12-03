@@ -13,31 +13,47 @@ import { IS_IOS } from "@app/lib/constants";
 type Props = {
   title: string;
   uri: string;
+  isPreview?: boolean;
+  open?: boolean;
+  onClose?: () => void;
 };
 
-const DocItem = ({ title, uri }: Props) => {
+const DocItem = ({
+  title,
+  uri,
+  isPreview = true,
+  open = false,
+  onClose,
+}: Props) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
     <>
-      <TouchableOpacity
-        onPress={() => setIsVisible(true)}
-        style={[styles.container, styles.shadow]}>
-        <Typography
-          variant="h4"
-          fontSize={15}
-          lineHeight={20}
-          fontWeight="400"
-          color={Colors.TEXT}
-          fontFamily={Font.TEXT}>
-          {title}
-        </Typography>
-      </TouchableOpacity>
+      {isPreview && (
+        <TouchableOpacity
+          onPress={() => setIsVisible(true)}
+          style={[styles.container, styles.shadow]}>
+          <Typography
+            variant="h4"
+            fontSize={15}
+            lineHeight={20}
+            fontWeight="400"
+            color={Colors.TEXT}
+            fontFamily={Font.TEXT}>
+            {title}
+          </Typography>
+        </TouchableOpacity>
+      )}
       <Modal
         animationType={IS_IOS ? "slide" : "none"}
-        visible={isVisible}>
+        visible={isVisible || open}>
         <ScreenContainer>
-          <DocHeader onClose={() => setIsVisible(false)} />
+          <DocHeader
+            onClose={() => {
+              setIsVisible(false);
+              onClose?.();
+            }}
+          />
           <DocMain isPadding={false}>
             <WebView
               source={{ uri }}

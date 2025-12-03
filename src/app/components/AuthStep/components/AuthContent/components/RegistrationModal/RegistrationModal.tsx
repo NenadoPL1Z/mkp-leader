@@ -25,6 +25,7 @@ import { matchAtLeastOneDigit } from "@app/lib/functions/matchAtLeastOneDigit";
 import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/matchAtLeastOneSpecialCharacter";
 import Documentation from "@app/components/Documentation";
 import { matchValidEmail } from "@app/lib/functions/matchValidEmail";
+import { useEffect } from "react";
 import { RegisterForm } from "./components";
 import type { RegisterForm as RegisterFormType } from "@app/lib/models/form/RegisterForm";
 import type { RegistrationModalProps } from "./types";
@@ -54,6 +55,14 @@ export const RegistrationModal = ({
   });
 
   const acceptDocs = methods.watch("acceptDocs");
+
+  useEffect(() => {
+    if (!open) {
+      setTimeout(() => {
+        methods.reset();
+      });
+    }
+  }, [open]);
 
   const success = () => {
     handleClearStatus();
