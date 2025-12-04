@@ -6,13 +6,26 @@ import { matchOnlyLatinCharacters } from "@app/lib/functions/matchOnlyLatinChara
 import { matchLength } from "@app/lib/functions/matchLength";
 import { matchAtLeastOneDigit } from "@app/lib/functions/matchAtLeastOneDigit";
 import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/matchAtLeastOneSpecialCharacter";
+import { useEffect } from "react";
 import type { ValidateRulesUIProps } from "./types";
 
-export const ValidateRulesUI = ({ value }: ValidateRulesUIProps) => {
+export const ValidateRulesUI = ({ value, onConfirm }: ValidateRulesUIProps) => {
   const isOnlyLatinCharacters = matchOnlyLatinCharacters(value);
   const isLength = matchLength(value);
   const isAtLeastOneDigit = matchAtLeastOneDigit(value);
   const isAtLeastOneSpecialCharacter = matchAtLeastOneSpecialCharacter(value);
+
+  useEffect(() => {
+    if (onConfirm) {
+      const result =
+        isOnlyLatinCharacters &&
+        isLength &&
+        isAtLeastOneDigit &&
+        isAtLeastOneSpecialCharacter;
+
+      onConfirm(result);
+    }
+  }, [value, onConfirm]);
 
   return (
     <View style={{ paddingTop: 10, gap: 5 }}>

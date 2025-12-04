@@ -1,0 +1,1 @@
+export { matchOnlyNumber } from "./matchOnlyNumber";
