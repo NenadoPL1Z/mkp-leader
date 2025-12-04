@@ -69,23 +69,24 @@ export const RegistrationModal = ({
   };
 
   const reject = () => {
-    handleErrorStatus("Ошибка входа");
+    handleErrorStatus("Ошибка при регистрации");
     onShowToast({
-      text1: "Некорректный логин или пароль",
+      text1:
+        "Ошибка при регистрации. Попробуйте ещё раз или повторите попытку позже",
     });
   };
 
   const showToastError = (usernameLength: number, passwordLength: number) => {
     if (!usernameLength && !passwordLength) {
       onShowToast({
-        text1: "Заполните логин и пароль",
+        text1: "Заполните почту и пароль",
       });
       return;
     }
 
     if (!usernameLength) {
       onShowToast({
-        text1: "Введите логин",
+        text1: "Введите почту",
       });
       return;
     }
@@ -103,6 +104,13 @@ export const RegistrationModal = ({
       if (!matchValidEmail(data.username)) {
         return onShowToast({
           text1: "Введите почту в правильном формате. Например: ivanov@mail.ru",
+        });
+      }
+
+      if (!data.acceptDocs) {
+        return onShowToast({
+          text1:
+            "Зарегистрироваться может только пользователь, который согласен с пользовательским соглашением и политикой конфиденциальности",
         });
       }
 
@@ -198,8 +206,8 @@ export const RegistrationModal = ({
                 <ButtonUI
                   variant="inverted"
                   loading={isLoading}
-                  disabled={!acceptDocs}
-                  onPress={onSubmit}>
+                  onPress={onSubmit}
+                  disabled={!acceptDocs}>
                   Зарегистрироваться
                 </ButtonUI>
               </View>
