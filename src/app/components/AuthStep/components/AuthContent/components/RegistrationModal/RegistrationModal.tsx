@@ -16,7 +16,6 @@ import ToastUI from "@app/ui/ToastUI";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useToastLocal } from "@app/hooks/useToastLocal.ts";
 import { useStatus } from "@app/hooks/useStatus.ts";
-import { fetchUserLogin } from "@app/store/reducers/user/asyncThunks/fetchUserLogin";
 import { useAppDispatch } from "@app/store/hooks";
 import { PrevIcon } from "@app/assets/icons/dist";
 import { matchOnlyLatinCharacters } from "@app/lib/functions/matchOnlyLatinCharacters";
@@ -26,6 +25,7 @@ import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/matchAtLeast
 import Documentation from "@app/components/Documentation";
 import { matchValidEmail } from "@app/lib/functions/matchValidEmail";
 import { useEffect } from "react";
+import { fetchUserRegister } from "@app/store/reducers/user/asyncThunks/fetchUserRegister";
 import { RegisterForm } from "./components";
 import type { RegisterForm as RegisterFormType } from "@app/lib/models/form/RegisterForm";
 import type { RegistrationModalProps } from "./types";
@@ -60,6 +60,7 @@ export const RegistrationModal = ({
     if (!open) {
       setTimeout(() => {
         methods.reset();
+        handleClearStatus();
       });
     }
   }, [open]);
@@ -68,10 +69,11 @@ export const RegistrationModal = ({
     handleClearStatus();
   };
 
-  const reject = () => {
+  const reject = (message?: string) => {
     handleErrorStatus("Ошибка при регистрации");
     onShowToast({
       text1:
+        message ??
         "Ошибка при регистрации. Попробуйте ещё раз или повторите попытку позже",
     });
   };
@@ -149,7 +151,7 @@ export const RegistrationModal = ({
       handleLoadingStatus();
 
       dispatch(
-        fetchUserLogin({
+        fetchUserRegister({
           username: data.username,
           password: data.password,
           success,
