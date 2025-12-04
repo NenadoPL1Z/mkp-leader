@@ -40,7 +40,7 @@ export const AuthStep = ({ children }: ChildrenProps) => {
       <Modal
         animationType="slide"
         visible={isDisplayAuth}>
-        <AuthContent />
+        <AuthContent isDisplayAuth={isDisplayAuth} />
       </Modal>
     </View>
   );

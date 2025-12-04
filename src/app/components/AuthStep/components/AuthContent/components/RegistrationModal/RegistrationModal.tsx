@@ -147,6 +147,12 @@ export const RegistrationModal = ({
         });
       }
 
+      if (data.username === data.password) {
+        return onShowToast({
+          text1: "Пароль не должен совпадать с email",
+        });
+      }
+
       Keyboard.dismiss();
       handleLoadingStatus();
 

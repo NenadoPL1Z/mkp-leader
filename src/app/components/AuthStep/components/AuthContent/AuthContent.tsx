@@ -3,12 +3,13 @@ import Typography from "@app/ui/Typography";
 import { FormProvider } from "react-hook-form";
 import KeyboardContainer from "@app/containers/KeyboardContainer";
 import { LinearGradient } from "react-native-linear-gradient";
-import { linear } from "@app/theme/colors";
+import { Colors, linear } from "@app/theme/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ButtonUI from "@app/ui/ButtonUI";
 import ToastUI from "@app/ui/ToastUI";
 import Documentation from "@app/components/Documentation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import SpinnerUI from "@app/ui/SpinnerUI";
 import AuthForm from "./components/AuthForm";
 import { useAuthContent } from "./useAuthContent.ts";
 import { styles } from "./index.styles";
@@ -16,11 +17,22 @@ import SessionLimit from "./components/SessionLimit";
 import { RegistrationModal } from "./components/RegistrationModal";
 import { ResetModal } from "./components/ResetModal";
 
-export const AuthContent = () => {
+type AuthContentProps = {
+  isDisplayAuth: boolean;
+};
+
+export const AuthContent = ({ isDisplayAuth }: AuthContentProps) => {
   const { top, bottom } = useSafeAreaInsets();
   const { isLoading, toast, onHideToast, methods, onSubmit } = useAuthContent();
   const [registrationModal, setRegistrationModal] = useState<boolean>(false);
   const [resetModal, setResetModal] = useState(false);
+
+  useEffect(() => {
+    if (!isDisplayAuth) {
+      setRegistrationModal(false);
+      setResetModal(false);
+    }
+  }, [isDisplayAuth]);
 
   return (
     <>
@@ -35,28 +47,37 @@ export const AuthContent = () => {
                 style={styles.title}>
                 Авторизация
               </Typography>
-              <FormProvider {...methods}>
-                <AuthForm onPressReset={() => setResetModal(true)} />
-              </FormProvider>
-              <View style={styles.buttonContainer}>
-                <ButtonUI
-                  variant="inverted"
-                  loading={isLoading}
-                  onPress={onSubmit}>
-                  Войти
-                </ButtonUI>
-                <View style={styles.registerButton}>
-                  <ButtonUI
-                    variant="base"
-                    onPress={() => setRegistrationModal(true)}>
-                    Зарегистрироваться
-                  </ButtonUI>
-                </View>
-              </View>
+              {isDisplayAuth ? (
+                <>
+                  <FormProvider {...methods}>
+                    <AuthForm onPressReset={() => setResetModal(true)} />
+                  </FormProvider>
+                  <View style={styles.buttonContainer}>
+                    <ButtonUI
+                      variant="inverted"
+                      loading={isLoading}
+                      onPress={onSubmit}>
+                      Войти
+                    </ButtonUI>
+                    <View style={styles.registerButton}>
+                      <ButtonUI
+                        variant="base"
+                        onPress={() => setRegistrationModal(true)}>
+                        Зарегистрироваться
+                      </ButtonUI>
+                    </View>
+                  </View>
+                </>
+              ) : (
+                <SpinnerUI
+                  size="large"
+                  color={Colors.WHITE}
+                />
+              )}
             </View>
           </KeyboardContainer>
           <View style={[styles.bottom, bottom === 0 && styles.bottomMargin]}>
-            <Documentation />
+            {isDisplayAuth ? <Documentation /> : null}
           </View>
         </SafeAreaView>
         <ToastUI
@@ -74,14 +95,18 @@ export const AuthContent = () => {
         />
         <SessionLimit />
       </LinearGradient>
-      <RegistrationModal
-        open={registrationModal}
-        onClose={() => setRegistrationModal(false)}
-      />
-      <ResetModal
-        open={resetModal}
-        onClose={() => setResetModal(false)}
-      />
+      {isDisplayAuth && (
+        <>
+          <RegistrationModal
+            open={registrationModal && isDisplayAuth}
+            onClose={() => setRegistrationModal(false)}
+          />
+          <ResetModal
+            open={resetModal && isDisplayAuth}
+            onClose={() => setResetModal(false)}
+          />
+        </>
+      )}
     </>
   );
 };
