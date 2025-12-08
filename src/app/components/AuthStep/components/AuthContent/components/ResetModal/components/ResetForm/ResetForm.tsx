@@ -44,7 +44,6 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
 
   const [step, setStep] = useState<"email" | "code" | "password">("email");
   const [isValidPassword, setIsValidPassword] = useState(false);
-  const [disabledSubmitCode, setDisabledSubmitCode] = useState(false);
 
   const methods = useForm<ResetFormType>({
     defaultValues: {
@@ -117,12 +116,14 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
     confirmPassword.field.onChange(text.trim());
   };
 
-  const onSubmitEmail = () => {
+  const onSubmitEmail = (cb?: () => void) => {
     if (!usernameValue.length) {
+      cb?.();
       return onShowToast({ text1: "Введите почту" });
     }
 
     if (!matchValidEmail(usernameValue)) {
+      cb?.();
       return onShowToast({
         text1: "Введите почту в правильном формате. Например: ivanov@mail.ru",
       });
@@ -161,6 +162,7 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
         }
       })
       .finally(() => {
+        cb?.();
         handleClearStatus();
       });
   };
@@ -374,7 +376,7 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
           <ButtonUI
             variant="inverted"
             loading={isLoading}
-            onPress={onSubmitEmail}>
+            onPress={() => onSubmitEmail()}>
             Отправить код восстановления на почту
           </ButtonUI>
         )}
@@ -383,13 +385,12 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
             <ButtonUI
               variant="inverted"
               loading={isLoading}
-              disabled={disabledSubmitCode}
               onPress={onSubmitVerifyCode}>
               Подтвердить код
             </ButtonUI>
             <RetryCode
               onShowToast={onShowToast}
-              setDisabledSubmitCode={setDisabledSubmitCode}
+              onSubmit={onSubmitEmail}
             />
           </>
         )}

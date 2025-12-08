@@ -5,15 +5,16 @@ import PopupText from "@app/ui/ModalUI/ui/PopupUI/PopupText/PopupText.tsx";
 import { useState } from "react";
 import type { RetryCodeProps } from "./types";
 
-export const RetryCode = ({
-  onShowToast,
-  setDisabledSubmitCode,
-}: RetryCodeProps) => {
+export const RetryCode = ({ onSubmit }: RetryCodeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const onRetrySubmitCode = () => {
     setIsLoading(true);
+    onSubmit(() => {
+      setIsLoading(false);
+      setIsOpen(false);
+    });
     return;
   };
 
@@ -32,15 +33,16 @@ export const RetryCode = ({
         onClose={() => setIsOpen(false)}
         successButtonProps={{
           loading: isLoading,
-          title: "Отправить новый",
+          title: "Отправить",
         }}
         cancelButtonProps={{
           disabled: isLoading,
-          title: "Оставить текущий",
+          title: "Оставить",
         }}
         isBackdoorClose={!isLoading}>
         <PopupText>
-          Предыдущий код восстановления перестанет действовать?
+          Предыдущий код восстановления перестанет действовать. Отправить новый
+          код восстановления ?
         </PopupText>
       </PopupUI>
     </>
