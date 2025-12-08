@@ -18,6 +18,8 @@ import { matchLength } from "@app/lib/functions/matchLength";
 import { matchAtLeastOneDigit } from "@app/lib/functions/matchAtLeastOneDigit";
 import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/matchAtLeastOneSpecialCharacter";
 import { fetchUserReset } from "@app/store/reducers/user/asyncThunks/fetchUserReset";
+import dayjs, { EU_TIME_FORMAT } from "@app/lib/dayjs";
+import { formatTimeToText } from "@app/lib/functions/format-time-to-text";
 import { styles } from "./styles";
 import { RetryCode } from "./ui";
 import type { ResetForm as ResetFormType } from "@app/lib/models/form/ResetForm.ts";
@@ -139,11 +141,23 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
       })
       .catch((error) => {
         if (isAxiosError(error)) {
-          onShowToast({
-            text1:
-              error?.response?.data?.detail ??
-              "Не получилось отправить код восстановления. Пожалуйста, попробуйте ещё раз или повторите попытку позже",
-          });
+          const retryAfter = error.response?.headers?.["retry-after"];
+
+          if (retryAfter && Number(retryAfter)) {
+            const remainderTiming = dayjs
+              .duration(Number(retryAfter), "seconds")
+              .format(EU_TIME_FORMAT);
+
+            onShowToast({
+              text1: `Чтобы ваша почта была в безопасности, мы ограничиваем число запросов. Следующий код можно будет отправить через ${formatTimeToText(remainderTiming)}`,
+            });
+          } else {
+            onShowToast({
+              text1:
+                error?.response?.data?.detail ??
+                "Не получилось отправить код восстановления. Пожалуйста, попробуйте ещё раз или повторите попытку позже",
+            });
+          }
         }
       })
       .finally(() => {
