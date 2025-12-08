@@ -40,7 +40,7 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
     isLoading: false,
   });
 
-  const [step, setStep] = useState<"email" | "code" | "password">("code");
+  const [step, setStep] = useState<"email" | "code" | "password">("email");
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [disabledSubmitCode, setDisabledSubmitCode] = useState(false);
 
