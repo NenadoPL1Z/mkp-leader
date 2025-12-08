@@ -21,8 +21,8 @@ const AuthForm = ({ onPressReset }: AuthFormProps) => {
         <TextField
           isClear={false}
           variant="outlined"
-          label={usernameValue.length ? "Логин" : ""}
-          placeholder={!usernameValue.length ? "Логин" : ""}
+          label={usernameValue.length ? "Логин или почта" : ""}
+          placeholder={!usernameValue.length ? "Логин или почта" : ""}
           autoCapitalize="none"
           value={usernameValue}
           onChangeText={onChangeUsername}

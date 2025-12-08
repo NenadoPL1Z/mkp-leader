@@ -5,16 +5,21 @@ import { useStatus } from "@app/hooks/useStatus.ts";
 import { FormProvider, useController, useForm } from "react-hook-form";
 import { useAppDispatch } from "@app/store/hooks";
 import { useState } from "react";
-import { fetchUserForgotPassword } from "@app/store/reducers/user/asyncThunks/fetchUserForgotPassword";
 import { matchValidEmail } from "@app/lib/functions/matchValidEmail";
 import { isAxiosError } from "axios";
 import Typography from "@app/ui/Typography";
 import { Colors } from "@app/theme/colors.ts";
 import { matchOnlyNumber } from "@app/lib/functions/matchOnlyNumber";
-import { fetchUserVerifyCode } from "@app/store/reducers/user/asyncThunks/fetchUserVerifyCode";
 import TFPassword from "@app/ui/TextField/variant/TFPassword";
 import { ValidateRulesUI } from "@app/ui/ValidateRulesUI";
+import { apiInstance } from "@app/lib/http";
+import { matchOnlyLatinCharacters } from "@app/lib/functions/matchOnlyLatinCharacters";
+import { matchLength } from "@app/lib/functions/matchLength";
+import { matchAtLeastOneDigit } from "@app/lib/functions/matchAtLeastOneDigit";
+import { matchAtLeastOneSpecialCharacter } from "@app/lib/functions/matchAtLeastOneSpecialCharacter";
+import { fetchUserReset } from "@app/store/reducers/user/asyncThunks/fetchUserReset";
 import { styles } from "./styles";
+import { RetryCode } from "./ui";
 import type { ResetForm as ResetFormType } from "@app/lib/models/form/ResetForm.ts";
 import type { Nullable } from "@app/types/general.ts";
 import type { ToastShowParams } from "react-native-toast-message";
@@ -28,15 +33,16 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
 
   const {
     isLoading,
-    // handleLoadingStatus,
-    // handleClearStatus,
-    // handleErrorStatus,
+    handleLoadingStatus,
+    handleClearStatus,
+    handleErrorStatus,
   } = useStatus({
     isLoading: false,
   });
 
-  const [step, setStep] = useState<"email" | "code" | "password">("email");
+  const [step, setStep] = useState<"email" | "code" | "password">("code");
   const [isValidPassword, setIsValidPassword] = useState(false);
+  const [disabledSubmitCode, setDisabledSubmitCode] = useState(false);
 
   const methods = useForm<ResetFormType>({
     defaultValues: {
@@ -55,6 +61,7 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
       maxLength: { value: 30, message: "Макс. количество символов 30" },
     },
   });
+  const usernameValue = username.field.value;
 
   const verifyCode = useController({
     name: "verifyCode",
@@ -64,6 +71,7 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
       maxLength: { value: 6, message: "Макс. количество символов 6" },
     },
   });
+  const verifyCodeValue = verifyCode.field.value;
 
   const password = useController({
     name: "password",
@@ -73,6 +81,7 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
       maxLength: { value: 30, message: "Макс. количество символов 30" },
     },
   });
+  const passwordValue = password.field.value;
 
   const confirmPassword = useController({
     name: "confirmPassword",
@@ -82,6 +91,7 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
       maxLength: { value: 30, message: "Макс. количество символов 30" },
     },
   });
+  const confirmPasswordValue = confirmPassword.field.value;
 
   const onChangeUsername = (text: string) => {
     username.field.onChange(text.trim());
@@ -105,72 +115,27 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
     confirmPassword.field.onChange(text.trim());
   };
 
-  // const success = () => {
-  //   handleClearStatus();
-  // };
-  //
-  // const reject = () => {
-  //   handleErrorStatus("Ошибка входа");
-  //   onShowToast({
-  //     text1: "Некорректный логин или пароль",
-  //   });
-  // };
-  //
-  // const showToastError = (usernameLength: number, passwordLength: number) => {
-  //   if (!usernameLength && !passwordLength) {
-  //     onShowToast({
-  //       text1: "Заполните логин и пароль",
-  //     });
-  //     return;
-  //   }
-  //
-  //   if (!usernameLength) {
-  //     onShowToast({
-  //       text1: "Введите логин",
-  //     });
-  //     return;
-  //   }
-  //
-  //   if (!passwordLength) {
-  //     onShowToast({
-  //       text1: "Введите пароль",
-  //     });
-  //     return;
-  //   }
-  // };
-  //
-  // const onSubmit = methods.handleSubmit(
-  //   (data) => {
-  //     Keyboard.dismiss();
-  //     handleLoadingStatus();
-  //
-  //     dispatch(
-  //       fetchUserLogin({
-  //         username: data.username,
-  //         password: data.password,
-  //         success,
-  //         reject,
-  //       }),
-  //     );
-  //   },
-  //   () => {
-  //     showToastError(
-  //       methods.getValues("username").length,
-  //       methods.getValues("password").length,
-  //     );
-  //   },
-  // );
-
   const onSubmitEmail = () => {
-    if (!matchValidEmail(username.field.value)) {
+    if (!usernameValue.length) {
+      return onShowToast({ text1: "Введите почту" });
+    }
+
+    if (!matchValidEmail(usernameValue)) {
       return onShowToast({
         text1: "Введите почту в правильном формате. Например: ivanov@mail.ru",
       });
     }
 
-    dispatch(fetchUserForgotPassword({ username: username.field.value }))
-      .then(() => {
+    Keyboard.dismiss();
+    handleLoadingStatus();
+
+    apiInstance
+      .post<{ msg: string }>("/auth/forgot-password", {
+        username: usernameValue,
+      })
+      .then((data) => {
         setStep("code");
+        onShowToast({ text1: data.data.msg });
       })
       .catch((error) => {
         if (isAxiosError(error)) {
@@ -180,27 +145,33 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
               "Не получилось отправить код восстановления. Пожалуйста, попробуйте ещё раз или повторите попытку позже",
           });
         }
+      })
+      .finally(() => {
+        handleClearStatus();
       });
   };
 
   const onSubmitVerifyCode = () => {
-    if (
-      !matchOnlyNumber(verifyCode.field.value) ||
-      verifyCode.field.value.length !== 6
-    ) {
+    if (!verifyCodeValue.length) {
+      return onShowToast({ text1: "Введите код восстановления" });
+    }
+
+    if (!matchOnlyNumber(verifyCodeValue) || verifyCodeValue.length !== 6) {
       return onShowToast({
         text1: "Пожалуйста, введите 6-значный код (только цифры без пробелов)",
       });
     }
 
-    dispatch(
-      fetchUserVerifyCode({
-        username: username.field.value,
-        token: verifyCode.field.value,
-      }),
-    )
-      .then(() => {
+    Keyboard.dismiss();
+    handleLoadingStatus();
+
+    apiInstance
+      .post<{ msg: string }>("/auth/verify-reset-code", {
+        token: verifyCodeValue,
+      })
+      .then((data) => {
         setStep("password");
+        onShowToast({ text1: data.data.msg });
       })
       .catch((error) => {
         if (isAxiosError(error)) {
@@ -210,17 +181,83 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
               "Не получилось подтвердить код восстановления. Пожалуйста, попробуйте ещё раз или повторите попытку позже",
           });
         }
+      })
+      .finally(() => {
+        handleClearStatus();
       });
   };
 
   const onSubmitPassword = () => {
-    //
-  };
+    if (!passwordValue.length) {
+      return onShowToast({ text1: "Введите новый пароль" });
+    }
 
-  const usernameValue = username.field.value;
-  const verifyCodeValue = verifyCode.field.value;
-  const passwordValue = password.field.value;
-  const confirmPasswordValue = confirmPassword.field.value;
+    if (!confirmPasswordValue.length) {
+      return onShowToast({ text1: "Введите новый пароль еще раз" });
+    }
+
+    const isOnlyLatinCharacters = matchOnlyLatinCharacters(passwordValue);
+    const isLength = matchLength(passwordValue);
+    const isAtLeastOneDigit = matchAtLeastOneDigit(passwordValue);
+    const isAtLeastOneSpecialCharacter =
+      matchAtLeastOneSpecialCharacter(passwordValue);
+
+    if (!isOnlyLatinCharacters) {
+      return onShowToast({
+        text1: "Пароль должен содержать только латинские символы",
+      });
+    }
+
+    if (!isLength) {
+      return onShowToast({ text1: "Длина пароля: от 8 до 30 символов" });
+    }
+
+    if (!isAtLeastOneDigit) {
+      return onShowToast({
+        text1: "Пароль должен содержать хотя бы одну цифру (0-9)",
+      });
+    }
+
+    if (!isAtLeastOneSpecialCharacter) {
+      return onShowToast({
+        text1: `Пароль должен содержать хотя бы один спец. символ (! @ # $ % ^ & * ( ) _ + - = [ ] { } ; ' : , " | . < > / ?)`,
+      });
+    }
+
+    if (usernameValue === passwordValue) {
+      return onShowToast({ text1: "Пароль не должен совпадать с email" });
+    }
+
+    if (passwordValue !== confirmPasswordValue) {
+      return onShowToast({ text1: "Пароли не совпадают" });
+    }
+
+    Keyboard.dismiss();
+    handleLoadingStatus();
+
+    const success = () => {
+      handleClearStatus();
+    };
+
+    const reject = (message?: string) => {
+      handleErrorStatus("Ошибка при смене пароля");
+      onShowToast({
+        text1:
+          message ??
+          "Ошибка при смене пароля. Пожалуйста, попробуйте ещё раз или повторите попытку позже",
+      });
+    };
+
+    dispatch(
+      fetchUserReset({
+        username: usernameValue,
+        new_password: passwordValue,
+        token: verifyCodeValue,
+        success,
+        reject,
+      }),
+    );
+  };
 
   return (
     <FormProvider {...methods}>
@@ -267,6 +304,14 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
               onChangeText={onChangeVerifyCode}
               errorMessage={verifyCode.fieldState.error?.message || ""}
             />
+            <Typography
+              style={{ marginTop: 10 }}
+              fontSize={16}
+              lineHeight={16}
+              color={Colors.WHITE}>
+              Мы отправили письмо с кодом на вашу почту. Не забудьте проверить
+              папку «Спам», если письмо не найдётся во «Входящих».
+            </Typography>
           </View>
         )}
         {step === "password" && (
@@ -320,12 +365,19 @@ export const ResetForm = ({ onShowToast }: ResetFormProps) => {
           </ButtonUI>
         )}
         {step === "code" && (
-          <ButtonUI
-            variant="inverted"
-            loading={isLoading}
-            onPress={onSubmitVerifyCode}>
-            Подтвердить код
-          </ButtonUI>
+          <>
+            <ButtonUI
+              variant="inverted"
+              loading={isLoading}
+              disabled={disabledSubmitCode}
+              onPress={onSubmitVerifyCode}>
+              Подтвердить код
+            </ButtonUI>
+            <RetryCode
+              onShowToast={onShowToast}
+              setDisabledSubmitCode={setDisabledSubmitCode}
+            />
+          </>
         )}
         {step === "password" && (
           <ButtonUI
