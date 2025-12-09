@@ -45,7 +45,9 @@ const EMHome = (props: EMHomeScreenProps) => {
             contentContainerStyle={styles.contentContainerStyle}
             renderItem={renderItem}
             empty={{
-              Component: EmptyContainer,
+              Component: () => (
+                <EmptyContainer title="Заявок пока нет, но они могут появиться в ближайшее время" />
+              ),
             }}
           />
         </View>

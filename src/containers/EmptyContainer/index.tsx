@@ -21,6 +21,7 @@ const EmptyContainer = ({
       {Icon && <Icon style={styles.icon} />}
       <Typography
         fontSize={15}
+        style={{ textAlign: "center", maxWidth: 250 }}
         color={Colors.GRAY_ELEVEN}
         variant="h4">
         {title}
