@@ -31,9 +31,6 @@ const styles = StyleSheet.create({
   footerItem: {
     marginBottom: 8,
   },
-  url: {
-    textDecorationLine: "underline",
-  },
 });
 
 export default React.memo(DocFooter);

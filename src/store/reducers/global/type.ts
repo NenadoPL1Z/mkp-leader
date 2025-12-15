@@ -12,6 +12,7 @@ export type VersionsDetails = {
   app_store_url: string;
   google_play_version: string;
   app_store_version: string;
+  app_store_version_new: string;
 };
 
 export interface VersionGlobal {

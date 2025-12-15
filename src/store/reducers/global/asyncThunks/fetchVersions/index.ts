@@ -18,10 +18,10 @@ export const fetchVersions = createAsyncThunk<VersionGlobal, void, Store>(
       });
 
       const actualVersion = IS_IOS
-        ? response.data.app_store_version
+        ? (response.data?.app_store_version_new ?? "1.0.0")
         : response.data.google_play_version;
 
-      const isActual = currentVersion === actualVersion;
+      const isActual = currentVersion >= actualVersion;
 
       return {
         isActual,
