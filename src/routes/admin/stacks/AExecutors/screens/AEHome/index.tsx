@@ -97,7 +97,11 @@ const AEHome = (props: AEHomeProps) => {
           />
         </View>
         <View style={styles.bottom}>
-          <ButtonUI onPress={handlePushNew}>Создать исполнителя</ButtonUI>
+          <ButtonUI
+            onPress={handlePushNew}
+            variant="inverted">
+            Создать исполнителя
+          </ButtonUI>
         </View>
       </ScreenContainer>
     </TabBar>

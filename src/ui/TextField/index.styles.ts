@@ -90,7 +90,7 @@ const contained = StyleSheet.create({
 
     borderWidth: 1,
     borderColor: Colors.TRANSPARENT,
-    backgroundColor: Colors.GRAY_EIGHT,
+    backgroundColor: Colors.WHITE,
 
     borderRadius: 12,
   },
@@ -106,7 +106,7 @@ const contained = StyleSheet.create({
   disabled: general.disabled,
   label: {
     ...general.label,
-    color: Colors.BLACK_TWO,
+    color: Colors.WHITE,
     marginBottom: 5,
   },
   error: general.error,

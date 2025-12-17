@@ -36,7 +36,7 @@ const AboutCardCompany = (props: Props) => {
             variant="h4"
             fontSize={12}
             lineHeight={14}
-            color={Colors.GRAY_SIX}>
+            color={Colors.GRAY_THREE}>
             В работе -
           </Typography>
           <BadgeUI
@@ -50,7 +50,7 @@ const AboutCardCompany = (props: Props) => {
             variant="h4"
             fontSize={12}
             lineHeight={14}
-            color={Colors.GRAY_SIX}>
+            color={Colors.GRAY_THREE}>
             Контроль качества -
           </Typography>
           <BadgeUI

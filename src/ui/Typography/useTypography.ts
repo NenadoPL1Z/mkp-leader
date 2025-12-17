@@ -4,7 +4,7 @@ import type { TypographyFont, TypographyVariant, Weight } from "./types";
 import type { TypographyProps } from "@app/ui/Typography/types";
 
 const h1: TypographyFont = {
-  color: Colors.TEXT,
+  color: Colors.WHITE,
   fontFamily: Font.TITLE,
   fontSize: 34,
   fontStyle: "normal",
@@ -14,7 +14,7 @@ const h1: TypographyFont = {
 };
 
 const h2: TypographyFont = {
-  color: Colors.TEXT,
+  color: Colors.WHITE,
   fontFamily: Font.TITLE,
   fontSize: 26,
   fontStyle: "normal",
@@ -23,7 +23,7 @@ const h2: TypographyFont = {
 };
 
 const h3: TypographyFont = {
-  color: Colors.TEXT,
+  color: Colors.WHITE,
   fontFamily: Font.TEXT,
   fontSize: 17,
   fontStyle: "normal",
@@ -32,7 +32,7 @@ const h3: TypographyFont = {
 };
 
 const h4: TypographyFont = {
-  color: Colors.TEXT,
+  color: Colors.WHITE,
   fontFamily: Font.TEXT,
   fontSize: 13,
   fontStyle: "normal",
@@ -42,7 +42,7 @@ const h4: TypographyFont = {
 };
 
 const h5: TypographyFont = {
-  color: Colors.TEXT,
+  color: Colors.WHITE,
   fontFamily: Font.TEXT,
   fontSize: 13,
   fontStyle: "normal",

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { PrevIcon } from "@app/assets/icons/dist";
 import { useNavigation } from "@react-navigation/native";
 import Typography from "@app/ui/Typography";
@@ -35,7 +35,8 @@ const HeaderUI = ({
           style={styles.middleText}
           numberOfLines={1}
           fontWeight="600"
-          variant="h2">
+          variant="h2"
+          color={Colors.WHITE}>
           {title}
         </Typography>
         {isOverLinear && (
@@ -45,9 +46,9 @@ const HeaderUI = ({
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               colors={[
-                "linear-gradient(#FFFFFF 56.97%, rgba(255, 255, 255, 0) 100%)",
-                Colors.WHITE,
-                Colors.WHITE,
+                "linear-gradient(#FFFFFF 56.97%, rgba(0, 41, 58, 0) 100%)",
+                Colors.DARK_SECONDARY_TWO,
+                Colors.DARK_SECONDARY_TWO,
               ]}
             />
           </View>

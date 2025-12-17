@@ -10,7 +10,7 @@ const SpinnerUI = (props: Props) => {
   return (
     <ActivityIndicator
       size={IS_IOS ? "small" : 32}
-      color={Colors.MAIN}
+      color={Colors.WHITE}
       {...props}
     />
   );

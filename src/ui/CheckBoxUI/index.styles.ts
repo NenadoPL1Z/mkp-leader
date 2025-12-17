@@ -7,13 +7,14 @@ export const styles = StyleSheet.create({
   containerStyle: {
     padding: 0,
     paddingVertical: 5,
+    backgroundColor: Colors.TRANSPARENT,
   },
   wrapperStyle: {},
   disabledStyle: {},
   textStyle: {
     marginLeft: 8,
 
-    color: Colors.TEXT,
+    color: Colors.WHITE,
 
     fontFamily: Font.TEXT,
     fontSize: 15,

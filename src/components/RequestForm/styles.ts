@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
   },
   shadow: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.MAIN,
     shadowColor: Colors.BLACK,
     shadowOffset: {
       width: 0,

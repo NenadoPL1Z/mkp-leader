@@ -75,7 +75,9 @@ const RICHome = (props: RICHomeScreenProps) => {
         <TouchableOpacity
           style={styles.reload}
           onPress={handleOpen}>
-          <ArrowReloadIcon color={isRefresh ? Colors.GRAY_TEN : Colors.MAIN} />
+          <ArrowReloadIcon
+            color={isRefresh ? Colors.GRAY_TEN : Colors.PRIMARY}
+          />
         </TouchableOpacity>
       </HeaderUI>
       <FlatList

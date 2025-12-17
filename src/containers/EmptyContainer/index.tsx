@@ -22,7 +22,7 @@ const EmptyContainer = ({
       <Typography
         fontSize={15}
         style={{ textAlign: "center", maxWidth: 250 }}
-        color={Colors.GRAY_ELEVEN}
+        color={Colors.WHITE}
         variant="h4">
         {title}
       </Typography>

@@ -92,7 +92,11 @@ const ACHome = (props: ACHomeProps) => {
           />
         </View>
         <View style={styles.bottom}>
-          <ButtonUI onPress={handlePushNew}>Создать заказчика</ButtonUI>
+          <ButtonUI
+            variant="inverted"
+            onPress={handlePushNew}>
+            Создать заказчика
+          </ButtonUI>
         </View>
       </ScreenContainer>
     </TabBar>

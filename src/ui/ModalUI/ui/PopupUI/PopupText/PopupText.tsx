@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@app/ui/Typography";
 import { StyleSheet } from "react-native";
+import { Colors } from "@app/theme/colors.ts";
 import type { TypographyProps } from "@app/ui/Typography/types";
 
 const PopupText = (props: TypographyProps) => {
@@ -9,6 +10,7 @@ const PopupText = (props: TypographyProps) => {
       variant="h3"
       {...props}
       style={[styles.root, props.style]}
+      color={Colors.TEXT}
     />
   );
 };

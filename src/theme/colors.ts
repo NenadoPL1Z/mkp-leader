@@ -1,5 +1,5 @@
 export enum Colors {
-  MAIN = "#4BC3F6",
+  MAIN = "#0b4f6e",
   PRIMARY = "#4BC3F6",
   SECONDARY = "#0893C0",
   SECONDARY_TWO = "#5191A8",
@@ -42,11 +42,11 @@ export const colorsAvatar = [
 ];
 
 export const colorsCard = {
-  default: Colors.WHITE,
-  success: "#D9FFB3",
-  error: "#FFDCC9",
+  default: Colors.MAIN,
+  success: "#31560f",
+  error: "#ef1d08",
 };
 
 export const linear = {
-  authorization: [Colors.PRIMARY, Colors.DARK_SECONDARY],
+  authorization: [Colors.MAIN, Colors.DARK_SECONDARY_TWO],
 };

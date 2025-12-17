@@ -2,6 +2,7 @@ import React from "react";
 import { useTopBarProps } from "@app/hooks/useTopBarProps";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import TopBarBadge from "@app/ui/BadgeUI/variant/TopBarBadge";
+import { Colors } from "@app/theme/colors.ts";
 import AMRHWork from "./screens/AMRHWork";
 import AMRHRefused from "./screens/AMRHRefused";
 import AMRHQuality from "./screens/AMRHQuality";

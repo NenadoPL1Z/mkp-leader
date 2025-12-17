@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     height: 48,
     padding: 4,
 
-    backgroundColor: Colors.GRAY_EIGHT,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
     borderRadius: 12,
   },
   option: {

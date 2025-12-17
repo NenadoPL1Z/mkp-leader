@@ -5,19 +5,20 @@ import { Size } from "@app/lib/constants/size.ts";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
   },
   main: {
     flex: 1,
     flexGrow: 1,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
   },
   inputContainerStyle: {
     borderRadius: 0,
     height: "100%",
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
   },
   inputStyle: {
+    color: Colors.WHITE,
     maxHeight: undefined,
     height: "100%",
   },

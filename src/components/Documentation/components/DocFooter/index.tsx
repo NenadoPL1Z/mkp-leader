@@ -14,7 +14,7 @@ const DocFooter = () => {
         fontSize={15}
         lineHeight={20}
         style={styles.footerItem}
-        color={Colors.GRAY_ELEVEN}>
+        color={Colors.WHITE}>
         © ООО «МКП Лидер»
       </Typography>
     </View>

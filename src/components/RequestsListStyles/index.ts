@@ -5,7 +5,7 @@ import { Colors } from "@app/theme/colors.ts";
 export const requestsListStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
   },
   top: {
     flex: 1,

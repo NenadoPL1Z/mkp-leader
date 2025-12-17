@@ -103,7 +103,7 @@ export const RegisterForm = () => {
           <Typography
             fontSize={14}
             lineHeight={16}
-            color={Colors.DARK_SECONDARY_TWO}
+            color={Colors.PRIMARY}
             onPress={() => setUserAccept(true)}>
             пользовательским соглашением
           </Typography>{" "}
@@ -111,7 +111,7 @@ export const RegisterForm = () => {
           <Typography
             fontSize={14}
             lineHeight={16}
-            color={Colors.DARK_SECONDARY_TWO}
+            color={Colors.PRIMARY}
             onPress={() => setPolicy(true)}>
             политикой конфиденциальности
           </Typography>

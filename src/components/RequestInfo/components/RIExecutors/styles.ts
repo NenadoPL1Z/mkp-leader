@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
   },
   shadow: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.MAIN,
     shadowColor: Colors.BLACK,
     shadowOffset: {
       width: 0,

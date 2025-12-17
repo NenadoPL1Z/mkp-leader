@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
 
     borderRadius: 12,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.MAIN,
   },
   itemBottom: {
     paddingBottom: 0,

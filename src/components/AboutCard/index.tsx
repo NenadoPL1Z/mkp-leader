@@ -4,6 +4,7 @@ import AvatarUI from "@app/ui/AvatarUI";
 import Typography from "@app/ui/Typography";
 import { Font } from "@app/theme/font";
 import BadgeUI from "@app/ui/BadgeUI";
+import { Colors } from "@app/theme/colors.ts";
 import { styles } from "./styles";
 import type { AboutCardProps } from "./types";
 
@@ -51,6 +52,7 @@ const AboutCard = ({
               fontSize={15}
               lineHeight={20}
               fontWeight="600"
+              color={Colors.WHITE}
               {...titleProps}>
               {title}
             </Typography>
@@ -58,7 +60,8 @@ const AboutCard = ({
         </View>
         <Typography
           numberOfLines={1}
-          variant="h4">
+          variant="h4"
+          color={Colors.WHITE}>
           {subtitle}
         </Typography>
       </View>

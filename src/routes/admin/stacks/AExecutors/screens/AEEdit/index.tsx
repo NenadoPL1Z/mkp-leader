@@ -26,7 +26,7 @@ const AEEdit = (props: AEEditProps) => {
         right={{
           variant: "edit",
           disabled: true,
-          iconProps: { color: Colors.MAIN },
+          iconProps: { color: Colors.PRIMARY },
         }}
       />
       <KeyboardContainer>
@@ -49,7 +49,7 @@ const AEEdit = (props: AEEditProps) => {
       <View
         style={[
           styles.bottom,
-          { paddingBottom: offset, backgroundColor: Colors.WHITE },
+          { paddingBottom: offset, backgroundColor: Colors.DARK_SECONDARY_TWO },
         ]}>
         <ButtonUI
           loading={isLoading}

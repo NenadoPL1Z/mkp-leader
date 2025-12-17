@@ -61,7 +61,7 @@ const AboutBottomSheet = (props: AboutBottomSheetProps) => {
               fontSize={15}
               lineHeight={20}
               fontWeight="600"
-              color={Colors.TEXT}>
+              color={Colors.WHITE}>
               Время работы
             </Typography>
             <Typography

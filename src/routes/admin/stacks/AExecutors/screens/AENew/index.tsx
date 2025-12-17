@@ -43,7 +43,7 @@ const AENew = (props: AENewProps) => {
       <View
         style={[
           styles.bottom,
-          { paddingBottom: offset, backgroundColor: Colors.WHITE },
+          { paddingBottom: offset, backgroundColor: Colors.DARK_SECONDARY_TWO },
         ]}>
         <ButtonUI
           loading={isLoading}

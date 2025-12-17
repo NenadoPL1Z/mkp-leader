@@ -4,7 +4,7 @@ import { Colors } from "@app/theme/colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
   },
   children: {
     flexGrow: 1,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
 
     borderStyle: "solid",
     borderTopWidth: 1,
-    borderTopColor: Colors.GRAY_THREE,
+    borderTopColor: Colors.WHITE,
   },
   wrapper: {
     height: 72,

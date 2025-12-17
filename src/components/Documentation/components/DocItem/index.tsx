@@ -38,7 +38,7 @@ const DocItem = ({
             fontSize={15}
             lineHeight={20}
             fontWeight="400"
-            color={Colors.TEXT}
+            color={Colors.WHITE}
             fontFamily={Font.TEXT}>
             {title}
           </Typography>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   shadow: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.MAIN,
     shadowColor: Colors.BLACK,
     shadowOffset: {
       width: 0,

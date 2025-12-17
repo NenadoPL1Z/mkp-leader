@@ -23,6 +23,6 @@ export const styles = StyleSheet.create({
     flex: 0,
     paddingVertical: 10,
     paddingHorizontal: Size.SCREEN_PADDING,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
   },
 });

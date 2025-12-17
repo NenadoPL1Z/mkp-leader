@@ -34,7 +34,7 @@ const DocHeader = ({ onClose }: Props) => {
           lineHeight={20}
           fontFamily={Font.TEXT}
           fontWeight="400"
-          color={Colors.GRAY_SEVEN}>
+          color={Colors.WHITE}>
           Версия {getVersion()}
         </Typography>
       </View>

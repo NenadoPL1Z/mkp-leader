@@ -47,7 +47,7 @@ const ButtonSheetContent = (props: BottomSheetUIProps) => {
         ]}
         handleStyle={[styles.handleStyle, bottomSheetProps?.handleStyle]}
         handleIndicatorStyle={[
-          { backgroundColor: Colors.GRAY_TEN },
+          { backgroundColor: Colors.PRIMARY },
           styles.handleIndicatorStyle,
           bottomSheetProps?.handleIndicatorStyle,
         ]}
@@ -56,12 +56,15 @@ const ButtonSheetContent = (props: BottomSheetUIProps) => {
           bottomSheetProps?.containerStyle,
         ]}
         backgroundStyle={[
-          { backgroundColor: Colors.WHITE },
+          { backgroundColor: Colors.DARK_SECONDARY_TWO },
           styles.backgroundStyle,
           bottomSheetProps?.backgroundStyle,
         ]}>
         <View
-          style={[styles.contentContainer, { backgroundColor: Colors.WHITE }]}>
+          style={[
+            styles.contentContainer,
+            { backgroundColor: Colors.DARK_SECONDARY_TWO },
+          ]}>
           {isAutoHeight && <View onLayout={handleLayout}>{children}</View>}
           {!isAutoHeight && children}
         </View>

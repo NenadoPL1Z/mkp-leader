@@ -34,7 +34,7 @@ const ScreenContainer = (props: Props) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
   },
 });
 

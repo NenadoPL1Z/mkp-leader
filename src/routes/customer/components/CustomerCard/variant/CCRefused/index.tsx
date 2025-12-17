@@ -43,13 +43,13 @@ const CCRefused = ({
       <Typography
         variant="h4"
         numberOfLines={1}
-        color={Colors.GRAY_ELEVEN}>
+        color={Colors.WHITE}>
         Дата создания: {creationTime}
       </Typography>
       <Typography
         variant="h4"
         numberOfLines={1}
-        color={Colors.GRAY_ELEVEN}>
+        color={Colors.WHITE}>
         Срок исполнения: {getServiceDeadline(deadline_at)}
       </Typography>
     </Card>

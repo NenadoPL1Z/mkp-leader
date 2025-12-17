@@ -19,7 +19,7 @@ const BottomSheetAction = ({ title, isActive, onPress }: Props) => {
         fontSize={15}
         lineHeight={20}
         fontWeight="400"
-        color={isActive ? Colors.MAIN : Colors.GRAY_ELEVEN}>
+        color={isActive ? Colors.PRIMARY : Colors.GRAY_ELEVEN}>
         {title}
       </Typography>
     </TouchableOpacity>

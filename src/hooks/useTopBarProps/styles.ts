@@ -5,7 +5,9 @@ import { Font } from "@app/theme/font.ts";
 export const styles = StyleSheet.create({
   container: {},
   sceneContainerStyle: {},
-  tabBarStyle: {},
+  tabBarStyle: {
+    backgroundColor: Colors.DARK_SECONDARY_TWO,
+  },
   tabBarItemStyle: {
     paddingBottom: 4,
     paddingHorizontal: 24,
@@ -17,6 +19,7 @@ export const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: "400",
     fontFamily: Font.TEXT,
+    color: Colors.WHITE,
     textTransform: "none",
   },
   tabBarIndicatorStyle: {
