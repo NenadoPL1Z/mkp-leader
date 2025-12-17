@@ -15,9 +15,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "MKPLeader.app"
-               BlueprintName = "MKPLeader"
-               ReferencedContainer = "container:MKPLeader.xcodeproj">
+               BuildableName = "TekhnikOnline.app"
+               BlueprintName = "TekhnikOnline"
+               ReferencedContainer = "container:TekhnikOnline.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+               BuildableName = "TekhnikOnline.app"
+               BlueprintName = "TekhnikOnline"
+               ReferencedContainer = "container:TekhnikOnline.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "MKPLeaderTests.xctest"
-               BlueprintName = "MKPLeaderTests"
-               ReferencedContainer = "container:MKPLeader.xcodeproj">
+               BuildableName = "TekhnikOnlineTests.xctest"
+               BlueprintName = "TekhnikOnlineTests"
+               ReferencedContainer = "container:TekhnikOnline.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MKPLeader.app"
-            BlueprintName = "MKPLeader"
-            ReferencedContainer = "container:MKPLeader.xcodeproj">
+            BuildableName = "TekhnikOnline.app"
+            BlueprintName = "TekhnikOnline"
+            ReferencedContainer = "container:TekhnikOnline.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +86,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MKPLeader.app"
-            BlueprintName = "MKPLeader"
-            ReferencedContainer = "container:MKPLeader.xcodeproj">
+            BuildableName = "TekhnikOnline.app"
+            BlueprintName = "TekhnikOnline"
+            ReferencedContainer = "container:TekhnikOnline.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

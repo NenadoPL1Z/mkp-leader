@@ -16,7 +16,7 @@ end
 
 $RNVideoUseVideoCaching = true
 
-target 'MKPLeader' do
+target 'TekhnikOnline' do
   config = use_native_modules!
 
   use_react_native!(
@@ -28,7 +28,7 @@ target 'MKPLeader' do
   pod 'SPTPersistentCache', :modular_headers => true
   pod 'DVAssetLoaderDelegate', :modular_headers => true
 
-  target 'MKPLeaderTests' do
+  target 'TekhnikOnlineTests' do
     inherit! :complete
     # Pods for testing
   end
