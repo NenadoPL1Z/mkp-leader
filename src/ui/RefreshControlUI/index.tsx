@@ -6,8 +6,8 @@ import type { RefreshControlProps } from "react-native";
 const RefreshControlUI = (props: RefreshControlProps) => {
   return (
     <RefreshControl
-      colors={[Colors.MAIN]}
-      tintColor={Colors.MAIN}
+      colors={[Colors.WHITE]}
+      tintColor={Colors.WHITE}
       {...props}
     />
   );
