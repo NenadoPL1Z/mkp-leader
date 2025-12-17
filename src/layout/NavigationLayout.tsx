@@ -18,7 +18,7 @@ const NavigationLayout = ({ children }: ChildrenProps) => {
 
   useStatusBar(true, {
     backgroundColor: Colors.WHITE,
-    statusBar: "dark-content",
+    statusBar: "light-content",
   });
 
   return (

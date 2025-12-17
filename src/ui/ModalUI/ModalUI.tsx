@@ -10,7 +10,7 @@ export type ModalUIProps = Required<Pick<ModalProps, "onRequestClose">> &
 const ModalUI = ({ children, ...modalProps }: ModalUIProps) => {
   useStatusBar(modalProps.visible, {
     backgroundColor: Colors.GRAY_ELEVEN,
-    statusBar: "dark-content",
+    statusBar: "light-content",
   });
 
   return (
